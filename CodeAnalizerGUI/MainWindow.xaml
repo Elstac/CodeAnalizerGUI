@@ -6,7 +6,21 @@
         xmlns:local="clr-namespace:CodeAnalizerGUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+            <Button Content="OpenProject" Click="Open_Button_Click"/>
+            <Button Content="Exit" Click="Exit_Button_Click"/>
+        </ToolBar>
+        <ToolBar Name="ProjectOptionsBar" Grid.Column="0" Grid.Row="1"/>
+        <StackPanel Name="NumberPanel" Grid.Row="1" Grid.Column="1"/>
         
     </Grid>
 </Window>
