@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CodeAnalizerGUI
 {
     /// <summary>
-    /// Interaction logic for TEstPage.xaml
+    /// Interaction logic for GlobalOptionsWindow.xaml
     /// </summary>
-    public partial class TEstPage : Page
+    public partial class GlobalOptionsWindow : Window
     {
-        public TEstPage()
+        public GlobalOptionsWindow()
         {
             InitializeComponent();
         }
-        
-        
     }
 }

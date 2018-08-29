@@ -45,12 +45,7 @@ namespace CodeAnalizerGUI
         {
             MainControl.Content = contentView;
         }
-
-        public void OpenProject()
-        {
-            //All shit happend here!!!
-        }
-
+        
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
             CloseWindow();
@@ -65,6 +60,11 @@ namespace CodeAnalizerGUI
         {
             Button butt = sender as Button;
             mainBus.ReloadMainWindowContent(int.Parse(butt.Tag.ToString()));
+        }
+
+        private void OptionsButtonClick(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
