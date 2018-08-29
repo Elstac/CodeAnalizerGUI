@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using CodeAnalizer;
 using System.IO;
+using System.Windows.Controls;
 namespace CodeAnalizerGUI
 {
     public class UIBus
@@ -14,8 +15,9 @@ namespace CodeAnalizerGUI
         GitChangesTracker gitAnalizer;
         FileManager fileManager;
         ContributorManager contributorManager;
+        List<UserControl> statisitcsViews;
 
-        string pathToProject;
+        string pathToProject =null;
         private MainWindow mainWindow;
         private FileExplorerWindow fileExplorer;
 
@@ -24,6 +26,7 @@ namespace CodeAnalizerGUI
             mainWindow = win;
             projectAnalizer = new ProjectAnalizer();
             contributorManager = new ContributorManager();
+            statisitcsViews = new List<UserControl>();
         }
 
         public string PathToProject { set => pathToProject = value; get => pathToProject; }
@@ -50,10 +53,12 @@ namespace CodeAnalizerGUI
             PathToProject = pathToProject;
             fileExplorer.Close();
             OpenProject();
-            mainWindow.LoadNumberPanel(GetGlobalStatistics());
+            LoadGlobalStatsPanel();
+
+            mainWindow.LoadContent(statisitcsViews[0]);
         }
 
-        public List<string> GetGlobalStatistics()
+        private List<string> GetGlobalStatistics()
         {
             List<string> ret = new List<string>();
             projectAnalizer.Analizers = fileManager.Analizers;
@@ -62,10 +67,43 @@ namespace CodeAnalizerGUI
             ret.Add("Charackters: " + projectAnalizer.TotalCharacters());
             ret.Add("Largets file: "+projectAnalizer.GetLargestFile());
             ret.Add("Smallest file: " + projectAnalizer.GetSmallestFile());
+            ret.Add("Repository statistics:");
+            ret.Add("Commits count: " + gitAnalizer.CommitsCount());
+            ret.Add("Lines added: " + gitAnalizer.ChangedLinesCount().Item1);
+            ret.Add("Lines deleted: " + gitAnalizer.ChangedLinesCount().Item2);
 
             return ret;
         }
 
-        
+        private void LoadGlobalStatsPanel()
+        {
+            GlobalStatsControl panel = new GlobalStatsControl(GetGlobalStatistics());
+
+            statisitcsViews.Add(panel);
+        }
+
+        public void ReloadMainWindowContent(int index)
+        {
+            if (index >= statisitcsViews.Count || index < 0)
+                if (pathToProject == null)
+                {
+                    ShowErrorMessage("No project have been loaded");
+                    return;
+                }
+                else
+                {
+                    ShowErrorMessage("Invalid index");
+                    return;
+                }
+
+            mainWindow.LoadContent(statisitcsViews[index]);
+        }
+
+        private void ShowErrorMessage(string text)
+        {
+            MessageBox.Show(text);
+        }
+
+
     }
 }

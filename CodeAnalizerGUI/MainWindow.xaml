@@ -12,15 +12,20 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
             <Button Content="OpenProject" Click="Open_Button_Click"/>
             <Button Content="Exit" Click="Exit_Button_Click"/>
         </ToolBar>
-        <ToolBar Name="ProjectOptionsBar" Grid.Column="0" Grid.Row="1"/>
-        <StackPanel Name="NumberPanel" Grid.Row="1" Grid.Column="1"/>
-        
+
+        <ToolBarTray Orientation="Vertical" Grid.Column="0" Grid.Row="1">
+            <ToolBar Name="NavigationBar" />
+        </ToolBarTray>
+        <ContentControl Name="MainControl" Grid.Column="1" Grid.Row="1">
+            
+        </ContentControl>
+
     </Grid>
 </Window>

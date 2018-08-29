@@ -21,11 +21,29 @@ namespace CodeAnalizerGUI
     public partial class MainWindow : Window
     {
         UIBus mainBus;
+        string[] buttonsNames = new string[] { "Global statistics","Git statistics" };
         public MainWindow()
         {
             InitializeComponent();
-            TEstPage tmp = new TEstPage();
             mainBus = new UIBus(this);
+            Button tmp;
+            
+            for (int i = 0; i < buttonsNames.Length; i++)
+            {
+                tmp = new Button();
+                tmp.Content = buttonsNames[i];
+                
+                tmp.Tag = i;
+                tmp.Click += new RoutedEventHandler(NavigatePanelButtonClick);
+                tmp.Margin = new Thickness(0, 5, 0, 5);
+                NavigationBar.Items.Add(tmp);
+            }
+            
+        }
+
+        public void LoadContent(UserControl contentView)
+        {
+            MainControl.Content = contentView;
         }
 
         public void OpenProject()
@@ -43,26 +61,17 @@ namespace CodeAnalizerGUI
             mainBus.ExploreFiles();
         }
 
+        private void NavigatePanelButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button butt = sender as Button;
+            mainBus.ReloadMainWindowContent(int.Parse(butt.Tag.ToString()));
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
-        public void LoadNumberPanel(List<string> numbersList)
-        {
-            TextBlock block;
 
-            foreach (var item in numbersList)
-            {
-                block = new TextBlock();
-                block.Text = item;
-                block.Tag = item.Substring(0, item.IndexOf(":") - 1);
-                block.Margin = new Thickness(0, 10, 0, 10);
-                block.FontSize = 14;
-                block.TextWrapping = TextWrapping.WrapWithOverflow;
-                NumberPanel.Children.Add(block);
-
-            }
-        }
         private void CloseWindow()
         {
             Close();
