@@ -22,8 +22,11 @@ namespace CodeAnalizerGUI
     /// </summary>
     public partial class ContributorsControl : UserControl,IFamilyMember
     {
+        private IFamilyMember treeParent;
         private Button AddButton;
         private int buttonCounter = 0;
+        public IFamilyMember TreeParent { set => treeParent = value; }
+
         public ContributorsControl()
         {
             InitializeComponent();
@@ -40,13 +43,15 @@ namespace CodeAnalizerGUI
             AddButton.Height = 64;
             AddButton.Content = plus;
             AddButton.Click += new RoutedEventHandler(AddButtonClick);
-            
+            AddButton.Margin = new Thickness(10, 10, 10, 0);
         }
 
         public void AddNewButton(string name,Image image)
         {
             UIElementCollection children = MainPanel.Children;
             ButtonWithDescription newButton = new ButtonWithDescription(image, name, new RoutedEventHandler(ContributoButtonClick));
+            newButton.Tag = buttonCounter++;
+            newButton.Margin = new Thickness(10, 10, 10, 0);
             children.RemoveAt(children.Count - 1);
             children.Add(newButton);
             children.Add(AddButton);
@@ -58,18 +63,26 @@ namespace CodeAnalizerGUI
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            MainWindow win = null;
+            GetParent(ref win);
+            win.LoadContent(new NewContributorControl(this));            
+        }
+
+        public void AddContributor(string name, string pathToImage, string[] files)
+        {
+            Image img = StringToImageConverter.Convert(pathToImage);
+            AddNewButton(name, img);
+            UIBus.mainBus.AddContributor(name, files);
         }
 
         public void GetParent<T>(ref T ret) where T : class
         {
-            if (Parent is T)
+            if (treeParent is T)
             {
-                ret = Parent as T;
+                ret = treeParent as T;
                 return;
             }
-            IFamilyMember par = Parent as IFamilyMember;
-            par.GetParent<T>(ref ret);
+            treeParent.GetParent(ref ret);
         }
 
         public void GetChildren<T>(ref T ret) where T : class

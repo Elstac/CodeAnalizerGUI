@@ -83,7 +83,14 @@
     <Compile Include="Classes\ControlHierarchyController.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
     <Compile Include="Classes\FamContentControl.cs" />
+    <Compile Include="Interfaces\IContributorManager.cs" />
     <Compile Include="Interfaces\IFamilyMember.cs" />
+    <Compile Include="UserControls\CustomControls\FileExplorer.xaml.cs">
+      <DependentUpon>FileExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
+      <DependentUpon>ManageableFileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
@@ -91,9 +98,6 @@
     <Compile Include="Interfaces\IFileExplorerUser.cs" />
     <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\CustomControls\FileExplorer.xaml.cs">
-      <DependentUpon>FileExplorer.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\ContributorsControl.xaml.cs">
       <DependentUpon>ContributorsControl.xaml</DependentUpon>
@@ -108,15 +112,19 @@
     <Compile Include="UserControls\MainWindowControls\WorkTimeControl.xaml.cs">
       <DependentUpon>WorkTimeControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\CustomControls\FileExplorer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CustomControls\ManageableFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\NewContributorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\CustomControls\ButtonWithDescription.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\CustomControls\FileExplorer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

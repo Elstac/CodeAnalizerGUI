@@ -21,21 +21,20 @@ namespace CodeAnalizerGUI
     /// <summary>
     /// Interaction logic for NewContributorControl.xaml
     /// </summary>
-    public partial class NewContributorControl : UserControl, IFileExplorerUser, IFamilyMember
+    public partial class NewContributorControl : UserControl, IFamilyMember,IFileExplorerUser
     {
         private string contributorName = "name";
-        private string lastName = "last name";
+        private string lastName = "lastname";
         private string pathToImage;
         private List<string> files = new List<string>() {};
-        private IFamilyMember parent;
+        private IFamilyMember treeParent;
         public NewContributorControl(IFamilyMember par)
         {
             InitializeComponent();
             ContributorImage.Source = StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\plus.png").Source;
-            FilesList.DataContext = this;
-            FilesList.ItemsSource = files;
+            FileList.TreeParent = this;
             Control tmp;
-            parent = par;
+            treeParent = par;
            
 
             foreach (var item in IdPanel.Children)
@@ -49,33 +48,26 @@ namespace CodeAnalizerGUI
 
         public string ContributorName { get => contributorName; set => contributorName = value; }
         public string LastName { get => lastName; set => lastName = value; }
-        public List<string> Files { get => files; set => files = value; }
+        public List<string> Files { get => files; }
         public string PathToImage { get => pathToImage; set => pathToImage = value; }
 
-        public void GetFileExplorerResults(string retPath)
+        private void ChoseImageButtonClick(object sender, RoutedEventArgs e)
         {
-            files.Add(retPath);
-            ICollectionView view = CollectionViewSource.GetDefaultView(files);
-            view.Refresh();
+            Window point = null;
+            GetParent(ref point);
+            FileExplorerWindow win = new FileExplorerWindow(this, point,new string[] {".jpg", ".png", ".bmp"});
+            win.Show();
+            point.Hide();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ChoseFileButtonClick(object sender, RoutedEventArgs e)
-        {
-            Window win=null;
-            GetParent<Window>(ref win);
-            FileExplorerWindow exp = new FileExplorerWindow(this,win);
-            exp.Show();
-        }
-
+        
         private void ConfirmButtonClick(object sender, RoutedEventArgs e)
         {
-            ContributorsControl parent = Parent as ContributorsControl;
-            //AddContributor(Name,lastName,PathToImage);
+            if (PathToImage == null)
+                PathToImage = Directory.GetCurrentDirectory() + "\\nofile.png";
+
+            string[] files = FileList.Files.ToArray();
+            ContributorsControl parent = treeParent as ContributorsControl;
+            parent.AddContributor(contributorName+" "+LastName,PathToImage,Files.ToArray());
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -85,17 +77,23 @@ namespace CodeAnalizerGUI
 
         public void GetParent<T>(ref T ret)where T:class
         {
-            if (parent is T)
+            if (treeParent is T)
             {
-                ret = parent as T;
+                ret = treeParent as T;
                 return;
             }
-            parent.GetParent(ref ret);
+            treeParent.GetParent(ref ret);
         }
 
         public void GetChildren<T>(ref T ret) where T : class
         {
             throw new InvalidOperationException("Operation not suported");
+        }
+
+        public void GetFileExplorerResults(string retPath)
+        {
+            PathToImage = retPath;
+            ContributorImage.Source = StringToImageConverter.Convert(retPath).Source;
         }
     }
 }

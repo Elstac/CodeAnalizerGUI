@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using CodeAnalizer;
 using System.IO;
@@ -13,7 +10,7 @@ namespace CodeAnalizerGUI
 {
     public class UIBus: IFileExplorerUser
     {
-        private static UIBus mainBus;
+        public static UIBus mainBus;
         ProjectAnalizer projectAnalizer;
         GitChangesTracker gitAnalizer;
         FileManager fileManager;
@@ -21,11 +18,16 @@ namespace CodeAnalizerGUI
         List<UserControl> statisitcsViews;
         OptionsHolder options;
 
+        private enum ViewsName
+        {
+            GlobalStats=0,
+            ContributorWindow =1
+        }
         string pathToProject =null;
         private MainWindow mainWindow;
         private FileExplorerWindow fileExplorer;
         public string PathToProject { set => pathToProject = value; get => pathToProject; }
-
+ 
         public UIBus(MainWindow win)
         {
             if (mainBus == null)
@@ -37,7 +39,6 @@ namespace CodeAnalizerGUI
                 options = new OptionsHolder();
                 mainBus = this;
             }
-            
         }
 
         #region ProjectInit
@@ -51,15 +52,19 @@ namespace CodeAnalizerGUI
         public void GetFileExplorerResults(string pathToProject)
         {
             PathToProject = pathToProject;
-            fileExplorer.Close();
             OpenProject();
-            LoadGlobalStatsPanel();
-
-            mainWindow.LoadContent(statisitcsViews[0]);
         }
+
         public void OpenProject()
         {
-            if(Directory.Exists(pathToProject+"\\.git"))
+            PrepareLogic();
+            LoadContent();
+            mainWindow.LoadContent(statisitcsViews[0]);
+        }
+
+        private void PrepareLogic()
+        {
+            if (Directory.Exists(pathToProject + "\\.git"))
                 gitAnalizer = new GitChangesTracker(pathToProject);
             string[] tab = new string[1];
             tab[0] = PathToProject;
@@ -99,20 +104,21 @@ namespace CodeAnalizerGUI
             return ret;
         }
 
+        private void LoadContent()
+        {
+            LoadGlobalStatsPanel();
+            LoadContributorsPanel();
+        }
         private void LoadGlobalStatsPanel()
         {
             GlobalStatsControl panel = new GlobalStatsControl(GetGlobalStatistics());
-
             statisitcsViews.Add(panel);
-
-            LoadContributorsPanel();
         }
 
         private void LoadContributorsPanel()
         {
             ContributorsControl control = new ContributorsControl();
-            Image img = StringToImageConverter.Convert(Directory.GetCurrentDirectory()+"\\plus.png");
-            control.AddNewButton("Kuba Mistrz", img);
+            control.TreeParent = mainWindow;
             statisitcsViews.Add(control);
         }
        
@@ -129,13 +135,16 @@ namespace CodeAnalizerGUI
                     ShowErrorMessage("Invalid index");
                     return;
                 }
-
             mainWindow.LoadContent(statisitcsViews[index]);
         }
         #endregion
 
         #region ContentResults
-        
+        public void AddContributor(string name,string[] files)
+        {
+            contributorManager.AddContributor(name, files);
+            ReloadMainWindowContent((int)ViewsName.ContributorWindow);
+        }
         #endregion
 
         private void ShowErrorMessage(string text)

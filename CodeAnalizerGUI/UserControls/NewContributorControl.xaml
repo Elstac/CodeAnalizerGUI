@@ -17,18 +17,18 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0">
             <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128"/>
-            <Button Content="Chose File" Click="Button_Click" />
+            <Button Content="Chose File" Click="ChoseImageButtonClick" />
             
         </StackPanel>
         <StackPanel Name="IdPanel" Grid.Column="1">
             <TextBlock Text="Name" HorizontalAlignment="Center"/>
             <TextBox Text="{Binding Path=ContributorName,Mode=TwoWay}" HorizontalAlignment="Center" FontSize="12"/>
-            <TextBlock Text="Last Name" HorizontalAlignment="Center"/>
+            <TextBlock Text="Lastname" HorizontalAlignment="Center"/>
             <TextBox Text="{Binding Path=LastName, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="12"  />
         </StackPanel>
-        <ListView Grid.Row="1" Name="FilesList"/>
+        <local:ManageableFileView x:Name="FileList" Grid.Row="1" />
         <Button Content="Confirm" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="ConfirmButtonClick"/>
         <Button Content="Cancel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Click="CancelButtonClick"/>
-        <Button Content="ChoseFile" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="75" Click="ChoseFileButtonClick"/>
+       
     </Grid>
 </UserControl>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizer;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -20,8 +21,9 @@ namespace CodeAnalizerGUI
     /// </summary>
     public partial class FileExplorerWindow : Window
     {
-        bool newSequence = true;
-        string retPath = null;
+        private string[] formats;
+        private bool newSequence = true;
+        private string retPath = null;
         private IFileExplorerUser user;
         public FileExplorerWindow(IFileExplorerUser userClass, Window owner)
         {
@@ -29,6 +31,14 @@ namespace CodeAnalizerGUI
             LoadTree();
             user = userClass;
             Owner = owner;
+        }
+        public FileExplorerWindow(IFileExplorerUser userClass, Window owner,string[] formats)
+        {
+            InitializeComponent();
+            LoadTree();
+            user = userClass;
+            Owner = owner;
+            this.formats = formats;
         }
 
         private void LoadTree()
@@ -45,26 +55,71 @@ namespace CodeAnalizerGUI
             }
             
         }
+        
+        private TreeViewItem CreateNode(string text,bool isDir)
+        {
+            TreeViewItem ret = new TreeViewItem();
+            ret.Header = text.Substring(text.LastIndexOf("\\") + 1);
+            ret.Tag = text;
+            ret.GotFocus += new RoutedEventHandler(FolderFocused);
+            ret.MouseDoubleClick += new MouseButtonEventHandler(Button_Click_1);
+            if (isDir)
+            {
+                ret.Expanded += new RoutedEventHandler(FolderExpanded);
+                ret.Items.Add(new TreeViewItem());
+            }
 
+            return ret;
+        }
+
+        #region HelpingMethods
+        private bool isHidden(string path)
+        {
+            if (File.Exists(path))
+                return new FileInfo(path).Attributes.HasFlag(FileAttributes.Hidden);
+            if (Directory.Exists(path))
+                return new DirectoryInfo(path).Attributes.HasFlag(FileAttributes.Hidden);
+            throw new FileNotFoundException("File: " + path + " doesnt exist");
+        }
+        private bool IsInFormat(string path)
+        {
+            if (Directory.Exists(path))
+                return true;
+            foreach (var format in formats)
+            {
+                if (path.EndsWith(format))
+                    return true;
+            }
+            return false;
+        }
+        #endregion
+
+        #region Events
         void FolderExpanded(object sender, RoutedEventArgs e)
         {
             TreeViewItem item = (TreeViewItem)sender;
             if (item.Items.Count != 1)
                 return;
             item.Items.Clear();
-            DirectoryInfo info;
-            foreach (string s in Directory.GetDirectories(item.Tag.ToString()))
-            {
-                if (isHidden(s))
-                    continue;
-                TreeViewItem subitem = new TreeViewItem();
-                subitem.Header = s.Substring(s.LastIndexOf("\\") + 1);
-                subitem.Tag = s;
-                subitem.Expanded += new RoutedEventHandler(FolderExpanded);
-                subitem.GotFocus += new RoutedEventHandler(FolderFocused);
 
-                subitem.Items.Add(new TreeViewItem());
-                item.Items.Add(subitem);
+            foreach (string dir in Directory.GetDirectories(item.Tag.ToString()))
+            {
+                if (isHidden(dir))
+                    continue;
+                if (formats != null && !IsInFormat(dir))
+                    continue;
+
+                item.Items.Add(CreateNode(dir, true));
+            }
+
+            foreach (string file in Directory.GetFiles(item.Tag.ToString()))
+            {
+                if (isHidden(file))
+                    continue;
+                if (formats != null && !IsInFormat(file))
+                    continue;
+
+                item.Items.Add(CreateNode(file, false));
             }
         }
 
@@ -85,6 +140,7 @@ namespace CodeAnalizerGUI
             retPath = item.Tag.ToString();
             newSequence = false;
         }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -104,14 +160,7 @@ namespace CodeAnalizerGUI
             Owner.Focus();
             base.OnClosed(e);
         }
-        private bool isHidden(string path)
-        {
-            if (File.Exists(path))
-                return new FileInfo(path).Attributes.HasFlag(FileAttributes.Hidden);
-            if (Directory.Exists(path))
-                return new DirectoryInfo(path).Attributes.HasFlag(FileAttributes.Hidden);
-            throw new FileNotFoundException("File: " + path + " doesnt exist");
-        }
+        #endregion
         
     }
 }

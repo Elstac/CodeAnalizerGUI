@@ -91,8 +91,9 @@ namespace CodeAnalizerGUI
 
         private void TESTButtonClick(object sender, RoutedEventArgs e)
         {
-            NewContributorControl tmp = new NewContributorControl(this);
-            LoadContent(tmp);
+            ContributorsControl tmp = new ContributorsControl();
+            mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
+            mainBus.OpenProject();
         }
 
         public void GetParent<T>(ref T ret) where T : class
