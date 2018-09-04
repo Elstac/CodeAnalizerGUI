@@ -80,16 +80,50 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ControlHierarchyController.cs" />
+    <Compile Include="Classes\Converters\StringToImageConverter.cs" />
+    <Compile Include="Classes\FamContentControl.cs" />
+    <Compile Include="Interfaces\IFamilyMember.cs" />
+    <Compile Include="UserControls\NewContributorControl.xaml.cs">
+      <DependentUpon>NewContributorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\OptionsHolder.cs" />
+    <Compile Include="Interfaces\IFileExplorerUser.cs" />
+    <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
+      <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CustomControls\FileExplorer.xaml.cs">
+      <DependentUpon>FileExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainWindowControls\ContributorsControl.xaml.cs">
+      <DependentUpon>ContributorsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\GlobalOptionsWindow.xaml.cs">
       <DependentUpon>GlobalOptionsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GlobalStatsControl.xaml.cs">
+    <Compile Include="UserControls\MainWindowControls\GlobalStatsControl.xaml.cs">
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\UIBus.cs" />
-    <Compile Include="WorkTimeControl.xaml.cs">
+    <Compile Include="UserControls\MainWindowControls\WorkTimeControl.xaml.cs">
       <DependentUpon>WorkTimeControl.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\NewContributorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControls\ButtonWithDescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControls\FileExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainWindowControls\ContributorsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\FileExplorerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,7 +132,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GlobalStatsControl.xaml">
+    <Page Include="UserControls\MainWindowControls\GlobalStatsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,7 +151,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="WorkTimeControl.xaml">
+    <Page Include="UserControls\MainWindowControls\WorkTimeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +196,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UserControls\" />
+    <Folder Include="UserControls\OptionsWindowControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

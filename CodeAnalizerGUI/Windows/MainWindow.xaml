@@ -18,10 +18,12 @@
         <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
             <Button Content="OpenProject" Click="Open_Button_Click"/>
             <Button Content="Exit" Click="Exit_Button_Click"/>
+            <Button Content="Options" Click="OptionsButtonClick"/>
+            <Button Content="TEST" Click="TESTButtonClick"/>
         </ToolBar>
 
         <ToolBarTray Orientation="Vertical" Grid.Column="0" Grid.Row="1">
-            <ToolBar Name="NavigationBar" />
+            <ToolBar Name="NavigationBar"/>
         </ToolBarTray>
         <ContentControl Name="MainControl" Grid.Column="1" Grid.Row="1">
             

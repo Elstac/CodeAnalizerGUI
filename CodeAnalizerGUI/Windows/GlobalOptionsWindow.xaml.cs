@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Windows.Controls;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -19,9 +19,40 @@ namespace CodeAnalizerGUI
     /// </summary>
     public partial class GlobalOptionsWindow : Window
     {
-        public GlobalOptionsWindow()
+        private List<UserControl> content;
+        private string[] buttonsContent = new string[] {"Language", "cccccccs" };
+        public GlobalOptionsWindow(Window owner)
         {
             InitializeComponent();
+            Owner = owner;
+            LoadButtons();
+        }
+
+        private void LoadButtons()
+        { 
+
+            int index = 0;
+            Button newButton;
+            foreach (var text in buttonsContent)
+            {
+                newButton = new Button();
+                newButton.Content = text;
+                newButton.Tag = index++;
+                newButton.Click += new RoutedEventHandler(NavigationButtonClick);
+                NavigationBar.Items.Add(newButton); 
+            }
+        }
+
+        private void NavigationButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            Owner.Show();
+            Owner.Focus();
+            base.OnClosed(e);
         }
     }
 }

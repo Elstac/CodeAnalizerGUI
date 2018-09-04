@@ -16,6 +16,9 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <ToolBarTray Orientation="Vertical"/>
+        <ToolBarTray Orientation="Vertical" Name="MainTray">
+            <ToolBar Name="NavigationBar" Width="100"/>
+        </ToolBarTray>
+        <ContentControl Name="MainControl" Grid.Column="1" Grid.Row="0"/>
     </Grid>
 </Window>

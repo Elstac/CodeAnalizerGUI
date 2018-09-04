@@ -13,34 +13,38 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizer;
+using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window,IFamilyMember
     {
         UIBus mainBus;
-        string[] buttonsNames = new string[] { "Global statistics","Git statistics" };
+        string[] buttonsNames = new string[] { "Global statistics","Contributors" };
         public MainWindow()
         {
             InitializeComponent();
             mainBus = new UIBus(this);
+            LoadButtons();
+        }
+
+        private void LoadButtons()
+        {
             Button tmp;
-            
+
             for (int i = 0; i < buttonsNames.Length; i++)
             {
                 tmp = new Button();
                 tmp.Content = buttonsNames[i];
-                
+
                 tmp.Tag = i;
                 tmp.Click += new RoutedEventHandler(NavigatePanelButtonClick);
                 tmp.Margin = new Thickness(0, 5, 0, 5);
                 NavigationBar.Items.Add(tmp);
             }
-            
         }
-
         public void LoadContent(UserControl contentView)
         {
             MainControl.Content = contentView;
@@ -64,12 +68,12 @@ namespace CodeAnalizerGUI
 
         private void OptionsButtonClick(object sender, RoutedEventArgs e)
         {
-
+            mainBus.OpenOptions();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void CloseWindow()
@@ -81,8 +85,24 @@ namespace CodeAnalizerGUI
         {
             win.Owner = this;
             win.Show();
-            this.Hide();
+            Hide();
             win.Focus();
+        }
+
+        private void TESTButtonClick(object sender, RoutedEventArgs e)
+        {
+            NewContributorControl tmp = new NewContributorControl(this);
+            LoadContent(tmp);
+        }
+
+        public void GetParent<T>(ref T ret) where T : class
+        {
+            ret = null;
+        }
+
+        public void GetChildren<T>(ref T ret) where T : class
+        {
+            throw new InvalidOperationException("Operation not suported");
         }
     }
 }

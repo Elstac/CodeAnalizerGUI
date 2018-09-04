@@ -12,21 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.IO;
+using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI
 {
     /// <summary>
     /// Interaction logic for FileExplorerWindow.xaml
     /// </summary>
-    public partial class FileExplorerWindow : Window ,IUIWindow
+    public partial class FileExplorerWindow : Window
     {
         bool newSequence = true;
         string retPath = null;
-        private UIBus mainBus;
-        public FileExplorerWindow(UIBus bus, Window owner)
+        private IFileExplorerUser user;
+        public FileExplorerWindow(IFileExplorerUser userClass, Window owner)
         {
             InitializeComponent();
             LoadTree();
-            mainBus = bus;
+            user = userClass;
             Owner = owner;
         }
 
@@ -51,9 +52,11 @@ namespace CodeAnalizerGUI
             if (item.Items.Count != 1)
                 return;
             item.Items.Clear();
-            
+            DirectoryInfo info;
             foreach (string s in Directory.GetDirectories(item.Tag.ToString()))
             {
+                if (isHidden(s))
+                    continue;
                 TreeViewItem subitem = new TreeViewItem();
                 subitem.Header = s.Substring(s.LastIndexOf("\\") + 1);
                 subitem.Tag = s;
@@ -84,9 +87,6 @@ namespace CodeAnalizerGUI
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Owner.Show();
-            
-            Owner.Focus();
             Close();
         }
 
@@ -94,12 +94,24 @@ namespace CodeAnalizerGUI
         {
             if (retPath == null)
                 return;
-            mainBus.FileExplorerResult(retPath);
+            user.GetFileExplorerResults(retPath);
+            Close();
         }
 
-        public void SetBus(UIBus bus)
+        protected override void OnClosed(EventArgs e)
         {
-            this.mainBus = bus;
+            Owner.Show();
+            Owner.Focus();
+            base.OnClosed(e);
         }
+        private bool isHidden(string path)
+        {
+            if (File.Exists(path))
+                return new FileInfo(path).Attributes.HasFlag(FileAttributes.Hidden);
+            if (Directory.Exists(path))
+                return new DirectoryInfo(path).Attributes.HasFlag(FileAttributes.Hidden);
+            throw new FileNotFoundException("File: " + path + " doesnt exist");
+        }
+        
     }
 }
