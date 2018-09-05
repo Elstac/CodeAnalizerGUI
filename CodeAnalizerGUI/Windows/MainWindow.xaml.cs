@@ -92,14 +92,14 @@ namespace CodeAnalizerGUI
 
         private void TESTButtonClick(object sender, RoutedEventArgs e)
         {
-            //ContributorsControl tmp = new ContributorsControl();
-            //mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
-            //mainBus.OpenProject();
-            ContributorDetailsControl cdc = new ContributorDetailsControl();
-            mainBus.ContributorManager.AddContributor("Judasz Iskariota");
-            cdc.Contributor = mainBus.ContributorManager.Contributors[0];
-            cdc.LoadContent();
-            LoadContent(cdc);
+            ContributorsControl tmp = new ContributorsControl();
+            mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
+            mainBus.OpenProject();
+            //ContributorDetailsControl cdc = new ContributorDetailsControl();
+            //mainBus.ContributorManager.AddContributor("Judasz Iskariota");
+            //cdc.Contributor = mainBus.ContributorManager.Contributors[0];
+            //cdc.LoadContent();
+            //LoadContent(cdc);
         }
 
         public void GetParent<T>(ref T ret) where T : class

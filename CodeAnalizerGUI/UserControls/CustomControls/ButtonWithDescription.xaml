@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="128" d:DesignWidth="64">
     <StackPanel>
-        <Button Name="Button"/>
+        <Button Name="nButton"/>
         <TextBlock Name="DescriptionBlock" TextWrapping="Wrap"/>
     </StackPanel>
 </UserControl>

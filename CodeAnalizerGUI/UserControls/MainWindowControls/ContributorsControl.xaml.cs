@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using CodeAnalizerGUI.Classes.Converters;
 using CodeAnalizerGUI.Interfaces;
 using System.IO;
+using CodeAnalizerGUI.UserControls.MainWindowControls;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -59,7 +60,19 @@ namespace CodeAnalizerGUI
 
         private void ContributoButtonClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Button button = sender as Button;
+            ContributorDetailsControl cdc = new ContributorDetailsControl();
+            
+            int index = int.Parse(button.Tag.ToString());
+
+            cdc.Contributor = UIBus.mainBus.ContributorManager.Contributors[index];
+            Image tmpImg = (Image)button.Content;
+            cdc.ContributorImage = tmpImg.Source;
+
+            MainWindow win = null;
+            GetParent(ref win);
+            win.LoadContent(cdc);
+
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {

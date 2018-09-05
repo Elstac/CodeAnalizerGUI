@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -20,15 +20,31 @@ namespace CodeAnalizerGUI
     /// </summary>
     public partial class ButtonWithDescription : UserControl
     {
+       
         public ButtonWithDescription(Image buttonContent, string description,RoutedEventHandler clickEvent)
         {
             InitializeComponent();
             DescriptionBlock.Text = description;
-            Button.Width = 64;
-            Button.Height = 64;
+            nButton.Width = 64;
+            nButton.Height = 64;
             buttonContent.Stretch = Stretch.Fill;
-            Button.Content = buttonContent;
-            Button.Click += clickEvent;
+            nButton.Content = buttonContent;
+            nButton.Click += clickEvent;
+
+            InitializeTagBinding();
+
+        }
+
+        private void InitializeTagBinding()
+        {
+            Binding binding = new Binding
+            {
+                Source = this,
+                Path = new PropertyPath("Tag"),
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+            BindingOperations.SetBinding(nButton, TagProperty, binding);
         }
     }
 }
