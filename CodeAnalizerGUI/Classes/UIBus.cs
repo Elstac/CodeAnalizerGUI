@@ -27,7 +27,8 @@ namespace CodeAnalizerGUI
         private MainWindow mainWindow;
         private FileExplorerWindow fileExplorer;
         public string PathToProject { set => pathToProject = value; get => pathToProject; }
- 
+        public ContributorManager ContributorManager { get => contributorManager;}
+
         public UIBus(MainWindow win)
         {
             if (mainBus == null)

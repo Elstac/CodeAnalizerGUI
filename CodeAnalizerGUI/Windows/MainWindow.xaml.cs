@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizer;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizerGUI.UserControls.MainWindowControls;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -91,9 +92,14 @@ namespace CodeAnalizerGUI
 
         private void TESTButtonClick(object sender, RoutedEventArgs e)
         {
-            ContributorsControl tmp = new ContributorsControl();
-            mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
-            mainBus.OpenProject();
+            //ContributorsControl tmp = new ContributorsControl();
+            //mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
+            //mainBus.OpenProject();
+            ContributorDetailsControl cdc = new ContributorDetailsControl();
+            mainBus.ContributorManager.AddContributor("Judasz Iskariota");
+            cdc.Contributor = mainBus.ContributorManager.Contributors[0];
+            cdc.LoadContent();
+            LoadContent(cdc);
         }
 
         public void GetParent<T>(ref T ret) where T : class

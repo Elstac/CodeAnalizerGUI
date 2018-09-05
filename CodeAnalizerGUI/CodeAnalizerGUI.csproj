@@ -91,6 +91,9 @@
     <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MainWindowControls\ContributorDetailsControl.xaml.cs">
+      <DependentUpon>ContributorDetailsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\CustomControls\ManageableFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainWindowControls\ContributorDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
