@@ -96,7 +96,7 @@ namespace CodeAnalizerGUI
             mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
             mainBus.OpenProject();
             //ContributorDetailsControl cdc = new ContributorDetailsControl();
-            //mainBus.ContributorManager.AddContributor("Judasz Iskariota");
+            //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});
             //cdc.Contributor = mainBus.ContributorManager.Contributors[0];
             //cdc.LoadContent();
             //LoadContent(cdc);

@@ -31,6 +31,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
             InitializeComponent();
             MainImage.DataContext = this;
             NameBlock.DataContext = this;
+            contributorImage = StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\nofile.png").Source;
         }
 
         public Contributor Contributor
@@ -49,8 +50,29 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
         {
             if (contributor == null)
                 throw new MissingMemberException("Contributor not set");
-            if (contributorImage == null)
-                contributorImage = StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\nofile.png").Source;
+            LoadBasicStats();
+        }
+
+        private void LoadBasicStats()
+        {
+            FileAnalizer analizer = contributor.Analizer;
+            
+            AddNewBlockN("Characters: " + analizer.GetCharacktersCount());
+            AddNewBlockN("Lines: " + analizer.GetLinesCount());
+            AddNewBlockN("Usings: " + analizer.GetUsingsCount());
+            AddNewBlockN("Empty lines: " + analizer.GetEmptyLines()); 
+            AddNewBlockN("Largest file: " + analizer.GetLargestFile());
+            AddNewBlockN("Smallest file: " + analizer.GetSmallestFile());
+            AddNewBlockN("Methods: " + analizer.GetMethodsCount());
+        }
+
+        private void AddNewBlockN(string text)
+        {
+            if (text == null || text == "")
+                return;
+            TextBlock block = new TextBlock();
+            block.Text = text;
+            NumberPanel.Children.Add(block);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

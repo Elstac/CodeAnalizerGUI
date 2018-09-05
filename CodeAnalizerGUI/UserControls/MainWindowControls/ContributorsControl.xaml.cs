@@ -68,7 +68,7 @@ namespace CodeAnalizerGUI
             cdc.Contributor = UIBus.mainBus.ContributorManager.Contributors[index];
             Image tmpImg = (Image)button.Content;
             cdc.ContributorImage = tmpImg.Source;
-
+            cdc.LoadContent();
             MainWindow win = null;
             GetParent(ref win);
             win.LoadContent(cdc);

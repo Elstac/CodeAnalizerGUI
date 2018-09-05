@@ -67,7 +67,7 @@ namespace CodeAnalizerGUI
 
             string[] files = FileList.Files.ToArray();
             ContributorsControl parent = treeParent as ContributorsControl;
-            parent.AddContributor(contributorName+" "+LastName,PathToImage,Files.ToArray());
+            parent.AddContributor(contributorName+" "+LastName,PathToImage,files);
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
