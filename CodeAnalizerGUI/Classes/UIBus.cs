@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Controls;
 using CodeAnalizerGUI.Classes.Converters;
 using CodeAnalizerGUI.Interfaces;
+using NUnit.Framework;
 namespace CodeAnalizerGUI
 {
     public class UIBus: IFileExplorerUser
