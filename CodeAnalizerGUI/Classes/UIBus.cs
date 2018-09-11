@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using CodeAnalizer;
 using System.IO;
 using System.Windows.Controls;
 using CodeAnalizerGUI.Classes.Converters;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizer.GitTrackerModule.Classes;
+using CodeAnalizer.FileAnalizerModule.Classes;
+using CodeAnalizer;
 using NUnit.Framework;
 namespace CodeAnalizerGUI
 {
     public class UIBus: IFileExplorerUser
     {
         public static UIBus mainBus;
-        ProjectAnalizer projectAnalizer;
-        GitChangesTracker gitAnalizer;
+        ProjectMiner projectMiner;
+        RepoTracker gitAnalizer;
         FileManager fileManager;
         ContributorManager contributorManager;
         List<UserControl> statisitcsViews;
@@ -35,7 +37,6 @@ namespace CodeAnalizerGUI
             if (mainBus == null)
             {
                 mainWindow = win;
-                projectAnalizer = new ProjectAnalizer();
                 contributorManager = new ContributorManager();
                 statisitcsViews = new List<UserControl>();
                 options = new OptionsHolder();
@@ -67,7 +68,7 @@ namespace CodeAnalizerGUI
         private void PrepareLogic()
         {
             if (Directory.Exists(pathToProject + "\\.git"))
-                gitAnalizer = new GitChangesTracker(pathToProject);
+                gitAnalizer = new RepoTracker(pathToProject);
             string[] tab = new string[1];
             tab[0] = PathToProject;
 
@@ -92,12 +93,12 @@ namespace CodeAnalizerGUI
         private List<string> GetGlobalStatistics()
         {
             List<string> ret = new List<string>();
-            projectAnalizer.Analizers = fileManager.Analizers;
-            ret.Add("Lines: " + projectAnalizer.TotalLines());
-            ret.Add("Usings: " + projectAnalizer.TotalUsings());
-            ret.Add("Charackters: " + projectAnalizer.TotalCharacters());
-            ret.Add("Largets file: "+projectAnalizer.GetLargestFile());
-            ret.Add("Smallest file: " + projectAnalizer.GetSmallestFile());
+            projectMiner = new ProjectMiner(fileManager.Analizers);
+            ret.Add("Lines: " + projectMiner.GetLinesCount());
+            ret.Add("Usings: " + projectMiner.GetUsingsCount());
+            ret.Add("Characters: " + projectMiner.GetCharactersCount());
+            ret.Add("Largets file: "+projectMiner.GetLargestFile());
+            ret.Add("Smallest file: " + projectMiner.GetSmallestFile());
             ret.Add("Repository statistics:");
             ret.Add("Commits count: " + gitAnalizer.CommitsCount());
             ret.Add("Lines added: " + gitAnalizer.ChangedLinesCount().Item1);

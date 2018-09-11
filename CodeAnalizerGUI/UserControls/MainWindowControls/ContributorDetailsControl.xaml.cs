@@ -55,9 +55,9 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
 
         private void LoadBasicStats()
         {
-            FileAnalizer analizer = contributor.Analizer;
+            var analizer = contributor.Analizer;
             
-            AddNewBlockN("Characters: " + analizer.GetCharacktersCount());
+            AddNewBlockN("Characters: " + analizer.GetCharactersCount());
             AddNewBlockN("Lines: " + analizer.GetLinesCount());
             AddNewBlockN("Usings: " + analizer.GetUsingsCount());
             AddNewBlockN("Empty lines: " + analizer.GetEmptyLines()); 
