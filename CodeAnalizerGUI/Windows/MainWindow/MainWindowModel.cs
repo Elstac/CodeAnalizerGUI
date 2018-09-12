@@ -5,34 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Windows;
 using System.Windows.Controls;
+using CodeAnalizerGUI.UserControls.MainWindowControls;
 namespace CodeAnalizerGUI.Windows
 {
     class MainWindowModel
     {
-        private string[] buttonsNames = new string[] { "Global statistics", "Contributors" };
+        private List<UserControl> mainWindowsControls;
 
-        public string[] ButtonsNames { get => buttonsNames;  }
-        private MainWindow mainWindow;
-        
-        public void MainWindowLoadContent(UserControl control)
+        public MainWindowModel()
         {
-            mainWindow.LoadContent(control);
+            
         }
 
-        //public void ReloadMainWindowContent(int index)
-        //{
-        //    if (index >= statisitcsViews.Count || index < 0)
-        //        if (pathToProject == null)
-        //        {
-        //            ShowErrorMessage("No project have been loaded");
-        //            return;
-        //        }
-        //        else
-        //        {
-        //            ShowErrorMessage("Invalid index");
-        //            return;
-        //        }
-        //    mainWindow.LoadContent(statisitcsViews[index]);
-        //}
+        public List<UserControl> MainWindowsControls { get => mainWindowsControls;}
     }
 }

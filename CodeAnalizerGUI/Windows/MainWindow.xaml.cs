@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizer;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
 namespace CodeAnalizerGUI
 {
@@ -22,12 +23,18 @@ namespace CodeAnalizerGUI
     /// </summary>
     public partial class MainWindow : Window,IFamilyMember
     {
+        IControlsMediator mediator;
         UIBus mainBus;
         string[] buttonsNames = new string[] { "Global statistics","Contributors" };
+
+        internal IControlsMediator Mediator { get => mediator; set => mediator = value; }
+
         public MainWindow()
         {
             InitializeComponent();
+            mediator = new ControlsMediator(this);
             mainBus = new UIBus(this);
+            mainBus.Mediator = mediator;
             LoadButtons();
         }
 

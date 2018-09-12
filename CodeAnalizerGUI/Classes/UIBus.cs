@@ -32,6 +32,7 @@ namespace CodeAnalizerGUI
         private FileExplorerWindow fileExplorer;
         public string PathToProject { set => pathToProject = value; get => pathToProject; }
         public ContributorManager ContributorManager { get => contributorManager;}
+        internal IControlsMediator Mediator { get => mediator; set => mediator = value; }
 
         public UIBus(MainWindow win)
         {
@@ -42,6 +43,7 @@ namespace CodeAnalizerGUI
                 statisitcsViews = new List<UserControl>();
                 options = new OptionsHolder();
                 mainBus = this;
+                
             }
         }
 
@@ -63,7 +65,7 @@ namespace CodeAnalizerGUI
         {
             PrepareLogic();
             LoadContent();
-            mainWindow.LoadContent(statisitcsViews[0]);
+            mediator.LoadContent(statisitcsViews[0]);
         }
 
         private void PrepareLogic()
@@ -124,6 +126,7 @@ namespace CodeAnalizerGUI
             ContributorsControl control = new ContributorsControl();
             control.TreeParent = mainWindow;
             statisitcsViews.Add(control);
+
         }
        
         public void ReloadMainWindowContent(int index)
@@ -139,7 +142,7 @@ namespace CodeAnalizerGUI
                     ShowErrorMessage("Invalid index");
                     return;
                 }
-            mainWindow.LoadContent(statisitcsViews[index]);
+            mediator.LoadContent(statisitcsViews[index]);
         }
         #endregion
 
