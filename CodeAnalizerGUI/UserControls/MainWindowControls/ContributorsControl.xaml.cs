@@ -78,7 +78,7 @@ namespace CodeAnalizerGUI
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            mediator.LoadContent(new NewContributorControl(this));            
+            mediator.LoadContent(new NewContributorControl(),this);            
         }
 
         public void AddContributor(string name, string pathToImage, string[] files)
@@ -106,7 +106,7 @@ namespace CodeAnalizerGUI
             ContributorDisplay contributorDisplay = dataClass as ContributorDisplay;
 
             Image img = StringToImageConverter.Convert(contributorDisplay.pathToImage);
-            AddNewButton(contributorDisplay.contributor.Name, img);
+            AddNewButton(contributorDisplay.name, img);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using CodeAnalizer;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizerGUI.Classes.MinorClasses;
 namespace CodeAnalizerGUI.Classes
 {
     class ControlsMediator : IControlsMediator
@@ -34,22 +35,19 @@ namespace CodeAnalizerGUI.Classes
             operationInProgres = true;
         }
 
-        public void SendContributorInfo(Contributor contributor)
+        public void SendContributorInfo(ContributorDisplay contributor)
         {
-            if (openedReciver == null||!operationInProgres)
-                throw new NotImplementedException();
-
-            openedReciver.ReciveData(contributor);
-            operationInProgres = false;
+            SendData(contributor);
         }
 
-        public void SendGitAuthorInfo(AuthorInfo info)
+        public void SendData(object dataClass)
         {
-            if (openedReciver == null || !operationInProgres)
+            if(openedReciver == null || !operationInProgres)
                 throw new NotImplementedException();
 
-            openedReciver.ReciveData(info);
+            openedReciver.ReciveData(dataClass);
             operationInProgres = false;
         }
+        
     }
 }

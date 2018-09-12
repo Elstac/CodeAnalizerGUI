@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using CodeAnalizer.GitTrackerModule.Classes;
+using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizer;
 namespace CodeAnalizerGUI.Interfaces
 {
@@ -12,8 +13,8 @@ namespace CodeAnalizerGUI.Interfaces
     {
         void LoadContent(UserControl control);
         void LoadContent(UserControl control,ISubControlDataReciver owner);
-        void SendGitAuthorInfo(AuthorInfo info);
-        void SendContributorInfo(Contributor contributor);
+        void SendData(object dataClass);
+        void SendContributorInfo(ContributorDisplay info);
 
     }
 }
