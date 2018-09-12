@@ -85,9 +85,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
+    <Compile Include="Classes\MinorClasses\ContributorDisplay.cs" />
     <Compile Include="Interfaces\IContributorManager.cs" />
+    <Compile Include="Interfaces\IControlsMediator.cs" />
     <Compile Include="Interfaces\IFamilyMember.cs" />
+    <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
@@ -208,6 +212,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Classes\Exceptions\" />
     <Folder Include="UserControls\OptionsWindowControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

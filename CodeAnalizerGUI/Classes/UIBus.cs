@@ -124,7 +124,7 @@ namespace CodeAnalizerGUI
         private void LoadContributorsPanel()
         {
             ContributorsControl control = new ContributorsControl();
-            control.TreeParent = mainWindow;
+            control.Mediator = mediator;
             statisitcsViews.Add(control);
 
         }

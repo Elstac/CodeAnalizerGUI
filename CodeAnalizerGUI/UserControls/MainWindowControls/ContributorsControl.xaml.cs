@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizerGUI.Classes.Converters;
+using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Interfaces;
 using System.IO;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
@@ -21,12 +22,14 @@ namespace CodeAnalizerGUI
     /// <summary>
     /// Interaction logic for ContributorsControl.xaml
     /// </summary>
-    public partial class ContributorsControl : UserControl,IFamilyMember
+    public partial class ContributorsControl : UserControl,IFamilyMember,ISubControlDataReciver
     {
         private IFamilyMember treeParent;
+        private IControlsMediator mediator;
         private Button AddButton;
         private int buttonCounter = 0;
         public IFamilyMember TreeParent { set => treeParent = value; }
+        internal IControlsMediator Mediator { set => mediator = value; }
 
         public ContributorsControl()
         {
@@ -69,22 +72,17 @@ namespace CodeAnalizerGUI
             Image tmpImg = (Image)button.Content;
             cdc.ContributorImage = tmpImg.Source;
             cdc.LoadContent();
-            MainWindow win = null;
-            GetParent(ref win);
-            win.LoadContent(cdc);
+
+            mediator.LoadContent(cdc);
 
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            MainWindow win = null;
-            GetParent(ref win);
-            win.LoadContent(new NewContributorControl(this));            
+            mediator.LoadContent(new NewContributorControl(this));            
         }
 
         public void AddContributor(string name, string pathToImage, string[] files)
         {
-            Image img = StringToImageConverter.Convert(pathToImage);
-            AddNewButton(name, img);
             UIBus.mainBus.AddContributor(name, files);
         }
 
@@ -101,6 +99,14 @@ namespace CodeAnalizerGUI
         public void GetChildren<T>(ref T ret) where T : class
         {
             throw new InvalidOperationException("Operation not suported");
+        }
+
+        public void ReciveData(object dataClass)
+        {
+            ContributorDisplay contributorDisplay = dataClass as ContributorDisplay;
+
+            Image img = StringToImageConverter.Convert(contributorDisplay.pathToImage);
+            AddNewButton(contributorDisplay.contributor.Name, img);
         }
     }
 }

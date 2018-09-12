@@ -54,8 +54,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
         {
             NewContributorControl ncc=null;
             GetParent(ref ncc);
-
-            ncc
+            
         }
     }
 }
