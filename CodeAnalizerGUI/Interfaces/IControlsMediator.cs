@@ -11,6 +11,7 @@ namespace CodeAnalizerGUI.Interfaces
     interface IControlsMediator
     {
         void LoadContent(UserControl control);
+        void LoadContent(UserControl control,ISubControlDataReciver owner);
         void SendGitAuthorInfo(AuthorInfo info);
         void SendContributorInfo(Contributor contributor);
 

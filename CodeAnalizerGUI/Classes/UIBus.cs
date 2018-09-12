@@ -13,6 +13,7 @@ namespace CodeAnalizerGUI
 {
     public class UIBus: IFileExplorerUser
     {
+        private IControlsMediator mediator;
         public static UIBus mainBus;
         ProjectMiner projectMiner;
         RepoTracker gitAnalizer;
