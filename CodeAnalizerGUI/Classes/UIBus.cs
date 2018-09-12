@@ -155,6 +155,7 @@ namespace CodeAnalizerGUI
             MessageBox.Show(text);
         }
 
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 

@@ -19,11 +19,5 @@ namespace CodeAnalizerGUI.Interfaces
         /// <typeparam name="T">Type of member</typeparam>
         /// <param name="ret">Object containing returned parent</param>
         void GetParent<T>(ref T ret) where T:class;
-        /// <summary>
-        /// Returns first member below in hierarchy mathing given type;
-        /// </summary>
-        /// <typeparam name="T">Type of member</typeparam>
-        /// <param name="ret">Object containing returned children</param>
-        void GetChildren<T>(ref T ret) where T : class;
     }
 }

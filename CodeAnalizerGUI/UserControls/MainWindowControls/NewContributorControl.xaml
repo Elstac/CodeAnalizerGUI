@@ -29,6 +29,7 @@
         <local:ManageableFileView x:Name="FileList" Grid.Row="1" />
         <Button Content="Confirm" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="ConfirmButtonClick"/>
         <Button Content="Cancel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Click="CancelButtonClick"/>
+        <Button Content="Get GIT data" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="75" Click="CancelButtonClick"/>
        
     </Grid>
 </UserControl>

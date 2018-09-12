@@ -75,6 +75,11 @@ namespace CodeAnalizerGUI
             throw new InvalidOperationException();
         }
 
+        private void GetGitButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
         public void GetParent<T>(ref T ret)where T:class
         {
             if (treeParent is T)
