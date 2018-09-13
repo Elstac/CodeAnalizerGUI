@@ -9,7 +9,7 @@ using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.Classes
 {
-    class SubControlMediator : AbstractControlsMediator
+    class SubControlMediator : ControlsMediator
     {
         private ISubControlOwner parent;
         public ISubControlOwner Parent { get => parent; set => parent = value; }

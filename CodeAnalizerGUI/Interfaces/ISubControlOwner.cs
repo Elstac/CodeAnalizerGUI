@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.Interfaces
 {
-    interface ISubControlOwner
+    interface ISubControlOwner:ISubControlDataReciver
     {
         IControlsMediator GetMediator();
     }

@@ -50,7 +50,7 @@ namespace CodeAnalizerGUI
 
         public UserControl TreeParent { get => treeParent; set => treeParent = value; }
         public List<string> Files { get => files;}
-        
+        public IControlsMediator Mediator { get => mediator; set => mediator = value; }
 
         private void RefreshFileList()
         {

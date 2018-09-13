@@ -16,6 +16,7 @@ using System.ComponentModel;
 using CodeAnalizerGUI.Classes.Converters;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes.MinorClasses;
+using CodeAnalizerGUI.Classes;
 using CodeAnalizer.GitTrackerModule.Classes;
 using System.IO;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
@@ -24,9 +25,10 @@ namespace CodeAnalizerGUI
     /// <summary>
     /// Interaction logic for NewContributorControl.xaml
     /// </summary>
-    public partial class NewContributorControl : UserControl,IFileExplorerUser,ISubControlDataReciver
+    public partial class NewContributorControl : UserControl,ISubControlOwner
     {
-        private IControlsMediator mediator;
+        private MainWindowControlsMediator mediator;
+        private IControlsMediator subControlsMediator;
         private string contributorName = "name";
         private string email = "email";
         private string pathToImage;
@@ -37,8 +39,13 @@ namespace CodeAnalizerGUI
             InitializeComponent();
             ContributorImage.Source = StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\plus.png").Source;
             Control tmp;
-           
 
+            SubControlMediator scm = new SubControlMediator();
+            scm.Parent = this;
+            subControlsMediator = scm;
+
+            FileList.TreeParent = this;
+            FileList.Mediator = subControlsMediator;
             foreach (var item in IdPanel.Children)
             {
                 if (!(item is Control))
@@ -51,16 +58,23 @@ namespace CodeAnalizerGUI
         public string ContributorName { get => contributorName; set => contributorName = value; }
         public string Email { get => email; set => email = value; }
         public List<string> Files { get => files; }
-        public string PathToImage { get => pathToImage; set => pathToImage = value; }
-        internal IControlsMediator Mediator {set => mediator = value; }
+        public string PathToImage { get => pathToImage;
+            set
+            {
+                pathToImage = value;
+                ContributorImage.Source = StringToImageConverter.Convert(pathToImage).Source;
+            }
+        }
+        internal IControlsMediator Mediator {set => mediator = value as MainWindowControlsMediator; }
         public UserControl TreeParent { get => treeParent; set => treeParent = value; }
 
         private void ChoseImageButtonClick(object sender, RoutedEventArgs e)
         {
             FileExplorerControl fec = new FileExplorerControl();
-            fec.Mediator = mediator;
+            fec.Mediator = subControlsMediator;
+            fec.Formats = new string[] { ".jpg", ".bmp", ".png" };
             fec.TreeParent = this;
-            mediator.LoadContent(fec);
+            subControlsMediator.LoadContent(fec,this);
         }
         
         private void ConfirmButtonClick(object sender, RoutedEventArgs e)
@@ -70,7 +84,7 @@ namespace CodeAnalizerGUI
 
             string[] files = FileList.Files.ToArray();
             ContributorDisplay tmp = new ContributorDisplay();
-            tmp.name = Name;
+            tmp.name = contributorName;
             tmp.pathToImage = PathToImage;
             tmp.email = email;
             mediator.SendData(tmp);
@@ -87,24 +101,23 @@ namespace CodeAnalizerGUI
             
         }
 
-
-        public void GetFileExplorerResults(string retPath)
-        {
-            PathToImage = retPath;
-            ContributorImage.Source = StringToImageConverter.Convert(retPath).Source;
-        }
-
+        
         public void ReciveData(object dataClass)
         {
             if( dataClass is string)
             {
-                pathToImage = dataClass.ToString();
+                PathToImage = dataClass.ToString();
                 return;
             }
             AuthorInfo info = dataClass as AuthorInfo;
 
             Name = info.name;
             email = info.email;
+        }
+
+        public IControlsMediator GetMediator()
+        {
+            return mediator;
         }
     }
 }

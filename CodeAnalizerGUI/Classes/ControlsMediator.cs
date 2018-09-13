@@ -8,29 +8,33 @@ using CodeAnalizer;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes.MinorClasses;
+
 namespace CodeAnalizerGUI.Classes
 {
-    class ControlsMediator : AbstractControlsMediator
+    abstract class ControlsMediator: IControlsMediator
     {
-        private MainWindow mainWindow;
         private ISubControlDataReciver openedReciver = null;
         bool operationInProgres = false;
-        public ControlsMediator(MainWindow mainWindow)
-        {
-            this.mainWindow = mainWindow;
-        }
+        public abstract void LoadContent(UserControl control);
 
-        public MainWindow MainWindow { get => mainWindow;}
-
-        public override void LoadContent(UserControl control)
+        public void LoadContent(UserControl control, ISubControlDataReciver reciver)
         {
-            mainWindow.LoadContent(control);
-        }
+            if (operationInProgres)
+                throw new NotImplementedException();
 
-        public void SendContributorInfo(ContributorDisplay contributor)
-        {
-            SendData(contributor);
+            LoadContent(control);
+            openedReciver = reciver;
+            operationInProgres = true;
         }
-                
+        
+
+        public virtual void SendData(object dataClass)
+        {
+            if (openedReciver == null || !operationInProgres)
+                throw new NotImplementedException();
+
+            openedReciver.ReciveData(dataClass);
+            operationInProgres = false;
+        }
     }
 }

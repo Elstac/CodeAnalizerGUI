@@ -32,7 +32,7 @@ namespace CodeAnalizerGUI
         public MainWindow()
         {
             InitializeComponent();
-            mediator = new ControlsMediator(this);
+            mediator = new MainWindowControlsMediator(this);
             mainBus = new UIBus(this);
             mainBus.Mediator = mediator;
             LoadButtons();

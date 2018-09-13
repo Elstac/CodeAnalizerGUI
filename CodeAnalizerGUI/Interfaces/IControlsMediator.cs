@@ -9,7 +9,7 @@ using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizer;
 namespace CodeAnalizerGUI.Interfaces
 {
-    interface IControlsMediator
+    public interface IControlsMediator
     {
         void LoadContent(UserControl control);
         void LoadContent(UserControl control,ISubControlDataReciver owner);

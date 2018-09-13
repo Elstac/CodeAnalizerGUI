@@ -86,12 +86,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ControlsMediator.cs" />
+    <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
     <Compile Include="Classes\MinorClasses\ContributorDisplay.cs" />
+    <Compile Include="Classes\SubControlMediator.cs" />
     <Compile Include="Interfaces\IContributorManager.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
     <Compile Include="Interfaces\IFamilyMember.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
+    <Compile Include="Interfaces\ISubControlOwner.cs" />
     <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
