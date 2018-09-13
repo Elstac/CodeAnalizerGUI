@@ -22,13 +22,12 @@ namespace CodeAnalizerGUI
     /// <summary>
     /// Interaction logic for ContributorsControl.xaml
     /// </summary>
-    public partial class ContributorsControl : UserControl,IFamilyMember,ISubControlDataReciver
+    public partial class ContributorsControl : UserControl,ISubControlDataReciver
     {
         private IFamilyMember treeParent;
         private IControlsMediator mediator;
         private Button AddButton;
         private int buttonCounter = 0;
-        public IFamilyMember TreeParent { set => treeParent = value; }
         internal IControlsMediator Mediator { set => mediator = value; }
 
         public ContributorsControl()
@@ -88,28 +87,15 @@ namespace CodeAnalizerGUI
         {
             UIBus.mainBus.AddContributor(name, files);
         }
-
-        public void GetParent<T>(ref T ret) where T : class
-        {
-            if (treeParent is T)
-            {
-                ret = treeParent as T;
-                return;
-            }
-            treeParent.GetParent(ref ret);
-        }
-
-        public void GetChildren<T>(ref T ret) where T : class
-        {
-            throw new InvalidOperationException("Operation not suported");
-        }
-
+        
         public void ReciveData(object dataClass)
         {
             ContributorDisplay contributorDisplay = dataClass as ContributorDisplay;
 
             Image img = StringToImageConverter.Convert(contributorDisplay.pathToImage);
             AddNewButton(contributorDisplay.name, img);
+
+            
         }
     }
 }

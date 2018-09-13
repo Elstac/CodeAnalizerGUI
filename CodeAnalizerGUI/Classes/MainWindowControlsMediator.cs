@@ -28,6 +28,7 @@ namespace CodeAnalizerGUI.Classes
         public void SendContributorInfo(ContributorDisplay contributor)
         {
             SendData(contributor);
+            UIBus.mainBus.ContributorManager.AddContributor(contributor.name, contributor.pathsToFiles);
         }
                 
     }

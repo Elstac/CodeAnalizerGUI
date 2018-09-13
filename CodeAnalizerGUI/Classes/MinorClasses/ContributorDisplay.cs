@@ -13,5 +13,6 @@ namespace CodeAnalizerGUI.Classes.MinorClasses
         public string email;
         public string pathToImage;
         public AuthorInfo gitAuthorInfo;
+        public string[] pathsToFiles;
     }
 }

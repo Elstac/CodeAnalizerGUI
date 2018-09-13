@@ -87,7 +87,8 @@ namespace CodeAnalizerGUI
             tmp.name = contributorName;
             tmp.pathToImage = PathToImage;
             tmp.email = email;
-            mediator.SendData(tmp);
+            tmp.pathsToFiles = files;
+            mediator.SendContributorInfo(tmp);
             mediator.LoadContent(treeParent);
         }
 

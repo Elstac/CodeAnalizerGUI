@@ -72,6 +72,7 @@ namespace CodeAnalizerGUI
         {
             Button butt = sender as Button;
             mainBus.ReloadMainWindowContent(int.Parse(butt.Tag.ToString()));
+            mediator.BreakOperation();
         }
 
         private void OptionsButtonClick(object sender, RoutedEventArgs e)

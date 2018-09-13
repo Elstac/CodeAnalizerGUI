@@ -15,6 +15,13 @@ namespace CodeAnalizerGUI.Classes
     {
         private ISubControlDataReciver openedReciver = null;
         bool operationInProgres = false;
+
+        public void BreakOperation()
+        {
+            operationInProgres = false;
+            openedReciver = null;
+        }
+
         public abstract void LoadContent(UserControl control);
 
         public void LoadContent(UserControl control, ISubControlDataReciver reciver)
