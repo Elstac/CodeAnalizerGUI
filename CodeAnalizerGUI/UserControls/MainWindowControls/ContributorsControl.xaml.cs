@@ -24,7 +24,6 @@ namespace CodeAnalizerGUI
     /// </summary>
     public partial class ContributorsControl : UserControl,ISubControlDataReciver
     {
-        private IFamilyMember treeParent;
         private IControlsMediator mediator;
         private Button AddButton;
         private int buttonCounter = 0;

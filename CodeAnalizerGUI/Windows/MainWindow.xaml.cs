@@ -21,7 +21,7 @@ namespace CodeAnalizerGUI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window,IFamilyMember
+    public partial class MainWindow : Window
     {
         IControlsMediator mediator;
         UIBus mainBus;
@@ -65,7 +65,7 @@ namespace CodeAnalizerGUI
 
         private void Open_Button_Click(object sender, RoutedEventArgs e)
         {
-            mainBus.ExploreFiles();
+            throw new NotImplementedException();
         }
 
         private void NavigatePanelButtonClick(object sender, RoutedEventArgs e)
@@ -77,7 +77,7 @@ namespace CodeAnalizerGUI
 
         private void OptionsButtonClick(object sender, RoutedEventArgs e)
         {
-            mainBus.OpenOptions();
+            throw new NotImplementedException();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -19,25 +19,15 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
     /// <summary>
     /// Interaction logic for GitBinderControl.xaml
     /// </summary>
-    public partial class GitBinderControl : UserControl, IFamilyMember
+    public partial class GitBinderControl : UserControl
     {
-        IFamilyMember treeParent;
         public GitBinderControl()
         {
             InitializeComponent();
         }
+        
 
-        public IFamilyMember TreeParent { get => treeParent; set => treeParent = value; }
-
-        public void GetParent<T>(ref T ret) where T : class
-        {
-            if (treeParent is T)
-            {
-                ret = treeParent as T;
-                return;
-            }
-            treeParent.GetParent(ref ret);
-        }
+       
 
         public void LoadButtons(string[] authorsList)
         {
@@ -53,7 +43,6 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
             NewContributorControl ncc=null;
-            GetParent(ref ncc);
             
         }
     }

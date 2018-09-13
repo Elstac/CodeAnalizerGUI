@@ -20,7 +20,6 @@ namespace CodeAnalizerGUI
         FileManager fileManager;
         ContributorManager contributorManager;
         List<UserControl> statisitcsViews;
-        OptionsHolder options;
 
         private enum ViewsName
         {
@@ -29,7 +28,6 @@ namespace CodeAnalizerGUI
         }
         string pathToProject =null;
         private MainWindow mainWindow;
-        private FileExplorerWindow fileExplorer;
         public string PathToProject { set => pathToProject = value; get => pathToProject; }
         public ContributorManager ContributorManager { get => contributorManager;}
         internal IControlsMediator Mediator { get => mediator; set => mediator = value; }
@@ -41,19 +39,12 @@ namespace CodeAnalizerGUI
                 mainWindow = win;
                 contributorManager = new ContributorManager();
                 statisitcsViews = new List<UserControl>();
-                options = new OptionsHolder();
                 mainBus = this;
                 
             }
         }
 
         #region ProjectInit
-        public void ExploreFiles()
-        {
-            fileExplorer = new FileExplorerWindow(this, mainWindow);
-            fileExplorer.Show();
-            fileExplorer.Focus();
-        }
 
         public void GetFileExplorerResults(string pathToProject)
         {
@@ -78,19 +69,7 @@ namespace CodeAnalizerGUI
             fileManager = new FileManager(tab, Language.Csharp);
         }
         #endregion
-
-        #region Options
-        public void OpenOptions()
-        { 
-            GlobalOptionsWindow win = new GlobalOptionsWindow(mainWindow);
-            win.Show();
-        }
-
-        public void OptionsWindowResults(OptionsHolder newOptions)
-        {
-            options = newOptions;
-        }
-        #endregion
+        
 
         #region LoadContent
         private List<string> GetGlobalStatistics()

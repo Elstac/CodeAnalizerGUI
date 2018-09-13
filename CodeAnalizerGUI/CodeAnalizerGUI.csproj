@@ -88,11 +88,9 @@
     <Compile Include="Classes\ControlsMediator.cs" />
     <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
-    <Compile Include="Classes\MinorClasses\ContributorDisplay.cs" />
+    <Compile Include="MinorClasses\ContributorDisplay.cs" />
     <Compile Include="Classes\SubControlMediator.cs" />
-    <Compile Include="Interfaces\IContributorManager.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
-    <Compile Include="Interfaces\IFamilyMember.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="Interfaces\ISubControlOwner.cs" />
     <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
@@ -110,16 +108,12 @@
     <Compile Include="UserControls\MainWindowControls\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\OptionsHolder.cs" />
     <Compile Include="Interfaces\IFileExplorerUser.cs" />
     <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\ContributorsControl.xaml.cs">
       <DependentUpon>ContributorsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\GlobalOptionsWindow.xaml.cs">
-      <DependentUpon>GlobalOptionsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\GlobalStatsControl.xaml.cs">
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
@@ -154,14 +148,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\FileExplorerWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\GlobalOptionsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\MainWindowControls\GlobalStatsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,9 +159,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Windows\FileExplorerWindow.xaml.cs">
-      <DependentUpon>FileExplorerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
