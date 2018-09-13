@@ -16,19 +16,22 @@ using System.ComponentModel;
 using CodeAnalizerGUI.Classes.Converters;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes.MinorClasses;
+using CodeAnalizer.GitTrackerModule.Classes;
 using System.IO;
+
 namespace CodeAnalizerGUI
 {
     /// <summary>
     /// Interaction logic for NewContributorControl.xaml
     /// </summary>
-    public partial class NewContributorControl : UserControl,IFileExplorerUser
+    public partial class NewContributorControl : UserControl,IFileExplorerUser,ISubControlDataReciver
     {
         private IControlsMediator mediator;
         private string contributorName = "name";
-        private string lastName = "lastname";
+        private string email = "email";
         private string pathToImage;
         private List<string> files = new List<string>() {};
+        private UserControl treeParent;
         public NewContributorControl()
         {
             InitializeComponent();
@@ -46,15 +49,16 @@ namespace CodeAnalizerGUI
         }
 
         public string ContributorName { get => contributorName; set => contributorName = value; }
-        public string LastName { get => lastName; set => lastName = value; }
+        public string Email { get => email; set => email = value; }
         public List<string> Files { get => files; }
         public string PathToImage { get => pathToImage; set => pathToImage = value; }
         internal IControlsMediator Mediator {set => mediator = value; }
+        public UserControl TreeParent { get => treeParent; set => treeParent = value; }
 
         private void ChoseImageButtonClick(object sender, RoutedEventArgs e)
         {
-            //FileExplorerWindow win = new FileExplorerWindow(this, point,new string[] {".jpg", ".png", ".bmp"});
-            //win.Show();
+            FileExplorerWindow win = new FileExplorerWindow(this, MainWindow, new string[] { ".jpg", ".png", ".bmp" });
+            win.Show();
         }
         
         private void ConfirmButtonClick(object sender, RoutedEventArgs e)
@@ -64,9 +68,11 @@ namespace CodeAnalizerGUI
 
             string[] files = FileList.Files.ToArray();
             ContributorDisplay tmp = new ContributorDisplay();
-            tmp.name = Name + " " + LastName;
+            tmp.name = Name;
             tmp.pathToImage = PathToImage;
+            tmp.email = email;
             mediator.SendData(tmp);
+            mediator.LoadContent(treeParent);
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -84,6 +90,15 @@ namespace CodeAnalizerGUI
         {
             PathToImage = retPath;
             ContributorImage.Source = StringToImageConverter.Convert(retPath).Source;
+        }
+
+        public void ReciveData(object dataClass)
+        {
+            AuthorInfo info = dataClass as AuthorInfo;
+
+            Name = info.name;
+            email = info.email;
+            
         }
     }
 }

@@ -78,6 +78,8 @@ namespace CodeAnalizerGUI
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
+            ContributorsControl cc = new ContributorsControl();
+            cc.treeParent = this;
             mediator.LoadContent(new NewContributorControl(),this);            
         }
 

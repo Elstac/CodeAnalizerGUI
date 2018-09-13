@@ -12,13 +12,15 @@ namespace CodeAnalizerGUI.Classes
 {
     class ControlsMediator : IControlsMediator
     {
-        MainWindow mainWindow;
-        ISubControlDataReciver openedReciver = null;
+        private MainWindow mainWindow;
+        private ISubControlDataReciver openedReciver = null;
         bool operationInProgres = false;
         public ControlsMediator(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
         }
+
+        public MainWindow MainWindow { get => mainWindow;}
 
         public void LoadContent(UserControl control)
         {

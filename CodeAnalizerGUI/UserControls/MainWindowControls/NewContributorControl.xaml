@@ -23,8 +23,8 @@
         <StackPanel Name="IdPanel" Grid.Column="1">
             <TextBlock Text="Name" HorizontalAlignment="Center"/>
             <TextBox Text="{Binding Path=ContributorName,Mode=TwoWay}" HorizontalAlignment="Center" FontSize="12"/>
-            <TextBlock Text="Lastname" HorizontalAlignment="Center"/>
-            <TextBox Text="{Binding Path=LastName, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="12"  />
+            <TextBlock Text="Email" HorizontalAlignment="Center"/>
+            <TextBox Text="{Binding Path=Email, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="12"  />
         </StackPanel>
         <local:ManageableFileView x:Name="FileList" Grid.Row="1" />
         <Button Content="Confirm" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="ConfirmButtonClick"/>
