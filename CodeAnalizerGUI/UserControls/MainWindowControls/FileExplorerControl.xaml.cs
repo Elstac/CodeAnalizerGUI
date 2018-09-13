@@ -14,35 +14,38 @@ using System.Windows.Shapes;
 using System.IO;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizer;
-namespace CodeAnalizerGUI
+namespace CodeAnalizerGUI.UserControls.MainWindowControls
 {
     /// <summary>
-    /// Interaction logic for FileExplorerWindow.xaml
+    /// Interaction logic for FileExplorerControl.xaml
     /// </summary>
-    public partial class FileExplorerWindow : Window
+    public partial class FileExplorerControl : UserControl
     {
-        private string[] formats;
+        private IControlsMediator mediator;
         private bool newSequence = true;
-        private string retPath = null;
-        private IFileExplorerUser user;
-        public FileExplorerWindow(IFileExplorerUser userClass, Window owner)
-        {
-            InitializeComponent();
-            LoadTree();
-            user = userClass;
-            Owner = owner;
+        private string[] formats;
+        private string retPath;
+        private UserControl treeParent;
+        internal IControlsMediator Mediator {set => mediator = value; }
+        public string[] Formats { get => formats;
+            set
+            {
+                formats = value;
+                LoadTree();
+            }
         }
-        public FileExplorerWindow(IFileExplorerUser userClass, Window owner,string[] formats)
+        public UserControl TreeParent { get => treeParent; set => treeParent = value; }
+
+        public FileExplorerControl()
         {
+
             InitializeComponent();
             LoadTree();
-            user = userClass;
-            Owner = owner;
-            this.formats = formats;
         }
 
         private void LoadTree()
         {
+            fileTree.Items.Clear();
             foreach (var name in Directory.GetLogicalDrives())
             {
                 TreeViewItem item = new TreeViewItem();
@@ -53,16 +56,16 @@ namespace CodeAnalizerGUI
                 item.Items.Add(new TreeViewItem());
                 fileTree.Items.Add(item);
             }
-            
+
         }
-        
-        private TreeViewItem CreateNode(string text,bool isDir)
+
+        private TreeViewItem CreateNode(string text, bool isDir)
         {
             TreeViewItem ret = new TreeViewItem();
             ret.Header = text.Substring(text.LastIndexOf("\\") + 1);
             ret.Tag = text;
             ret.GotFocus += new RoutedEventHandler(FolderFocused);
-            ret.MouseDoubleClick += new MouseButtonEventHandler(Button_Click_1);
+            ret.MouseDoubleClick += new MouseButtonEventHandler(SelectButtonClick);
             if (isDir)
             {
                 ret.Expanded += new RoutedEventHandler(FolderExpanded);
@@ -143,24 +146,14 @@ namespace CodeAnalizerGUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SelectButtonClick(object sender, RoutedEventArgs e)
         {
-            if (retPath == null)
-                return;
-            user.GetFileExplorerResults(retPath);
-            Close();
+            mediator.SendData(retPath);
+            mediator.LoadContent(treeParent);
         }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            Owner.Show();
-            Owner.Focus();
-            base.OnClosed(e);
-        }
-        #endregion
         
+        #endregion
     }
 }

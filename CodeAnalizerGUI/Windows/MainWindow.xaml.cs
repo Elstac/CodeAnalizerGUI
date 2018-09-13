@@ -14,20 +14,27 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizer;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
 namespace CodeAnalizerGUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window,IFamilyMember
+    public partial class MainWindow : Window
     {
+        IControlsMediator mediator;
         UIBus mainBus;
         string[] buttonsNames = new string[] { "Global statistics","Contributors" };
+
+        internal IControlsMediator Mediator { get => mediator; set => mediator = value; }
+
         public MainWindow()
         {
             InitializeComponent();
+            mediator = new MainWindowControlsMediator(this);
             mainBus = new UIBus(this);
+            mainBus.Mediator = mediator;
             LoadButtons();
         }
 
@@ -58,18 +65,19 @@ namespace CodeAnalizerGUI
 
         private void Open_Button_Click(object sender, RoutedEventArgs e)
         {
-            mainBus.ExploreFiles();
+            throw new NotImplementedException();
         }
 
         private void NavigatePanelButtonClick(object sender, RoutedEventArgs e)
         {
             Button butt = sender as Button;
             mainBus.ReloadMainWindowContent(int.Parse(butt.Tag.ToString()));
+            mediator.BreakOperation();
         }
 
         private void OptionsButtonClick(object sender, RoutedEventArgs e)
         {
-            mainBus.OpenOptions();
+            throw new NotImplementedException();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

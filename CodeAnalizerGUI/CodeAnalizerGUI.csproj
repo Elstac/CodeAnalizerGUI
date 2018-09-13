@@ -85,24 +85,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\ControlHierarchyController.cs" />
+    <Compile Include="Classes\ControlsMediator.cs" />
+    <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
-    <Compile Include="Classes\FamContentControl.cs" />
-    <Compile Include="Interfaces\IContributorManager.cs" />
-    <Compile Include="Interfaces\IFamilyMember.cs" />
-    <Compile Include="UserControls\CustomControls\FileExplorer.xaml.cs">
-      <DependentUpon>FileExplorer.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="MinorClasses\ContributorDisplay.cs" />
+    <Compile Include="Classes\SubControlMediator.cs" />
+    <Compile Include="Interfaces\IControlsMediator.cs" />
+    <Compile Include="Interfaces\ISubControlDataReciver.cs" />
+    <Compile Include="Interfaces\ISubControlOwner.cs" />
     <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\ContributorDetailsControl.xaml.cs">
       <DependentUpon>ContributorDetailsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\NewContributorControl.xaml.cs">
+    <Compile Include="UserControls\MainWindowControls\FileExplorerControl.xaml.cs">
+      <DependentUpon>FileExplorerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainWindowControls\GitBinderControl.xaml.cs">
+      <DependentUpon>GitBinderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainWindowControls\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\OptionsHolder.cs" />
     <Compile Include="Interfaces\IFileExplorerUser.cs" />
     <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
@@ -110,20 +115,11 @@
     <Compile Include="UserControls\MainWindowControls\ContributorsControl.xaml.cs">
       <DependentUpon>ContributorsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\GlobalOptionsWindow.xaml.cs">
-      <DependentUpon>GlobalOptionsWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\MainWindowControls\GlobalStatsControl.xaml.cs">
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\UIBus.cs" />
-    <Compile Include="UserControls\MainWindowControls\WorkTimeControl.xaml.cs">
-      <DependentUpon>WorkTimeControl.xaml</DependentUpon>
-    </Compile>
-    <Page Include="UserControls\CustomControls\FileExplorer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Windows\MainWindow\MainWindowModel.cs" />
     <Page Include="UserControls\CustomControls\ManageableFileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,7 +128,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\NewContributorControl.xaml">
+    <Page Include="UserControls\MainWindowControls\FileExplorerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainWindowControls\GitBinderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainWindowControls\NewContributorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,14 +145,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MainWindowControls\ContributorsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\FileExplorerWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\GlobalOptionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,17 +160,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\FileExplorerWindow.xaml.cs">
-      <DependentUpon>FileExplorerWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\MainWindowControls\WorkTimeControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -216,6 +205,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Classes\Exceptions\" />
     <Folder Include="UserControls\OptionsWindowControls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

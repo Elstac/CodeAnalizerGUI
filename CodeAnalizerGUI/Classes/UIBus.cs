@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using CodeAnalizer;
 using System.IO;
 using System.Windows.Controls;
 using CodeAnalizerGUI.Classes.Converters;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizer.GitTrackerModule.Classes;
+using CodeAnalizer.FileAnalizerModule.Classes;
+using CodeAnalizer;
 using NUnit.Framework;
 namespace CodeAnalizerGUI
 {
     public class UIBus: IFileExplorerUser
     {
+        private IControlsMediator mediator;
         public static UIBus mainBus;
-        ProjectAnalizer projectAnalizer;
-        GitChangesTracker gitAnalizer;
+        ProjectMiner projectMiner;
+        RepoTracker gitAnalizer;
         FileManager fileManager;
         ContributorManager contributorManager;
         List<UserControl> statisitcsViews;
-        OptionsHolder options;
 
         private enum ViewsName
         {
@@ -26,30 +28,23 @@ namespace CodeAnalizerGUI
         }
         string pathToProject =null;
         private MainWindow mainWindow;
-        private FileExplorerWindow fileExplorer;
         public string PathToProject { set => pathToProject = value; get => pathToProject; }
         public ContributorManager ContributorManager { get => contributorManager;}
+        internal IControlsMediator Mediator { get => mediator; set => mediator = value; }
 
         public UIBus(MainWindow win)
         {
             if (mainBus == null)
             {
                 mainWindow = win;
-                projectAnalizer = new ProjectAnalizer();
                 contributorManager = new ContributorManager();
                 statisitcsViews = new List<UserControl>();
-                options = new OptionsHolder();
                 mainBus = this;
+                
             }
         }
 
         #region ProjectInit
-        public void ExploreFiles()
-        {
-            fileExplorer = new FileExplorerWindow(this, mainWindow);
-            fileExplorer.Show();
-            fileExplorer.Focus();
-        }
 
         public void GetFileExplorerResults(string pathToProject)
         {
@@ -61,43 +56,31 @@ namespace CodeAnalizerGUI
         {
             PrepareLogic();
             LoadContent();
-            mainWindow.LoadContent(statisitcsViews[0]);
+            mediator.LoadContent(statisitcsViews[0]);
         }
 
         private void PrepareLogic()
         {
             if (Directory.Exists(pathToProject + "\\.git"))
-                gitAnalizer = new GitChangesTracker(pathToProject);
+                gitAnalizer = new RepoTracker(pathToProject);
             string[] tab = new string[1];
             tab[0] = PathToProject;
 
             fileManager = new FileManager(tab, Language.Csharp);
         }
         #endregion
-
-        #region Options
-        public void OpenOptions()
-        { 
-            GlobalOptionsWindow win = new GlobalOptionsWindow(mainWindow);
-            win.Show();
-        }
-
-        public void OptionsWindowResults(OptionsHolder newOptions)
-        {
-            options = newOptions;
-        }
-        #endregion
+        
 
         #region LoadContent
         private List<string> GetGlobalStatistics()
         {
             List<string> ret = new List<string>();
-            projectAnalizer.Analizers = fileManager.Analizers;
-            ret.Add("Lines: " + projectAnalizer.TotalLines());
-            ret.Add("Usings: " + projectAnalizer.TotalUsings());
-            ret.Add("Charackters: " + projectAnalizer.TotalCharacters());
-            ret.Add("Largets file: "+projectAnalizer.GetLargestFile());
-            ret.Add("Smallest file: " + projectAnalizer.GetSmallestFile());
+            projectMiner = new ProjectMiner(fileManager.Analizers);
+            ret.Add("Lines: " + projectMiner.GetLinesCount());
+            ret.Add("Usings: " + projectMiner.GetUsingsCount());
+            ret.Add("Characters: " + projectMiner.GetCharactersCount());
+            ret.Add("Largets file: "+projectMiner.GetLargestFile());
+            ret.Add("Smallest file: " + projectMiner.GetSmallestFile());
             ret.Add("Repository statistics:");
             ret.Add("Commits count: " + gitAnalizer.CommitsCount());
             ret.Add("Lines added: " + gitAnalizer.ChangedLinesCount().Item1);
@@ -120,8 +103,9 @@ namespace CodeAnalizerGUI
         private void LoadContributorsPanel()
         {
             ContributorsControl control = new ContributorsControl();
-            control.TreeParent = mainWindow;
+            control.Mediator = mediator;
             statisitcsViews.Add(control);
+
         }
        
         public void ReloadMainWindowContent(int index)
@@ -137,7 +121,7 @@ namespace CodeAnalizerGUI
                     ShowErrorMessage("Invalid index");
                     return;
                 }
-            mainWindow.LoadContent(statisitcsViews[index]);
+            mediator.LoadContent(statisitcsViews[index]);
         }
         #endregion
 
@@ -154,6 +138,7 @@ namespace CodeAnalizerGUI
             MessageBox.Show(text);
         }
 
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
