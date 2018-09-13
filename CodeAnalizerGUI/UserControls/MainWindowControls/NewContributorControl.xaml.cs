@@ -18,7 +18,7 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizer.GitTrackerModule.Classes;
 using System.IO;
-
+using CodeAnalizerGUI.UserControls.MainWindowControls;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -57,8 +57,10 @@ namespace CodeAnalizerGUI
 
         private void ChoseImageButtonClick(object sender, RoutedEventArgs e)
         {
-            FileExplorerWindow win = new FileExplorerWindow(this, MainWindow, new string[] { ".jpg", ".png", ".bmp" });
-            win.Show();
+            FileExplorerControl fec = new FileExplorerControl();
+            fec.Mediator = mediator;
+            fec.TreeParent = this;
+            mediator.LoadContent(fec);
         }
         
         private void ConfirmButtonClick(object sender, RoutedEventArgs e)
@@ -94,11 +96,15 @@ namespace CodeAnalizerGUI
 
         public void ReciveData(object dataClass)
         {
+            if( dataClass is string)
+            {
+                pathToImage = dataClass.ToString();
+                return;
+            }
             AuthorInfo info = dataClass as AuthorInfo;
 
             Name = info.name;
             email = info.email;
-            
         }
     }
 }

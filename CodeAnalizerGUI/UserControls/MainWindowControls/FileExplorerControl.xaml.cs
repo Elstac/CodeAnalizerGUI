@@ -27,16 +27,25 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
         private string retPath;
         private UserControl treeParent;
         internal IControlsMediator Mediator {set => mediator = value; }
+        public string[] Formats { get => formats;
+            set
+            {
+                formats = value;
+                LoadTree();
+            }
+        }
+        public UserControl TreeParent { get => treeParent; set => treeParent = value; }
 
-        public FileExplorerControl(string[] formats)
+        public FileExplorerControl()
         {
-            this.formats = formats;
 
             InitializeComponent();
+            LoadTree();
         }
 
         private void LoadTree()
         {
+            fileTree.Items.Clear();
             foreach (var name in Directory.GetLogicalDrives())
             {
                 TreeViewItem item = new TreeViewItem();
@@ -144,7 +153,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
             mediator.SendData(retPath);
             mediator.LoadContent(treeParent);
         }
-
+        
         #endregion
     }
 }

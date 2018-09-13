@@ -14,16 +14,17 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizerGUI.Interfaces;
 using System.ComponentModel;
+using CodeAnalizerGUI.UserControls.MainWindowControls;
 namespace CodeAnalizerGUI
 {
     /// <summary>
     /// Interaction logic for ManageableFileView.xaml
     /// </summary>
-    public partial class ManageableFileView : UserControl , IFileExplorerUser,IFamilyMember
+    public partial class ManageableFileView : UserControl,ISubControlDataReciver
     {
         private List<string> files;
-        
-        IFamilyMember treeParent;
+        IControlsMediator mediator;
+        UserControl treeParent;
         public ManageableFileView()
         {
             files = new List<string>();
@@ -47,43 +48,23 @@ namespace CodeAnalizerGUI
             }
         }
 
-        public IFamilyMember TreeParent { get => treeParent; set => treeParent = value; }
+        public UserControl TreeParent { get => treeParent; set => treeParent = value; }
         public List<string> Files { get => files;}
-
-        public void GetChildren<T>(ref T ret) where T : class
-        {
-            throw new NotImplementedException();
-        }
-
-        public void GetFileExplorerResults(string retPath)
-        {
-            files.Add(retPath);
-            RefreshFileList();
-        }
+        
 
         private void RefreshFileList()
         {
             ICollectionView view = CollectionViewSource.GetDefaultView(files);
             view.Refresh();
         }
-
-        public void GetParent<T>(ref T ret) where T : class
-        {
-            if (treeParent is T)
-            {
-                ret = treeParent as T;
-                return;
-            }
-            treeParent.GetParent(ref ret);
-        }
+        
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            Window tmp = null;
-            GetParent(ref tmp);
-            FileExplorerWindow win = new FileExplorerWindow(this,tmp);
-            win.Show();
-            win.Focus();
+            FileExplorerControl fec = new FileExplorerControl();
+            fec.Mediator = mediator;
+            fec.TreeParent = treeParent;
+            mediator.LoadContent(fec,this);
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
@@ -92,6 +73,12 @@ namespace CodeAnalizerGUI
                 throw new NullReferenceException("No file has been selected");
 
             files.Remove( FilesList.SelectedItem.ToString());
+            RefreshFileList();
+        }
+
+        public void ReciveData(object dataClass)
+        {
+            files.Add(dataClass.ToString());
             RefreshFileList();
         }
     }

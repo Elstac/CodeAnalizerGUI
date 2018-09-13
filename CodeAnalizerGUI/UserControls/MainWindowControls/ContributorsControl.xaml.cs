@@ -78,9 +78,10 @@ namespace CodeAnalizerGUI
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            ContributorsControl cc = new ContributorsControl();
-            cc.treeParent = this;
-            mediator.LoadContent(new NewContributorControl(),this);            
+            NewContributorControl ncc = new NewContributorControl();
+            ncc.TreeParent = this;
+            ncc.Mediator = mediator;
+            mediator.LoadContent(ncc,this);            
         }
 
         public void AddContributor(string name, string pathToImage, string[] files)

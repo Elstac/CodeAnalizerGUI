@@ -14,7 +14,6 @@ namespace CodeAnalizerGUI.Interfaces
         void LoadContent(UserControl control);
         void LoadContent(UserControl control,ISubControlDataReciver owner);
         void SendData(object dataClass);
-        void SendContributorInfo(ContributorDisplay info);
 
     }
 }
