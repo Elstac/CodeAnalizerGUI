@@ -31,6 +31,7 @@ namespace CodeAnalizerGUI
         public string PathToProject { set => pathToProject = value; get => pathToProject; }
         public ContributorManager ContributorManager { get => contributorManager;}
         internal IControlsMediator Mediator { get => mediator; set => mediator = value; }
+        public RepoTracker GitAnalizer { get => gitAnalizer; set => gitAnalizer = value; }
 
         public UIBus(MainWindow win)
         {

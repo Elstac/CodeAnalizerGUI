@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizerGUI.Interfaces;
-
+using CodeAnalizer.GitTrackerModule.Classes;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls
 {
     /// <summary>
@@ -21,13 +21,16 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
     /// </summary>
     public partial class GitBinderControl : UserControl
     {
+        private IControlsMediator mediator;
+        private AuthorInfo[] authors;
         public GitBinderControl()
         {
             InitializeComponent();
+            MainList.ItemsSource = Authors;
         }
-        
 
-       
+        public AuthorInfo[] Authors { get => authors; set  => authors = value; }
+        public IControlsMediator Mediator { get => mediator; set => mediator = value; }
 
         public void LoadButtons(string[] authorsList)
         {
@@ -36,14 +39,13 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls
 
         private void CreateButton(string text)
         {
-            Button btn = new Button();
-            
+
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
+        private void SelectButtonClick(object sender, RoutedEventArgs e)
         {
-            NewContributorControl ncc=null;
-            
+            int index = MainList.SelectedIndex;
+            mediator.SendData(authors[index]);
         }
     }
 }

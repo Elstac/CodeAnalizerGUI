@@ -100,9 +100,15 @@ namespace CodeAnalizerGUI
 
         private void TESTButtonClick(object sender, RoutedEventArgs e)
         {
-            ContributorsControl tmp = new ContributorsControl();
-            mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
-            mainBus.OpenProject();
+            //ContributorsControl tmp = new ContributorsControl();
+            //mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
+            //mainBus.OpenProject();
+
+            TestControl tc = new TestControl();
+            mediator.LoadContent(tc);
+
+
+
             //ContributorDetailsControl cdc = new ContributorDetailsControl();
             //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});
             //cdc.Contributor = mainBus.ContributorManager.Contributors[0];

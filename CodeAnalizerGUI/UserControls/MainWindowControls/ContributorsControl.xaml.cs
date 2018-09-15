@@ -72,7 +72,6 @@ namespace CodeAnalizerGUI
             cdc.LoadContent();
 
             mediator.LoadContent(cdc);
-
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {

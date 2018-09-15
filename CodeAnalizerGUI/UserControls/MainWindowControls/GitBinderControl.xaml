@@ -6,7 +6,16 @@
              xmlns:local="clr-namespace:CodeAnalizerGUI.UserControls.MainWindowControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <WrapPanel Name="MainPanel"/>
-    </Grid>
+    <UserControl.Resources>
+        <DataTemplate x:Key="MainTemplate">
+            <WrapPanel HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding name}" Margin="10,10"/>
+                <TextBlock Text="{Binding email}" Margin="10,10"/>
+            </WrapPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel>
+        <ListView Name="MainList" ItemTemplate="{StaticResource MainTemplate}"/>
+        <Button Content="Select" Click="SelectButtonClick"/>
+    </StackPanel>
 </UserControl>

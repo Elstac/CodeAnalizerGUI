@@ -99,7 +99,9 @@ namespace CodeAnalizerGUI
 
         private void GetGitButtonClick(object sender, RoutedEventArgs e)
         {
-            
+            GitBinderControl gbc = new GitBinderControl();
+            gbc.Mediator = subControlsMediator;
+            subControlsMediator.LoadContent(gbc,this);
         }
 
         
