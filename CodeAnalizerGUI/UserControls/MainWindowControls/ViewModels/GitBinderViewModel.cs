@@ -35,6 +35,8 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         public void Select()
         {
+            if (selectedAuthor == null)
+                throw new NullReferenceException("No author selected");
             mediator.SendData(authors.IndexOf(selectedAuthor));
         }
 
