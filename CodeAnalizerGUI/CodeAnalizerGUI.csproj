@@ -93,6 +93,7 @@
     <Compile Include="Interfaces\IControlsMediator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="Interfaces\ISubControlOwner.cs" />
+    <Compile Include="MinorClasses\TagCommand.cs" />
     <Compile Include="TestControl.xaml.cs">
       <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
@@ -122,7 +123,7 @@
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\UIBus.cs" />
-    <Compile Include="Windows\MainWindow\MainWindowModel.cs" />
+    <Compile Include="Windows\MainWindow\MainWindowViewModel.cs" />
     <Page Include="TestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
