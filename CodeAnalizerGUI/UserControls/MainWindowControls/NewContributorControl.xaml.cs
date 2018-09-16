@@ -20,6 +20,7 @@ using CodeAnalizerGUI.Classes;
 using CodeAnalizer.GitTrackerModule.Classes;
 using System.IO;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -100,7 +101,7 @@ namespace CodeAnalizerGUI
         private void GetGitButtonClick(object sender, RoutedEventArgs e)
         {
             GitBinderControl gbc = new GitBinderControl();
-            gbc.Mediator = subControlsMediator;
+            //gbc.Mediator = subControlsMediator;
             subControlsMediator.LoadContent(gbc,this);
         }
 

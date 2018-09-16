@@ -100,15 +100,17 @@
     <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MainWindowControls\Commands\SimpleCommand.cs" />
     <Compile Include="UserControls\MainWindowControls\ContributorDetailsControl.xaml.cs">
       <DependentUpon>ContributorDetailsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\FileExplorerControl.xaml.cs">
       <DependentUpon>FileExplorerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\GitBinderControl.xaml.cs">
+    <Compile Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml.cs">
       <DependentUpon>GitBinderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MainWindowControls\Models\GitAuthorModel.cs" />
     <Compile Include="UserControls\MainWindowControls\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
@@ -123,6 +125,7 @@
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\UIBus.cs" />
+    <Compile Include="UserControls\MainWindowControls\ViewModels\GitBinderViewModel.cs" />
     <Compile Include="Windows\MainWindow\MainWindowViewModel.cs" />
     <Page Include="TestControl.xaml">
       <SubType>Designer</SubType>
@@ -140,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\GitBinderControl.xaml">
+    <Page Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
