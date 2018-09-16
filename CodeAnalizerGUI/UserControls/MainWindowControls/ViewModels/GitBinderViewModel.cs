@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
-    class GitBinderViewModel
+    public class GitBinderViewModel
     {
         private GitAuthorModel selectedAuthor;
         private ObservableCollection<GitAuthorModel> authors;
@@ -22,20 +22,25 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         public GitAuthorModel SelectedAuthor { get => selectedAuthor; set => selectedAuthor = value; }
         public IControlsMediator Mediator { get => mediator; set => mediator = value; }
 
-        public GitBinderViewModel(AuthorInfo[] authors)
+        public GitBinderViewModel(GitAuthorModel[] authors)
         {
             this.authors = new ObservableCollection<GitAuthorModel>();
             foreach (var author in authors)
             {
-                this.authors.Add(new GitAuthorModel(author.name, author.email, author.commits.Count));
+                this.authors.Add(author);
             }
 
             SelectCommand = new SimpleCommand(Select);
         }
 
-        private void Select()
+        public void Select()
         {
             mediator.SendData(authors.IndexOf(selectedAuthor));
+        }
+
+        public void Close()
+        {
+            throw new NotImplementedException();
         }
     }
 }

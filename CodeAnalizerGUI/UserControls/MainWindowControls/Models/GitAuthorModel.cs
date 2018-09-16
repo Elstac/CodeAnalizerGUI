@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
 {
-    class GitAuthorModel : INotifyPropertyChanged
+    public class GitAuthorModel : INotifyPropertyChanged
     {
         private string name;
         private string email;
