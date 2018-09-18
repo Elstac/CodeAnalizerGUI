@@ -26,6 +26,7 @@ namespace CodeAnalizerGUI
     {
         IControlsMediator mediator;
         UIBus mainBus;
+        
         string[] buttonsNames = new string[] { "Global statistics","Contributors" };
 
         internal IControlsMediator Mediator { get => mediator; set => mediator = value; }
@@ -101,14 +102,17 @@ namespace CodeAnalizerGUI
 
         private void TESTButtonClick(object sender, RoutedEventArgs e)
         {
-            ContributorsControl tmp = new ContributorsControl();
-            mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
-            mainBus.OpenProject();
+            //ContributorsControl tmp = new ContributorsControl();
+            //mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
+            //mainBus.OpenProject();
 
             //TestControl tc = new TestControl();
             //mediator.LoadContent(tc);
 
-           
+            NewContributorViewModel vm = new NewContributorViewModel();
+            NewContributorControl tmp = new NewContributorControl();
+            tmp.DataContext = vm;
+            mediator.LoadContent(tmp);
 
             //ContributorDetailsControl cdc = new ContributorDetailsControl();
             //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});
@@ -125,6 +129,14 @@ namespace CodeAnalizerGUI
         public void GetChildren<T>(ref T ret) where T : class
         {
             throw new InvalidOperationException("Operation not suported");
+        }
+
+        public object GetContent()
+        {
+            if (MainControl.Content == null)
+                throw new NotImplementedException();
+
+            return MainControl.Content;
         }
     }
 }

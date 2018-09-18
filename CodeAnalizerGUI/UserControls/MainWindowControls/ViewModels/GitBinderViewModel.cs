@@ -9,10 +9,12 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizer.GitTrackerModule.Classes;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
-    public class GitBinderViewModel
+    public class GitBinderViewModel:ViewModel
     {
+       
         private GitAuthorModel selectedAuthor;
         private ObservableCollection<GitAuthorModel> authors;
         public ICommand SelectCommand { get; set; }
@@ -42,7 +44,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         public void Close()
         {
-            throw new NotImplementedException();
+            mediator.CloseControl(this);
         }
     }
 }

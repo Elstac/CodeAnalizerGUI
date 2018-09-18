@@ -64,7 +64,7 @@ namespace CodeAnalizerGUI
             FileExplorerControl fec = new FileExplorerControl();
             fec.Mediator = mediator;
             fec.TreeParent = treeParent;
-            mediator.LoadContent(fec,this);
+            //mediator.LoadContent(fec,this);
         }
 
         private void DeleteButtonClick(object sender, RoutedEventArgs e)

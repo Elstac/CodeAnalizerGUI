@@ -10,7 +10,7 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes.MinorClasses;
 namespace CodeAnalizerGUI.Classes
 {
-    class MainWindowControlsMediator : ControlsMediator
+    public class MainWindowControlsMediator : ControlsMediator
     {
         private MainWindow mainWindow;
         public MainWindowControlsMediator(MainWindow mainWindow)

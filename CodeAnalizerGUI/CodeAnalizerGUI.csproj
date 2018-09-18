@@ -85,9 +85,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ChainLink.cs" />
     <Compile Include="Classes\ControlsMediator.cs" />
+    <Compile Include="Classes\Converters\ObjectToEnumerableConverter.cs" />
     <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
+    <Compile Include="Exceptions\DependencyMadnessException.cs" />
+    <Compile Include="Exceptions\NoFileSelectedException.cs" />
     <Compile Include="MinorClasses\ContributorDisplay.cs" />
     <Compile Include="Classes\SubControlMediator.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
@@ -107,11 +111,14 @@
     <Compile Include="UserControls\MainWindowControls\FileExplorerControl.xaml.cs">
       <DependentUpon>FileExplorerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MainWindowControls\Models\ContributorModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\ViewModels\NewContributorViewModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\ViewModels\ViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml.cs">
       <DependentUpon>GitBinderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\Models\GitAuthorModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\NewContributorControl.xaml.cs">
+    <Compile Include="UserControls\MainWindowControls\Views\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IFileExplorerUser.cs" />
@@ -147,7 +154,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\NewContributorControl.xaml">
+    <Page Include="UserControls\MainWindowControls\Views\NewContributorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

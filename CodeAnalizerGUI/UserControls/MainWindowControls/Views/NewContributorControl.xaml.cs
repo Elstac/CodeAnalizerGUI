@@ -40,6 +40,7 @@ namespace CodeAnalizerGUI
             InitializeComponent();
             ContributorImage.Source = StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\plus.png").Source;
             Control tmp;
+       
 
             SubControlMediator scm = new SubControlMediator();
             scm.Parent = this;
@@ -47,13 +48,13 @@ namespace CodeAnalizerGUI
 
             FileList.TreeParent = this;
             FileList.Mediator = subControlsMediator;
-            foreach (var item in IdPanel.Children)
-            {
-                if (!(item is Control))
-                    continue;
-                tmp = item as Control;
-                tmp.DataContext = this;
-            }
+            //foreach (var item in IdPanel.Children)
+            //{
+            //    if (!(item is Control))
+            //        continue;
+            //    tmp = item as Control;
+            //    tmp.DataContext = this;
+            //}
         }
 
         public string ContributorName { get => contributorName; set => contributorName = value; }
@@ -75,7 +76,7 @@ namespace CodeAnalizerGUI
             fec.Mediator = subControlsMediator;
             fec.Formats = new string[] { ".jpg", ".bmp", ".png" };
             fec.TreeParent = this;
-            subControlsMediator.LoadContent(fec,this);
+            //subControlsMediator.LoadContent(fec,this);
         }
         
         private void ConfirmButtonClick(object sender, RoutedEventArgs e)
@@ -102,7 +103,7 @@ namespace CodeAnalizerGUI
         {
             GitBinderControl gbc = new GitBinderControl();
             //gbc.Mediator = subControlsMediator;
-            subControlsMediator.LoadContent(gbc,this);
+            //subControlsMediator.LoadContent(gbc,this);
         }
 
         
@@ -114,7 +115,7 @@ namespace CodeAnalizerGUI
                 return;
             }
             AuthorInfo info = dataClass as AuthorInfo;
-
+            
             Name = info.name;
             email = info.email;
         }
