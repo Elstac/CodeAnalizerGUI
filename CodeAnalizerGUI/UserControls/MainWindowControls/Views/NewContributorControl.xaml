@@ -27,9 +27,10 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0">
             <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128"/>
-            <Button Content="Chose File" Click="ChoseImageButtonClick" />
+            <Button Content="Chose File" Command="{Binding ChoseImageCommand}" />
             
         </StackPanel>
+        <ContentControl Grid.Column="1" ContentTemplate="{StaticResource TextBoxTemp}" Content="{Binding Contributor}"/>
         <!--<StackPanel Name="IdPanel" Grid.Column="1">
             <TextBlock Text="Name" HorizontalAlignment="Center"/>
             <TextBox Text="{Binding Path=Name,Mode=TwoWay}" HorizontalAlignment="Center" FontSize="12"/>
@@ -38,10 +39,10 @@
         </StackPanel>-->
         
         
-        <local:ManageableFileView x:Name="FileList" Grid.Row="1" />
-        <Button Content="Confirm" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" />
-        <Button Content="Cancel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" />
-        <Button Content="Get GIT data" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="75" Command="{Binding }"/>
+        <local:ManageableFileView x:Name="FileList" Grid.Row="1"  />
+        <Button Content="Confirm" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Command="{Binding SendCommand}"/>
+        <Button Content="Cancel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Command="{Binding CalnelCommand}" />
+        <Button Content="Get GIT data" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="75" Command="{Binding GitBinderCommand}"/>
        
     </Grid>
 </UserControl>
