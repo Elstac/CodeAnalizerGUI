@@ -75,8 +75,8 @@ namespace CodeAnalizerGUI
         }
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            NewContributorControl ncc = new NewContributorControl();
-            ncc.Mediator = mediator;
+            //NewContributorControl ncc = new NewContributorControl();
+            //ncc.Mediator = mediator;
             //mediator.LoadContent(ncc,this);            
         }
 

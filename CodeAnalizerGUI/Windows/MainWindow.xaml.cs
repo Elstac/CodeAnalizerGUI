@@ -109,11 +109,14 @@ namespace CodeAnalizerGUI
             //TestControl tc = new TestControl();
             //mediator.LoadContent(tc);
 
+            GitBinderControl gbc = new GitBinderControl();
+            GitBinderViewModel gbvm = new GitBinderViewModel(new UserControls.MainWindowControls.Models.GitAuthorModel[] { });
+            gbc.DataContext = gbvm;
             NewContributorViewModel vm = new NewContributorViewModel();
             NewContributorControl tmp = new NewContributorControl();
             tmp.DataContext = vm;
-            tmp.Mediator = mediator;
-            mediator.LoadContent(tmp);
+            vm.Mediator = mediator;
+            mediator.LoadContent(tmp,gbvm);
 
             //ContributorDetailsControl cdc = new ContributorDetailsControl();
             //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});
