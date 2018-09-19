@@ -4,24 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.IO;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
 {
     public class ContributorModel:INotifyPropertyChanged
     {
         private string name="Name";
         private string email="Email";
-        private string pathToImage;
+        private string pathToImage= Directory.GetCurrentDirectory() + "\\plus.png";
         private List<string> pathsToFiles;
 
         public ContributorModel()
         {
-            pathToImage = null;
             pathsToFiles = new List<string>();
         }
 
-        public string Name { get => name; set { Name = value; RaisePropertyChange("Name"); } }
-        public string Email { get => email; set { Email = value; RaisePropertyChange("Email"); } }
-        public string PathToImage { get => pathToImage; set => pathToImage = value; }
+        public string Name { get => name; set { name = value; RaisePropertyChange("Name"); } }
+        public string Email { get => email; set { email = value; RaisePropertyChange("Email"); } }
+        public string PathToImage { get => pathToImage; set { pathToImage = value; RaisePropertyChange("PathToImage"); } }
         public List<string> PathsToFiles { get => pathsToFiles; set => pathsToFiles = value; }
 
         public event PropertyChangedEventHandler PropertyChanged;

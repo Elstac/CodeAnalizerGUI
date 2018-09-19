@@ -19,6 +19,7 @@ namespace CodeAnalizerGUI.Classes
         bool operationInProgres = false;
 
         List<ChainLink> controlsDependencies= new List<ChainLink>();
+        private UserControl lastOpend;
 
         public void BreakOperation()
         {
@@ -35,6 +36,8 @@ namespace CodeAnalizerGUI.Classes
             ChainLink link = result.ElementAt(0);
             LoadContent(link.parent);
             link = null;
+
+
         }
 
         public abstract void LoadContent(UserControl control);
@@ -52,13 +55,14 @@ namespace CodeAnalizerGUI.Classes
 
         public void LoadContent(UserControl control, ViewModel child)
         {
-            ChainLink link = new ChainLink(control,child);
+            ChainLink link = new ChainLink(control, child);
             controlsDependencies.Add(link);
+
             LoadContent(control);
         }
         public void LoadContent(UserControl control, UserControl child)
         {
-            ChainLink link = new ChainLink(control,child);
+            ChainLink link = new ChainLink(control, child);
             controlsDependencies.Add(link);
             LoadContent(control);
         }

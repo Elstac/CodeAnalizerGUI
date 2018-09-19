@@ -112,6 +112,7 @@ namespace CodeAnalizerGUI
             NewContributorViewModel vm = new NewContributorViewModel();
             NewContributorControl tmp = new NewContributorControl();
             tmp.DataContext = vm;
+            tmp.Mediator = mediator;
             mediator.LoadContent(tmp);
 
             //ContributorDetailsControl cdc = new ContributorDetailsControl();

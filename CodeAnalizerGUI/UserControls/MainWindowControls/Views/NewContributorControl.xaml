@@ -34,7 +34,7 @@
             <ContentControl Content="{Binding Contributor}">
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
-                        <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128" Source="{Binding Path=PathToImage,Converter={StaticResource Converter},Mode=OneWayToSource}"/>
+                        <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128" Source="{Binding Path=PathToImage,Converter={StaticResource Converter},Mode=OneWay}"/>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>
