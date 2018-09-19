@@ -12,26 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CodeAnalizerGUI.Classes.Converters;
-using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Interfaces;
-using System.IO;
+using System.ComponentModel;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 namespace CodeAnalizerGUI
 {
     /// <summary>
-    /// Interaction logic for ContributorsControl.xaml
+    /// Interaction logic for ManageableFileView.xaml
     /// </summary>
-    public partial class ContributorsControl : UserControl
+    public partial class ManageableFileView : UserControl
     {
-        private Button AddButton;
-
-        public ContributorsControl()
+       
+        public ManageableFileView()
         {
             InitializeComponent();
         }
-
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {

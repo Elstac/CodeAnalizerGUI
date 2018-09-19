@@ -26,6 +26,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Views
         public GitBinderControl()
         {
             InitializeComponent();
+
         }
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)

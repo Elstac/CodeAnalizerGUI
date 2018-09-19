@@ -111,6 +111,8 @@ namespace CodeAnalizerGUI
 
             ViewModel vm = new ContributorsViewModel();
             UserControl view = new ContributorsControl();
+
+            vm.Mediator = mediator;
             view.DataContext = vm;
             mediator.LoadContent(view);
 

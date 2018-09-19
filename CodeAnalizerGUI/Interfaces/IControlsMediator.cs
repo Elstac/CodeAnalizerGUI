@@ -8,7 +8,6 @@ using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizer;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 namespace CodeAnalizerGUI.Interfaces
 {
     public interface IControlsMediator

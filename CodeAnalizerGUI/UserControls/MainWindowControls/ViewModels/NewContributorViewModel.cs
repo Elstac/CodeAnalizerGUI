@@ -7,6 +7,7 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Exceptions;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using System.Windows.Input;
@@ -16,14 +17,16 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     public class NewContributorViewModel:ViewModel,ISubControlOwner
     {
-        private IControlsMediator mediator;
         private IControlsMediator subControlsMediator;
         private ContributorModel contributor;
+
+        public UserControl FileList { get; set; }
         #region Commands
         public ICommand SendCommand { get; set; }
         public ICommand CloseCommand{ get; set; }
         public ICommand ChoseImageCommand{ get; set; }
         public ICommand GitBinderCommand{ get; set; }
+        
         #endregion
 
         public NewContributorViewModel()
@@ -32,19 +35,30 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             CloseCommand = new SimpleCommand(Cancel);
             ChoseImageCommand = new SimpleCommand(ChoseImage);
             GitBinderCommand = new SimpleCommand(OpenBinder);
-            subControlsMediator = new SubControlMediator();
-            contributor = new ContributorModel();
-        }
 
-        public IControlsMediator Mediator { get => mediator; set => mediator = value; }
+            SubControlMediator med = new SubControlMediator();
+            med.Parent = this;
+            subControlsMediator = med;
+
+            contributor = new ContributorModel();
+
+            ManagableFileViewViewModel vm = new ManagableFileViewViewModel();
+            vm.Mediator = subControlsMediator;
+            ManageableFileView view = new ManageableFileView();
+            view.DataContext = vm;
+            FileList = view;
+        }
+        
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
 
         public void Send()
         {
+            contributor.PathsToFiles = (FileList.DataContext as ManagableFileViewViewModel).Files;
             if (contributor.PathsToFiles.Count == 0)
                 throw new NoFileSelectedException("Contributor contains no file");
 
             mediator.SendData(contributor);
+            mediator.CloseControl(this);
         }
 
         public void OpenBinder()
@@ -54,7 +68,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             GitBinderControl view = new GitBinderControl();
             view.DataContext = tmpVM;
 
-            mediator.LoadContent(view,this);
+            subControlsMediator.LoadContent(view,this);
         }
 
         public void Cancel()
@@ -67,7 +81,8 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             FileExplorerControl control = new FileExplorerControl();
             control.Formats = new string[] { ".jpg", ".png", ".bmp" };
             control.Mediator = subControlsMediator;
-            mediator.LoadContent(control, null,this);
+            control.TreeParent = View;
+            subControlsMediator.LoadContent(control, this,this);
         }
 
         public IControlsMediator GetMediator()

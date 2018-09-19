@@ -102,9 +102,10 @@
     <Compile Include="TestControl.xaml.cs">
       <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CustomControls\ManageableFileView.xaml.cs">
+    <Compile Include="UserControls\CustomControls\Views\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CustomControls\ViewModels\ManagableFileViewViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Commands\SimpleCommand.cs" />
     <Compile Include="UserControls\MainWindowControls\ContributorDetailsControl.xaml.cs">
       <DependentUpon>ContributorDetailsControl.xaml</DependentUpon>
@@ -114,6 +115,7 @@
     </Compile>
     <Compile Include="UserControls\MainWindowControls\Models\ContributorButtonModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\ContributorModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\Models\Model.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\NewContributorViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ViewModel.cs" />
@@ -128,7 +130,7 @@
     <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\ContributorsControl.xaml.cs">
+    <Compile Include="UserControls\MainWindowControls\Views\ContributorsControl.xaml.cs">
       <DependentUpon>ContributorsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\GlobalStatsControl.xaml.cs">
@@ -141,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\CustomControls\ManageableFileView.xaml">
+    <Page Include="UserControls\CustomControls\Views\ManageableFileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,7 +167,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\ContributorsControl.xaml">
+    <Page Include="UserControls\MainWindowControls\Views\ContributorsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.ComponentModel;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
 {
-    public class GitAuthorModel : INotifyPropertyChanged
+    public class GitAuthorModel : Model
     {
         private string name;
         private string email;
@@ -24,14 +24,6 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
         public string Email { get => email; set { email = value; RaisePropertyChanged("Email"); } }
         public int CommitsCount { get => commitsCount; set { commitsCount = value; RaisePropertyChanged("CommitsCount"); } }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
+        
     }
 }

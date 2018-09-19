@@ -15,7 +15,6 @@ namespace CodeAnalizerGUI
         private ProjectMiner projectMiner;
         private static LogicHolder mainHolder;
         private ContributorManager manager;
-        private bool managerChanged;
         public static LogicHolder MainHolder{
             get
             {
@@ -25,7 +24,7 @@ namespace CodeAnalizerGUI
             }
         }
 
-        public ContributorManager Manager { get { managerChanged = true; return manager; } set { manager = value;managerChanged = true; }  }
+        //public ContributorManager Manager { get { managerChanged = true; return manager; } set { manager = value;managerChanged = true; }  }
 
         public LogicHolder()
         {

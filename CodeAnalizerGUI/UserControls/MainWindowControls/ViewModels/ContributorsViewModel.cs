@@ -7,16 +7,17 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     class ContributorsViewModel : ViewModel,ISubControlDataReciver
     {
-        private List<ContributorButtonModel> contributors;
-        public List<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
+        private ObservableCollection<ContributorButtonModel> contributors;
+        public ObservableCollection<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
 
         public ContributorsViewModel()
         {
-            contributors = new List<ContributorButtonModel>();
+            contributors = new ObservableCollection<ContributorButtonModel>();
             ContributorModel des = new ContributorModel(); 
             contributors.Add(new ContributorButtonModel(des , new SimpleCommand(NewContributor)));
         }
@@ -28,12 +29,19 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         private void NewContributor()
         {
-            throw new NotImplementedException();
+            NewContributorControl view = new NewContributorControl();
+            NewContributorViewModel viewModel = new NewContributorViewModel();
+            viewModel.Mediator = mediator;
+            view.DataContext = viewModel;
+            Mediator.LoadContent(view, this, this);
         }
         public void ReciveData(object dataClass)
         {
+            ContributorButtonModel button = contributors.Last();
+            contributors.Remove(contributors.Last());
             ContributorModel toAdd = dataClass as ContributorModel;
             contributors.Add(new ContributorButtonModel(toAdd,new SimpleCommand( OpenDetailsControl)));
+            contributors.Add(button);
         }
     }
 }

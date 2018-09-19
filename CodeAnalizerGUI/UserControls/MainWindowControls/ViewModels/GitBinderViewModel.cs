@@ -18,11 +18,9 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         private GitAuthorModel selectedAuthor;
         private ObservableCollection<GitAuthorModel> authors;
         public ICommand SelectCommand { get; set; }
-        private IControlsMediator mediator;
 
         public ObservableCollection<GitAuthorModel> Authors { get => authors; set { authors = value;} }
         public GitAuthorModel SelectedAuthor { get => selectedAuthor; set => selectedAuthor = value; }
-        public IControlsMediator Mediator { get => mediator; set => mediator = value; }
 
         public GitBinderViewModel(GitAuthorModel[] authors)
         {

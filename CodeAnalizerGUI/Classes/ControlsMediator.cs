@@ -19,7 +19,6 @@ namespace CodeAnalizerGUI.Classes
         bool operationInProgres = false;
 
         List<ChainLink> controlsDependencies= new List<ChainLink>();
-        private UserControl lastOpend;
 
         public void BreakOperation()
         {
@@ -68,6 +67,7 @@ namespace CodeAnalizerGUI.Classes
 
             openedReciver.ReciveData(dataClass);
             operationInProgres = false;
+            openedReciver = null;
         }
     }
 }

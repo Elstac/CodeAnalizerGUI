@@ -10,24 +10,6 @@ namespace CodeAnalizerGUI.Windows
 {
     class MainWindowViewModel
     {
-        private List<UserControl> mainWindowsControls;
-        private string[] buttonsNames = new string[] { "Global statistics", "Contributors" };
-        private List<Button> mainToolBarButtons;
-        public MainWindowViewModel()
-        {
-            
-        }
-        
-        public string[] ButtonsNames { get => buttonsNames; set => buttonsNames = value; }
-
-        private void CreateButtons()
-        {
-
-        }
-
-        private void NavigatePanelButtonClick()
-        {
-            
-        }
+       
     }
 }

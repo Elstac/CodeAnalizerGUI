@@ -4,10 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     public abstract class ViewModel
     {
         public UserControl View { get; set; }
+        protected IControlsMediator mediator;
+        public IControlsMediator Mediator { get => mediator; set => mediator = value; }
+
     }
 }
