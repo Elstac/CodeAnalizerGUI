@@ -14,6 +14,8 @@ namespace CodeAnalizerGUI
         private RepoTracker repoTracker;
         private ProjectMiner projectMiner;
         private static LogicHolder mainHolder;
+        private ContributorManager manager;
+        private bool managerChanged;
         public static LogicHolder MainHolder{
             get
             {
@@ -22,18 +24,20 @@ namespace CodeAnalizerGUI
                 return mainHolder;
             }
         }
-        
+
+        public ContributorManager Manager { get { managerChanged = true; return manager; } set { manager = value;managerChanged = true; }  }
+
         public LogicHolder()
         {
             mainHolder = this;
         }
-        public void LoadFileMiner(string[] paths)
-        {
-            projectMiner = new ProjectMiner(paths);
-        }
         public void LoadGitTracker(string pathToRepo)
         {
             repoTracker = new RepoTracker(pathToRepo);            
+        }
+        public void LoadFileMiner(string[] paths)
+        {
+            projectMiner = new ProjectMiner(paths);          
         }
         public IGitChangesTracker GetGitChangesTracker()
         {
@@ -44,5 +48,6 @@ namespace CodeAnalizerGUI
         {
             return projectMiner;
         }
+        
     }
 }

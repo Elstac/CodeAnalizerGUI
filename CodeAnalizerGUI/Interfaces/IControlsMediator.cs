@@ -14,8 +14,8 @@ namespace CodeAnalizerGUI.Interfaces
     public interface IControlsMediator
     {
         void LoadContent(UserControl control);
-        void LoadContent(UserControl control, ViewModel child, ISubControlDataReciver owner);
-        void LoadContent(UserControl control,ViewModel child);
+        void LoadContent(UserControl control, ViewModel parent, ISubControlDataReciver owner);
+        void LoadContent(UserControl control,ViewModel parent);
         void SendData(object dataClass);
         void BreakOperation();
         void CloseControl(ViewModel toClose);

@@ -29,12 +29,12 @@ namespace CodeAnalizerGUI.Classes
 
         public void CloseControl(ViewModel toClose)
         {
-            var result = from dependecy in controlsDependencies where dependecy.child == toClose select dependecy;
+            var result = from dependecy in controlsDependencies where dependecy.child == toClose.View select dependecy;
 
             if (result.Count() > 1)
                 throw new DependencyMadnessException(toClose);
             ChainLink link = result.ElementAt(0);
-            LoadContent(link.parent);
+            LoadContent(link.parent.View);
             link = null;
 
 
@@ -43,27 +43,21 @@ namespace CodeAnalizerGUI.Classes
         public abstract void LoadContent(UserControl control);
         
 
-        public void LoadContent(UserControl control, ViewModel child, ISubControlDataReciver owner)
+        public void LoadContent(UserControl control, ViewModel parent, ISubControlDataReciver owner)
         {
             if (operationInProgres)
                 throw new NotImplementedException();
 
-            LoadContent(control,child);
+            LoadContent(control, parent);
             openedReciver = owner;
             operationInProgres = true;
         }
 
-        public void LoadContent(UserControl control, ViewModel child)
+        public void LoadContent(UserControl control, ViewModel parent)
         {
-            ChainLink link = new ChainLink(control, child);
+            ChainLink link = new ChainLink(parent, control);
             controlsDependencies.Add(link);
 
-            LoadContent(control);
-        }
-        public void LoadContent(UserControl control, UserControl child)
-        {
-            ChainLink link = new ChainLink(control, child);
-            controlsDependencies.Add(link);
             LoadContent(control);
         }
 

@@ -54,7 +54,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             GitBinderControl view = new GitBinderControl();
             view.DataContext = tmpVM;
 
-            mediator.LoadContent(view);
+            mediator.LoadContent(view,this);
         }
 
         public void Cancel()

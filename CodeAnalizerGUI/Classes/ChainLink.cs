@@ -9,19 +9,14 @@ namespace CodeAnalizerGUI.Classes
 {
     class ChainLink
     {
-        public UserControl parent;
-        public object child;
+        public ViewModel parent;
+        public UserControl child;
 
-        public ChainLink(UserControl parent, ViewModel child)
-        {
-            this.parent = parent;
-            this.child = child;
-        }public ChainLink(UserControl parent, UserControl child)
+        public ChainLink(ViewModel parent, UserControl child)
         {
             this.parent = parent;
             this.child = child;
         }
-
         public ChainLink()
         {
 
