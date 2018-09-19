@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CodeAnalizerGUI"
+             xmlns:dupa="clr-namespace:CodeAnalizerGUI.Classes.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
@@ -14,6 +15,10 @@
                 <TextBlock Text="{Binding Email,Mode=OneTime}" HorizontalAlignment="Center" FontSize="12"/>
                 <TextBox Text="{Binding Email,Mode=TwoWay}" HorizontalAlignment="Center" FontSize="12"/>
             </StackPanel>
+        </DataTemplate>
+        <dupa:StringToImageSourceConverter x:Key="Converter"/>
+        <DataTemplate x:Key="Image">
+            <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128" Source="{Binding Path=PathToImage}"/>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -26,7 +31,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0">
-            <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128"/>
+            <ContentControl Content="{Binding Contributor}">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128" Source="{Binding Path=PathToImage,Converter={StaticResource Converter},Mode=OneWayToSource}"/>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
             <Button Content="Chose File" Command="{Binding ChoseImageCommand}" />
             
         </StackPanel>

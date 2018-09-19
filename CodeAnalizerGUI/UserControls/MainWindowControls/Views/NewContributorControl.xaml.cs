@@ -38,7 +38,7 @@ namespace CodeAnalizerGUI
         public NewContributorControl()
         {
             InitializeComponent();
-            ContributorImage.Source = StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\plus.png").Source;
+            //StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\plus.png").Source;
             Control tmp;
        
 
@@ -64,7 +64,7 @@ namespace CodeAnalizerGUI
             set
             {
                 pathToImage = value;
-                ContributorImage.Source = StringToImageConverter.Convert(pathToImage).Source;
+                //ContributorImage.Source = StringToImageConverter.Convert(pathToImage).Source;
             }
         }
         internal IControlsMediator Mediator {set => mediator = value as MainWindowControlsMediator; }

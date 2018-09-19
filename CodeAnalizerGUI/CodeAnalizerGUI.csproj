@@ -87,7 +87,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\ChainLink.cs" />
     <Compile Include="Classes\ControlsMediator.cs" />
-    <Compile Include="Classes\Converters\ObjectToEnumerableConverter.cs" />
+    <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
     <Compile Include="Exceptions\DependencyMadnessException.cs" />
