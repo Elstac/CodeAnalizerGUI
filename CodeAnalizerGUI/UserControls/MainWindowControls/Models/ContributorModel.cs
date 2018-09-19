@@ -18,7 +18,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
         {
             pathsToFiles = new List<string>();
         }
-
+        
         public string Name { get => name; set { name = value; RaisePropertyChange("Name"); } }
         public string Email { get => email; set { email = value; RaisePropertyChange("Email"); } }
         public string PathToImage { get => pathToImage; set { pathToImage = value; RaisePropertyChange("PathToImage"); } }

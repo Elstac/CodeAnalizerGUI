@@ -17,82 +17,30 @@ using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Interfaces;
 using System.IO;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
+using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 namespace CodeAnalizerGUI
 {
     /// <summary>
     /// Interaction logic for ContributorsControl.xaml
     /// </summary>
-    public partial class ContributorsControl : UserControl,ISubControlDataReciver
+    public partial class ContributorsControl : UserControl
     {
-        private IControlsMediator mediator;
         private Button AddButton;
-        private int buttonCounter = 0;
-        internal IControlsMediator Mediator { set => mediator = value; }
 
         public ContributorsControl()
         {
             InitializeComponent();
-            LoadAddButton();
-            MainPanel.Children.Add(AddButton);
         }
 
-        private void LoadAddButton()
+
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
-            AddButton = new Button();
-            Image plus = StringToImageConverter.Convert(Directory.GetCurrentDirectory() + "\\plus.png");
-            plus.Stretch = Stretch.Fill;
-            AddButton.Width = 64;
-            AddButton.Height = 64;
-            AddButton.Content = plus;
-            AddButton.Click += new RoutedEventHandler(AddButtonClick);
-            AddButton.Margin = new Thickness(10, 10, 10, 0);
-        }
-
-        public void AddNewButton(string name,Image image)
-        {
-            UIElementCollection children = MainPanel.Children;
-            ButtonWithDescription newButton = new ButtonWithDescription(image, name, new RoutedEventHandler(ContributoButtonClick));
-            newButton.Tag = buttonCounter++;
-            newButton.Margin = new Thickness(10, 10, 10, 0);
-            children.RemoveAt(children.Count - 1);
-            children.Add(newButton);
-            children.Add(AddButton);
-        }
-
-        private void ContributoButtonClick(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            ContributorDetailsControl cdc = new ContributorDetailsControl();
-            
-            int index = int.Parse(button.Tag.ToString());
-
-            cdc.Contributor = UIBus.mainBus.ContributorManager.Contributors[index];
-            Image tmpImg = (Image)button.Content;
-            cdc.ContributorImage = tmpImg.Source;
-            cdc.LoadContent();
-
-            mediator.LoadContent(cdc);
-        }
-        private void AddButtonClick(object sender, RoutedEventArgs e)
-        {
-            //NewContributorControl ncc = new NewContributorControl();
-            //ncc.Mediator = mediator;
-            //mediator.LoadContent(ncc,this);            
-        }
-
-        public void AddContributor(string name, string pathToImage, string[] files)
-        {
-            UIBus.mainBus.AddContributor(name, files);
-        }
-        
-        public void ReciveData(object dataClass)
-        {
-            ContributorDisplay contributorDisplay = dataClass as ContributorDisplay;
-
-            Image img = StringToImageConverter.Convert(contributorDisplay.pathToImage);
-            AddNewButton(contributorDisplay.name, img);
-
-            
+            base.OnPropertyChanged(e);
+            if (e.Property.ToString() == "DataContext")
+            {
+                ViewModel vm = e.NewValue as ViewModel;
+                vm.View = this;
+            }
         }
     }
 }

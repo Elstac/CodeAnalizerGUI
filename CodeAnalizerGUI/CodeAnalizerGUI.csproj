@@ -112,7 +112,9 @@
     <Compile Include="UserControls\MainWindowControls\FileExplorerControl.xaml.cs">
       <DependentUpon>FileExplorerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MainWindowControls\Models\ContributorButtonModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\ContributorModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\NewContributorViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml.cs">
