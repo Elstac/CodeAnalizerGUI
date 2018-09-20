@@ -16,10 +16,14 @@ namespace CodeAnalizerGUI.Classes
     public abstract class ControlsMediator: IControlsMediator
     {
         private ISubControlDataReciver openedReciver = null;
+        private IControlFactory factory;
         bool operationInProgres = false;
 
         List<ChainLink> controlsDependencies= new List<ChainLink>();
-
+        public ControlsMediator()
+        {
+            factory = ControlFactory.Factory;
+        }
         public void BreakOperation()
         {
             operationInProgres = false;
@@ -37,6 +41,11 @@ namespace CodeAnalizerGUI.Classes
             link = null;
 
 
+        }
+
+        public UserControl CreateControl(Type viewType, IControlsMediator mediator)
+        {
+            return factory.Create(viewType, mediator);
         }
 
         public abstract void LoadContent(UserControl control);
@@ -69,5 +78,7 @@ namespace CodeAnalizerGUI.Classes
             operationInProgres = false;
             openedReciver = null;
         }
+
+        
     }
 }

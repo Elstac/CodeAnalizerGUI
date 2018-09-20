@@ -10,10 +10,13 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes.MinorClasses;
 namespace CodeAnalizerGUI.Classes
 {
+    /// <summary>
+    /// Manage comunication between MainWindow and all controls, can hold one layer of datalisnig operation
+    /// </summary>
     public class MainWindowControlsMediator : ControlsMediator
     {
         private MainWindow mainWindow;
-        public MainWindowControlsMediator(MainWindow mainWindow)
+        public MainWindowControlsMediator(MainWindow mainWindow):base()
         {
             this.mainWindow = mainWindow;
         }

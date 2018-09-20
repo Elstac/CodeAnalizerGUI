@@ -9,6 +9,9 @@ using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.Classes
 {
+    /// <summary>
+    /// Manage sending/reciving data between controls. Use if higher mediator has managing datalistnig operation and its subcontrol needs data from other controls
+    /// </summary>
     class SubControlMediator : ControlsMediator
     {
         private ISubControlOwner parent;

@@ -7,6 +7,7 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using System.Windows.Input;
+using System.Windows.Controls;
 using System.Collections.ObjectModel;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
@@ -29,10 +30,11 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         private void NewContributor()
         {
-            NewContributorControl view = new NewContributorControl();
-            NewContributorViewModel viewModel = new NewContributorViewModel();
-            viewModel.Mediator = mediator;
-            view.DataContext = viewModel;
+            //NewContributorControl view = new NewContributorControl();
+            //NewContributorViewModel viewModel = new NewContributorViewModel();
+            //viewModel.Mediator = mediator;
+            //view.DataContext = viewModel;
+            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator);
             Mediator.LoadContent(view, this, this);
         }
         public void ReciveData(object dataClass)

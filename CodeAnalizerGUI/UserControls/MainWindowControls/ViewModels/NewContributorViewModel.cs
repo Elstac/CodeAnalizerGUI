@@ -19,8 +19,10 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
     {
         private IControlsMediator subControlsMediator;
         private ContributorModel contributor;
+        private IControlFactory controlFactory;
 
         public UserControl FileList { get; set; }
+
         #region Commands
         public ICommand SendCommand { get; set; }
         public ICommand CloseCommand{ get; set; }
@@ -42,14 +44,17 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
             contributor = new ContributorModel();
 
-            ManagableFileViewViewModel vm = new ManagableFileViewViewModel();
-            vm.Mediator = subControlsMediator;
-            ManageableFileView view = new ManageableFileView();
-            view.DataContext = vm;
+            //ManagableFileViewViewModel vm = new ManagableFileViewViewModel();
+            //vm.Mediator = subControlsMediator;
+            //ManageableFileView view = new ManageableFileView();
+            //view.DataContext = vm;
+            //FileList = view;
+            UserControl view = subControlsMediator.CreateControl(typeof(ManageableFileView), subControlsMediator);
             FileList = view;
         }
         
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
+        internal IControlFactory ControlFactory { get => controlFactory; set => controlFactory = value; }
 
         public void Send()
         {
@@ -63,11 +68,11 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         public void OpenBinder()
         {
-            GitBinderViewModel tmpVM = new GitBinderViewModel(null);
-            tmpVM.Mediator = subControlsMediator;
-            GitBinderControl view = new GitBinderControl();
-            view.DataContext = tmpVM;
-
+            //GitBinderViewModel tmpVM = new GitBinderViewModel(null);
+            //tmpVM.Mediator = subControlsMediator;
+            //GitBinderControl view = new GitBinderControl();
+            //view.DataContext = tmpVM;
+            UserControl view = mediator.CreateControl(typeof(GitBinderControl), subControlsMediator);
             subControlsMediator.LoadContent(view,this);
         }
 

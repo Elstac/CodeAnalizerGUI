@@ -16,7 +16,9 @@ using CodeAnalizer;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
 namespace CodeAnalizerGUI
 {
     /// <summary>
@@ -34,10 +36,21 @@ namespace CodeAnalizerGUI
         public MainWindow()
         {
             InitializeComponent();
+
+            InitializeFactory();
             mediator = new MainWindowControlsMediator(this);
             mainBus = new UIBus(this);
             mainBus.Mediator = mediator;
             LoadButtons();
+        }
+
+        private static void InitializeFactory()
+        {
+            ControlFactory fac = new ControlFactory();
+            fac.RegisterViewType(typeof(ContributorsControl), typeof(ContributorsViewModel));
+            fac.RegisterViewType(typeof(GitBinderControl), typeof(GitBinderViewModel));
+            fac.RegisterViewType(typeof(NewContributorControl), typeof(NewContributorViewModel));
+            fac.RegisterViewType(typeof(ManageableFileView), typeof(ManagableFileViewViewModel));
         }
 
         private void LoadButtons()
@@ -109,11 +122,12 @@ namespace CodeAnalizerGUI
             //TestControl tc = new TestControl();
             //mediator.LoadContent(tc);
 
-            ViewModel vm = new ContributorsViewModel();
-            UserControl view = new ContributorsControl();
+            //ViewModel vm = new ContributorsViewModel();
+            //UserControl view = new ContributorsControl();
 
-            vm.Mediator = mediator;
-            view.DataContext = vm;
+            //vm.Mediator = mediator;
+            //view.DataContext = vm;
+            UserControl view = ControlFactory.Factory.Create(typeof(ContributorsControl),mediator);
             mediator.LoadContent(view);
 
             //ContributorDetailsControl cdc = new ContributorDetailsControl();

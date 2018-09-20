@@ -18,5 +18,6 @@ namespace CodeAnalizerGUI.Interfaces
         void SendData(object dataClass);
         void BreakOperation();
         void CloseControl(ViewModel toClose);
+        UserControl CreateControl(Type viewType, IControlsMediator mediator);
     }
 }
