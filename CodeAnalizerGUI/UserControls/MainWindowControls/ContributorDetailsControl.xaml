@@ -4,22 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CodeAnalizerGUI"
+             xmlns:conv ="clr-namespace:CodeAnalizerGUI.Classes.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <conv:StringToImageSourceConverter x:Key="ImageConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Name="InfoPanel" Grid.Column="0">
-            <Image Name="MainImage" Source="{Binding ContributorImage}" Width="64" Height="64" Stretch="Fill"/>
-            <TextBlock Name="NameBlock" Text="{Binding ContributorName}" TextWrapping="Wrap"/>
-            <Button Content="Edit" Click="Button_Click" Margin="10,20,10,0"/>
-            <Button Content="Delete" Click="Button_Click" Margin="10,0"/>
-        </StackPanel>
-            
-        <StackPanel Name="NumberPanel" Grid.Column="1"/>
         
+        <ContentControl Content="{Binding Contributor}">
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <StackPanel Name="InfoPanel" Grid.Column="0">
+                        <Image Source="{Binding Path=PathToImage,Converter={StaticResource ImageConverter}}" Width="64" Height="64" Stretch="Fill"/>
+                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding Email}" TextWrapping="Wrap"/>
+                        <Button Content="Edit" Command="{Binding EditCommand}" Margin="10,20,10,0"/>
+                        <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="10,0"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding Statistics}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text=": "/>
+                        <TextBlock Text="{Binding Value}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
     </Grid>
 </UserControl>
