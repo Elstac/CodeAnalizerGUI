@@ -118,27 +118,7 @@ namespace CodeAnalizerGUI
 
         private void TESTButtonClick(object sender, RoutedEventArgs e)
         {
-            //ContributorsControl tmp = new ContributorsControl();
-            //mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
-            //mainBus.OpenProject();
-
-            //TestControl tc = new TestControl();
-            //mediator.LoadContent(tc);
-
-            //ViewModel vm = new ContributorsViewModel();
-            //UserControl view = new ContributorsControl();
-
-            //vm.Mediator = mediator;
-            //view.DataContext = vm;
-
-            UserControl view = ControlFactory.Factory.Create(typeof(ContributorsControl),mediator);
-            mediator.LoadContent(view);
-
-            //ContributorDetailsControl cdc = new ContributorDetailsControl();
-            //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});
-            //cdc.Contributor = mainBus.ContributorManager.Contributors[0];
-            //cdc.LoadContent();
-            //LoadContent(cdc);
+            
         }
 
         public void GetParent<T>(ref T ret) where T : class

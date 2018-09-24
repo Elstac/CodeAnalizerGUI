@@ -19,10 +19,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
-            <Button Content="OpenProject" Click="Open_Button_Click"/>
-            <Button Content="Exit" Click="Exit_Button_Click"/>
+            <Button Content="OpenProject" Command="{Binding OpenCommand}"/>
+            <Button Content="Exit" Command="{Binding ExitCommand}"/>
             <Button Content="Options" Click="OptionsButtonClick"/>
-            <Button Content="TEST" Click="TESTButtonClick"/>
+            <Button Content="TEST" Command="{Binding TestCommand}"/>
         </ToolBar>
 
         <ToolBarTray Orientation="Vertical" Grid.Column="0" Grid.Row="1">

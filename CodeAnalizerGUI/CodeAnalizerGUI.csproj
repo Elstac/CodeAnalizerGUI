@@ -92,9 +92,11 @@
     <Compile Include="Classes\LogicHolder.cs" />
     <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
+    <Compile Include="Classes\NavigationButtonsGenerator.cs" />
     <Compile Include="Exceptions\DependencyMadnessException.cs" />
     <Compile Include="Exceptions\NoFileSelectedException.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
+    <Compile Include="Interfaces\IButtonGenerator.cs" />
     <Compile Include="MinorClasses\ContributorDisplay.cs" />
     <Compile Include="Classes\SubControlMediator.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
@@ -147,7 +149,11 @@
     <Compile Include="UserControls\MainWindowControls\Views\StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MainWindow\MainWindowViewModel.cs" />
+    <Compile Include="Windows\AppInitializer.xaml.cs">
+      <DependentUpon>AppInitializer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Windows\Models\NavigationButtonModel.cs" />
     <Page Include="TestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,7 +194,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MainWindow.xaml">
+    <Page Include="Windows\AppInitializer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -196,7 +206,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\MainWindow.xaml.cs">
+    <Compile Include="Windows\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -243,6 +253,7 @@
   <ItemGroup>
     <Folder Include="Classes\Exceptions\" />
     <Folder Include="UserControls\OptionsWindowControls\" />
+    <Folder Include="Windows\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

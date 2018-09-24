@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 namespace CodeAnalizerGUI.Windows.Models
 {
-    class NavigationButtonModel
+    public class NavigationButtonModel
     {
         private string text;
         private ICommand command;
@@ -20,7 +20,7 @@ namespace CodeAnalizerGUI.Windows.Models
         {
             this.text = text;
             this.command = command;
-        }
+        } 
 
         public string Text { get => text; set => text = value; }
         public ICommand Command { get => command; set => command = value; }
