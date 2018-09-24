@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
@@ -23,9 +24,16 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             contributors.Add(new ContributorButtonModel(des , new SimpleCommand(NewContributor)));
         }
 
-        private void OpenDetailsControl()
+        private void OpenDetailsControl(object parameter)
         {
-            throw new NotImplementedException();
+            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator);
+            (StatsView.DataContext as StatisticsViewModel).Statistics = new ObservableCollection<StatisticsModel>() { new StatisticsModel("Siurak", 50) };
+
+            UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl),mediator);
+            (detailControl.DataContext as ContributorDetailsViewModel).StatisticsView = StatsView;
+            (detailControl.DataContext as ContributorDetailsViewModel).Contributor = parameter as ContributorModel;
+
+            mediator.LoadContent(detailControl);
         }
 
         private void NewContributor()
@@ -42,7 +50,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             ContributorButtonModel button = contributors.Last();
             contributors.Remove(contributors.Last());
             ContributorModel toAdd = dataClass as ContributorModel;
-            contributors.Add(new ContributorButtonModel(toAdd,new SimpleCommand( OpenDetailsControl)));
+            contributors.Add(new ContributorButtonModel(toAdd,new IndexCommand( OpenDetailsControl)));
             contributors.Add(button);
         }
     }

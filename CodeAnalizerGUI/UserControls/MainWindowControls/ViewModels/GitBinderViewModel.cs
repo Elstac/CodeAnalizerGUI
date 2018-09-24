@@ -22,13 +22,9 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         public ObservableCollection<GitAuthorModel> Authors { get => authors; set { authors = value;} }
         public GitAuthorModel SelectedAuthor { get => selectedAuthor; set => selectedAuthor = value; }
 
-        public GitBinderViewModel(GitAuthorModel[] authors)
+        public GitBinderViewModel()
         {
-            this.authors = new ObservableCollection<GitAuthorModel>();
-            foreach (var author in authors)
-            {
-                this.authors.Add(author);
-            }
+            authors = new ObservableCollection<GitAuthorModel>();
 
             SelectCommand = new SimpleCommand(Select);
         }

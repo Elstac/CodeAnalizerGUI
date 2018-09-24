@@ -108,8 +108,9 @@
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CustomControls\ViewModels\ManagableFileViewViewModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\Commands\IndexCommand.cs" />
     <Compile Include="UserControls\MainWindowControls\Commands\SimpleCommand.cs" />
-    <Compile Include="UserControls\MainWindowControls\ContributorDetailsControl.xaml.cs">
+    <Compile Include="UserControls\MainWindowControls\Views\ContributorDetailsControl.xaml.cs">
       <DependentUpon>ContributorDetailsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainWindowControls\FileExplorerControl.xaml.cs">
@@ -118,8 +119,11 @@
     <Compile Include="UserControls\MainWindowControls\Models\ContributorButtonModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\ContributorModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\Model.cs" />
+    <Compile Include="UserControls\MainWindowControls\Models\StatisticsModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorDetailsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\NewContributorViewModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\ViewModels\StatisticsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml.cs">
       <DependentUpon>GitBinderControl.xaml</DependentUpon>
@@ -140,6 +144,9 @@
     </Compile>
     <Compile Include="Classes\UIBus.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\GitBinderViewModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\Views\StatisticsControl.xaml.cs">
+      <DependentUpon>StatisticsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MainWindow\MainWindowViewModel.cs" />
     <Page Include="TestControl.xaml">
       <SubType>Designer</SubType>
@@ -149,7 +156,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\ContributorDetailsControl.xaml">
+    <Page Include="UserControls\MainWindowControls\Views\ContributorDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -174,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MainWindowControls\GlobalStatsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainWindowControls\Views\StatisticsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

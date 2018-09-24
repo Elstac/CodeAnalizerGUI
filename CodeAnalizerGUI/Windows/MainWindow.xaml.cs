@@ -18,6 +18,7 @@ using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.UserControls.MainWindowControls;
 using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
 namespace CodeAnalizerGUI
 {
@@ -51,6 +52,8 @@ namespace CodeAnalizerGUI
             fac.RegisterViewType(typeof(GitBinderControl), typeof(GitBinderViewModel));
             fac.RegisterViewType(typeof(NewContributorControl), typeof(NewContributorViewModel));
             fac.RegisterViewType(typeof(ManageableFileView), typeof(ManagableFileViewViewModel));
+            fac.RegisterViewType(typeof(StatisticsControl), typeof(StatisticsViewModel));
+            fac.RegisterViewType(typeof(ContributorDetailsControl), typeof(ContributorDetailsViewModel));
         }
 
         private void LoadButtons()
@@ -127,6 +130,7 @@ namespace CodeAnalizerGUI
 
             //vm.Mediator = mediator;
             //view.DataContext = vm;
+
             UserControl view = ControlFactory.Factory.Create(typeof(ContributorsControl),mediator);
             mediator.LoadContent(view);
 

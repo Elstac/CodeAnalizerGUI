@@ -11,7 +11,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
     {
         private ContributorModel contributor;
         private ICommand buttonCommand;
-
+        private int id;
         public ContributorButtonModel(ContributorModel contributor, ICommand buttonCommand)
         {
             this.contributor = contributor;
@@ -20,6 +20,5 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
 
         public ContributorModel Contributor { get => contributor; set { contributor = value; RaisePropertyChanged("Contributor"); } }
         public ICommand ButtonCommand { get => buttonCommand; set { buttonCommand = value; RaisePropertyChanged("ButtonCommand"); } }
-        
     }
 }

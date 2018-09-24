@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:CodeAnalizerGUI"
              xmlns:convert="clr-namespace:CodeAnalizerGUI.Classes.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             >
     <UserControl.Resources>
         <convert:StringToImageSourceConverter x:Key="Converter"/>
     </UserControl.Resources>
@@ -19,7 +20,7 @@
         <ItemsControl.ItemTemplate>
             <DataTemplate>
                 <StackPanel>
-                    <Button Width="64" Height="64" HorizontalAlignment="Center" Command="{Binding Path=ButtonCommand}">
+                    <Button Width="64" Height="64" HorizontalAlignment="Center" Command="{Binding Path=ButtonCommand}" CommandParameter="{Binding Contributor}">
                         <Button.Content>
                             <Image Stretch="Fill" Source="{Binding Path= Contributor.PathToImage,Converter= {StaticResource Converter} }"/>
                         </Button.Content>

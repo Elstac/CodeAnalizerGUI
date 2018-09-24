@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.Commands
 {
-    public class SimpleCommand : ICommand
+    class IndexCommand : ICommand
     {
+
         public event EventHandler CanExecuteChanged;
-        Action ExecuteCommandTarget;
-        Action<object> ExecuteCommandWithParameterTarget;
+        Action<object> ExecuteCommandTarget;
         Func<bool> CanExecuteTarget;
 
-        public SimpleCommand(Action executeCommandTarget, Func<bool> canExecuteTarget)
+        public IndexCommand(Action<object> executeCommandTarget, Func<bool> canExecuteTarget)
         {
             ExecuteCommandTarget = executeCommandTarget;
             CanExecuteTarget = canExecuteTarget;
         }
 
-        public SimpleCommand(Action executeCommandTarget)
+        public IndexCommand(Action<object> executeCommandTarget)
         {
             ExecuteCommandTarget = executeCommandTarget;
         }
-        
+
         public bool CanExecute(object parameter)
         {
             if (CanExecuteTarget != null)
@@ -37,7 +37,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Commands
 
         public void Execute(object parameter)
         {
-            ExecuteCommandTarget();
+            ExecuteCommandTarget(parameter);
         }
     }
 }
