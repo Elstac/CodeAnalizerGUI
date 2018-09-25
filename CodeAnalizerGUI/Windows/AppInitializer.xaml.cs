@@ -33,9 +33,9 @@ namespace CodeAnalizerGUI.Windows
         private void InitializeMainWindow()
         {
             MainWindow win = new MainWindow();
-            MainWindowControlsMediator mainWindowControlsMediator = new MainWindowControlsMediator(win);
             MainWindowViewModel vm = new MainWindowViewModel();
 
+            MainWindowControlsMediator mainWindowControlsMediator = new MainWindowControlsMediator(vm);
             vm.Mediator = mainWindowControlsMediator;
             vm.ButtonsGenerator = new NavigationButtonsGenerator(mainWindowControlsMediator);
 

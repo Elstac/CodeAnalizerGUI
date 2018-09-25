@@ -152,6 +152,7 @@
     <Compile Include="Windows\AppInitializer.xaml.cs">
       <DependentUpon>AppInitializer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Models\MainWindowModel.cs" />
     <Compile Include="Windows\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Windows\Models\NavigationButtonModel.cs" />
     <Page Include="TestControl.xaml">

@@ -21,16 +21,20 @@
         <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
             <Button Content="OpenProject" Command="{Binding OpenCommand}"/>
             <Button Content="Exit" Command="{Binding ExitCommand}"/>
-            <Button Content="Options" Click="OptionsButtonClick"/>
+            <Button Content="Options" Command="{Binding OptionsCommand}"/>
             <Button Content="TEST" Command="{Binding TestCommand}"/>
         </ToolBar>
 
         <ToolBarTray Orientation="Vertical" Grid.Column="0" Grid.Row="1">
-            <ToolBar Name="NavigationBar"/>
+            <ToolBar ItemsSource="{Binding NavigationButtons}">
+                <ToolBar.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Text}" Command="{Binding Command}"/>
+                    </DataTemplate>
+                </ToolBar.ItemTemplate>
+            </ToolBar>
         </ToolBarTray>
-        <ContentControl Name="MainControl" Grid.Column="1" Grid.Row="1">
-            
-        </ContentControl>
+        <ContentControl  Grid.Column="1" Grid.Row="1" Content="{Binding MainContent}"/>
 
     </Grid>
 </Window>

@@ -23,8 +23,8 @@ namespace CodeAnalizerGUI.Classes
         {
             ICommand[] commands = new ICommand[]
             {
-                new SimpleCommand(OpenContributorsControl),
-                new SimpleCommand(OpenGlobalStatistics)
+                new SimpleCommand(OpenGlobalStatistics),
+                new SimpleCommand(OpenContributorsControl)
             };
 
             string[] names = new string[]
@@ -46,7 +46,7 @@ namespace CodeAnalizerGUI.Classes
 
         private void OpenContributorsControl()
         {
-            UserControl view = mediator.CreateControl(typeof(ContributorsViewModel), mediator);
+            UserControl view = mediator.CreateControl(typeof(ContributorsControl), mediator);
             mediator.LoadContent(view);
         }
 

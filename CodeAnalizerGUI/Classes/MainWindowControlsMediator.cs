@@ -8,6 +8,7 @@ using CodeAnalizer;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes.MinorClasses;
+using CodeAnalizerGUI.Windows.ViewModels;
 namespace CodeAnalizerGUI.Classes
 {
     /// <summary>
@@ -15,17 +16,17 @@ namespace CodeAnalizerGUI.Classes
     /// </summary>
     public class MainWindowControlsMediator : ControlsMediator
     {
-        private MainWindow mainWindow;
-        public MainWindowControlsMediator(MainWindow mainWindow):base()
+        private MainWindowViewModel mainWindow;
+        public MainWindowControlsMediator(MainWindowViewModel mainWindow):base()
         {
             this.mainWindow = mainWindow;
         }
 
-        public MainWindow MainWindow { get => mainWindow;}
+        public MainWindowViewModel MainWindow { get => mainWindow;}
 
         public override void LoadContent(UserControl control)
         {
-            mainWindow.LoadContent(control);
+            mainWindow.MainContent= control;
         }
 
         public void SendContributorInfo(ContributorDisplay contributor)
