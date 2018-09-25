@@ -28,6 +28,8 @@ namespace CodeAnalizerGUI.Windows
             InitializeComponent();
             InitializeFactory();
             InitializeMainWindow();
+
+            LogicHolder holder = new LogicHolder();
         }
 
         private void InitializeMainWindow()

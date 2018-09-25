@@ -23,24 +23,6 @@ namespace CodeAnalizerGUI
         public GlobalStatsControl(List<string> globalStats)
         {
             InitializeComponent();
-            LoadPanel(globalStats);
-        }
-
-        private void LoadPanel(List<string> stats)
-        {
-            TextBlock block;
-
-            foreach (var item in stats)
-            {
-                block = new TextBlock();
-                block.Text = item;
-                block.Tag = item.Substring(0, item.IndexOf(":") - 1);
-                block.Margin = new Thickness(0, 10, 0, 10);
-                block.FontSize = 14;
-                block.TextWrapping = TextWrapping.WrapWithOverflow;
-                MainPanel.Children.Add(block);
-
-            }
         }
     }
 }

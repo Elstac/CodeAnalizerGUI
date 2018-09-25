@@ -26,12 +26,11 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         private void OpenDetailsControl(object parameter)
         {
-            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator);
-            (StatsView.DataContext as StatisticsViewModel).Statistics = new ObservableCollection<StatisticsModel>() { new StatisticsModel("Siurak", 50) };
+            ContributorModel recived = parameter as ContributorModel;
+            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator,new object[] { new ObservableCollection<StatisticsModel>() { new StatisticsModel("dupa", 1) } });
 
-            UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl),mediator);
-            (detailControl.DataContext as ContributorDetailsViewModel).StatisticsView = StatsView;
-            (detailControl.DataContext as ContributorDetailsViewModel).Contributor = parameter as ContributorModel;
+            object[] properties = new object[] {StatsView,parameter as ContributorModel };
+            UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl),mediator,properties);
 
             mediator.LoadContent(detailControl);
         }
@@ -42,7 +41,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             //NewContributorViewModel viewModel = new NewContributorViewModel();
             //viewModel.Mediator = mediator;
             //view.DataContext = viewModel;
-            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator);
+            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator,new object[] { });
             Mediator.LoadContent(view, this, this);
         }
         public void ReciveData(object dataClass)

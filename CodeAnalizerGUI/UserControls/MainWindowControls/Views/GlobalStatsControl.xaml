@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:CodeAnalizerGUI"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel Name="MainPanel">
-    </StackPanel>
+    <ItemsControl ItemsSource="{Binding Statistics}">
+       
+    </ItemsControl>
 </UserControl>

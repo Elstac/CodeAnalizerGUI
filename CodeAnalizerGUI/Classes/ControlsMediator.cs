@@ -42,6 +42,11 @@ namespace CodeAnalizerGUI.Classes
 
         }
 
+        public UserControl CreateControl(Type viewType, IControlsMediator mediator,object[] properties)
+        {
+            return factory.Create(viewType, mediator,properties);
+        }
+
         public UserControl CreateControl(Type viewType, IControlsMediator mediator)
         {
             return factory.Create(viewType, mediator);

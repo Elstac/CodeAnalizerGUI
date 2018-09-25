@@ -8,9 +8,13 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Windows.Models;
-
+using System.Collections.ObjectModel;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using System.Reflection;
 namespace CodeAnalizerGUI.Windows.ViewModels
 {
     public class MainWindowViewModel : ViewModel,INotifyPropertyChanged
@@ -35,7 +39,7 @@ namespace CodeAnalizerGUI.Windows.ViewModels
 
         public MainWindowViewModel()
         {
-
+            TestCommand = new SimpleCommand(RunTest);
         }
 
         public void RunTest()
@@ -53,8 +57,13 @@ namespace CodeAnalizerGUI.Windows.ViewModels
             //vm.Mediator = mediator;
             //view.DataContext = vm;
 
-            UserControl view = mediator.CreateControl(typeof(ContributorsControl), mediator);
-            mediator.LoadContent(view);
+            ContributorModel recived = new ContributorModel();
+            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator, new object[] { new ObservableCollection<StatisticsModel>() { new StatisticsModel("dupa", 1) } });
+
+            object[] properties = new object[] { StatsView, recived };
+            UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl), mediator, properties);
+
+            mediator.LoadContent(detailControl);
 
             //ContributorDetailsControl cdc = new ContributorDetailsControl();
             //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});

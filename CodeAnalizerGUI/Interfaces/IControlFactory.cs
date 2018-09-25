@@ -10,6 +10,7 @@ namespace CodeAnalizerGUI.Interfaces
 {
     interface IControlFactory
     {
+        UserControl Create(Type viewType,IControlsMediator mediator,object[] properties);
         UserControl Create(Type viewType,IControlsMediator mediator);
     }
 }

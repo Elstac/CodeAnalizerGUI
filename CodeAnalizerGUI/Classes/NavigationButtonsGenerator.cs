@@ -7,8 +7,10 @@ using System.Windows.Controls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.Windows.Models;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 namespace CodeAnalizerGUI.Classes
 {
     class NavigationButtonsGenerator : Interfaces.IButtonsGenerator
@@ -52,7 +54,12 @@ namespace CodeAnalizerGUI.Classes
 
         private void OpenGlobalStatistics()
         {
-            throw new NotImplementedException();
+            ObservableCollection<StatisticsModel> list = new ObservableCollection<StatisticsModel>();
+            UserControl view= mediator.CreateControl(typeof(StatisticsControl), mediator);
+
+            
+
+            (view.DataContext as StatisticsViewModel).Statistics = list;
         }
     }
 }
