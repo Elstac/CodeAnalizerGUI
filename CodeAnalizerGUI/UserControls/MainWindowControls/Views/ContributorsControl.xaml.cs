@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizerGUI.Classes.Converters;
-using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Interfaces;
 using System.IO;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
@@ -30,15 +29,5 @@ namespace CodeAnalizerGUI
             InitializeComponent();
         }
 
-
-        //protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
-        //{
-        //    base.OnPropertyChanged(e);
-        //    if (e.Property.ToString() == "DataContext")
-        //    {
-        //        ViewModel vm = e.NewValue as ViewModel;
-        //        vm.View = this;
-        //    }
-        //}
     }
 }

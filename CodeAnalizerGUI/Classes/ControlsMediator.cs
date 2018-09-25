@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using CodeAnalizer;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
-using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Exceptions;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 

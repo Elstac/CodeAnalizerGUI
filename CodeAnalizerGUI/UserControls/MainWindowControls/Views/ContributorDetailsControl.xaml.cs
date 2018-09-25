@@ -28,50 +28,5 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Views
             InitializeComponent();
         }
 
-        //public Contributor Contributor
-        //{
-        //    get => contributor;
-        //    set
-        //    {
-        //        contributor = value;
-        //        contributorName = contributor.Name;
-        //    }
-        //}
-        //public ImageSource ContributorImage { get => contributorImage; set => contributorImage = value; }
-        //public string ContributorName { get => contributorName; set => contributorName = value; }
-
-        //public void LoadContent()
-        //{
-        //    if (contributor == null)
-        //        throw new MissingMemberException("Contributor not set");
-        //    LoadBasicStats();
-        //}
-
-        //private void LoadBasicStats()
-        //{
-        //    var analizer = contributor.Analizer;
-
-        //    AddNewBlockN("Characters: " + analizer.GetCharactersCount());
-        //    AddNewBlockN("Lines: " + analizer.GetLinesCount());
-        //    AddNewBlockN("Usings: " + analizer.GetUsingsCount());
-        //    AddNewBlockN("Empty lines: " + analizer.GetEmptyLines()); 
-        //    AddNewBlockN("Largest file: " + analizer.GetLargestFile());
-        //    AddNewBlockN("Smallest file: " + analizer.GetSmallestFile());
-        //    AddNewBlockN("Methods: " + analizer.GetMethodsCount());
-        //}
-
-        //private void AddNewBlockN(string text)
-        //{
-        //    if (text == null || text == "")
-        //        return;
-        //    TextBlock block = new TextBlock();
-        //    block.Text = text;
-        //    NumberPanel.Children.Add(block);
-        //}
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
     }
 }

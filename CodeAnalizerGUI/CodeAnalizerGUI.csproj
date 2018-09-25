@@ -97,12 +97,10 @@
     <Compile Include="Exceptions\NoFileSelectedException.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
     <Compile Include="Interfaces\IButtonGenerator.cs" />
-    <Compile Include="MinorClasses\ContributorDisplay.cs" />
     <Compile Include="Classes\SubControlMediator.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="Interfaces\ISubControlOwner.cs" />
-    <Compile Include="MinorClasses\TagCommand.cs" />
     <Compile Include="TestControl.xaml.cs">
       <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
@@ -252,7 +250,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\Exceptions\" />
     <Folder Include="UserControls\OptionsWindowControls\" />
     <Folder Include="Windows\Interfaces\" />
   </ItemGroup>

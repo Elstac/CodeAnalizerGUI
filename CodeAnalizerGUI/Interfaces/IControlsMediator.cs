@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using CodeAnalizer.GitTrackerModule.Classes;
-using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizer;
 namespace CodeAnalizerGUI.Interfaces

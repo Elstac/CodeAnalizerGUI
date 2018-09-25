@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using CodeAnalizer;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
-using CodeAnalizerGUI.Classes.MinorClasses;
 using CodeAnalizerGUI.Windows.ViewModels;
 namespace CodeAnalizerGUI.Classes
 {
@@ -28,12 +27,7 @@ namespace CodeAnalizerGUI.Classes
         {
             mainWindow.MainContent= control;
         }
-
-        public void SendContributorInfo(ContributorDisplay contributor)
-        {
-            SendData(contributor);
-            UIBus.mainBus.ContributorManager.AddContributor(contributor.name, contributor.pathsToFiles);
-        }
+        
                 
     }
 }
