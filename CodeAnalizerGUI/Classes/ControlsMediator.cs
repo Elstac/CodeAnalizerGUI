@@ -7,33 +7,66 @@ using System.Windows.Controls;
 using CodeAnalizer;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
-using CodeAnalizerGUI.Classes.MinorClasses;
+using CodeAnalizerGUI.Exceptions;
+using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 
 namespace CodeAnalizerGUI.Classes
 {
-    abstract class ControlsMediator: IControlsMediator
+    public abstract class ControlsMediator: IControlsMediator
     {
         private ISubControlDataReciver openedReciver = null;
+        private IControlFactory factory;
         bool operationInProgres = false;
 
+        List<ChainLink> controlsDependencies= new List<ChainLink>();
+        public ControlsMediator()
+        {
+            factory = ControlFactory.Factory;
+        }
         public void BreakOperation()
         {
             operationInProgres = false;
             openedReciver = null;
         }
 
-        public abstract void LoadContent(UserControl control);
+        public void CloseControl(ViewModel toClose)
+        {
+            var result = from dependecy in controlsDependencies where dependecy.child == toClose.View select dependecy;
 
-        public void LoadContent(UserControl control, ISubControlDataReciver reciver)
+            if (result.Count() > 1)
+                throw new DependencyMadnessException(toClose);
+            ChainLink link = result.ElementAt(0);
+            LoadContent(link.parent.View);
+            link = null;
+
+
+        }
+
+        public UserControl CreateControl(Type viewType, IControlsMediator mediator)
+        {
+            return factory.Create(viewType, mediator);
+        }
+
+        public abstract void LoadContent(UserControl control);
+        
+
+        public void LoadContent(UserControl control, ViewModel parent, ISubControlDataReciver owner)
         {
             if (operationInProgres)
                 throw new NotImplementedException();
 
-            LoadContent(control);
-            openedReciver = reciver;
+            LoadContent(control, parent);
+            openedReciver = owner;
             operationInProgres = true;
         }
-        
+
+        public void LoadContent(UserControl control, ViewModel parent)
+        {
+            ChainLink link = new ChainLink(parent, control);
+            controlsDependencies.Add(link);
+
+            LoadContent(control);
+        }
 
         public virtual void SendData(object dataClass)
         {
@@ -42,6 +75,9 @@ namespace CodeAnalizerGUI.Classes
 
             openedReciver.ReciveData(dataClass);
             operationInProgres = false;
+            openedReciver = null;
         }
+
+        
     }
 }

@@ -7,29 +7,27 @@ using System.Windows.Controls;
 using CodeAnalizer;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
-using CodeAnalizerGUI.Classes.MinorClasses;
+using CodeAnalizerGUI.Windows.ViewModels;
 namespace CodeAnalizerGUI.Classes
 {
-    class MainWindowControlsMediator : ControlsMediator
+    /// <summary>
+    /// Manage comunication between MainWindow and all controls, can hold one layer of datalisnig operation
+    /// </summary>
+    public class MainWindowControlsMediator : ControlsMediator
     {
-        private MainWindow mainWindow;
-        public MainWindowControlsMediator(MainWindow mainWindow)
+        private MainWindowViewModel mainWindow;
+        public MainWindowControlsMediator(MainWindowViewModel mainWindow):base()
         {
             this.mainWindow = mainWindow;
         }
 
-        public MainWindow MainWindow { get => mainWindow;}
+        public MainWindowViewModel MainWindow { get => mainWindow;}
 
         public override void LoadContent(UserControl control)
         {
-            mainWindow.LoadContent(control);
+            mainWindow.MainContent= control;
         }
-
-        public void SendContributorInfo(ContributorDisplay contributor)
-        {
-            SendData(contributor);
-            UIBus.mainBus.ContributorManager.AddContributor(contributor.name, contributor.pathsToFiles);
-        }
+        
                 
     }
 }
