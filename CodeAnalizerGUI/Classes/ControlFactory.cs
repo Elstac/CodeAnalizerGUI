@@ -39,7 +39,7 @@ namespace CodeAnalizerGUI.Classes
                 found = false;
                 foreach (var item in prop)
                 {
-                    if(property.GetType().IsSubclassOf(item.PropertyType)||property.GetType().Equals( item.PropertyType))
+                    if(property.GetType().IsSubclassOf(item.PropertyType)||property.GetType().Equals( item.PropertyType)|| item.PropertyType.IsAssignableFrom(property.GetType()))
                     {
                         found = true;
                         item.SetValue(obj, property);

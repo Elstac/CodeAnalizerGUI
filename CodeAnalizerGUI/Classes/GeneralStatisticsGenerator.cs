@@ -12,10 +12,10 @@ namespace CodeAnalizerGUI.Classes
     {
         private IFileMiner fileMiner;
 
-        public GeneralStatisticsGenerator(IFileMiner fileMiner)
+        public GeneralStatisticsGenerator()
         {
-            this.fileMiner = fileMiner;
         }
+        
 
         public ObservableCollection<StatisticsModel> GenerateStatisticsDisplay()
         {
@@ -30,6 +30,11 @@ namespace CodeAnalizerGUI.Classes
                 new StatisticsModel("Largest file",fileMiner.GetLargestFile()),
                 new StatisticsModel("Smallest file",fileMiner.GetSmallestFile())
             };
+        }
+
+        public void SetMiner(IFileMiner fileMiner)
+        {
+            this.fileMiner = fileMiner;
         }
     }
 }

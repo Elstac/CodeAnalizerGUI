@@ -54,12 +54,7 @@ namespace CodeAnalizerGUI.Classes
 
         private void OpenGlobalStatistics()
         {
-            ObservableCollection<StatisticsModel> list = new ObservableCollection<StatisticsModel>();
-            UserControl view= mediator.CreateControl(typeof(StatisticsControl), mediator);
-
             
-
-            (view.DataContext as StatisticsViewModel).Statistics = list;
         }
     }
 }

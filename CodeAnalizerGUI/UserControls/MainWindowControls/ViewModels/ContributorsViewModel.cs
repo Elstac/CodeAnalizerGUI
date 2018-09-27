@@ -16,6 +16,9 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
     {
         private ObservableCollection<ContributorButtonModel> contributors;
         public ObservableCollection<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
+        public IStatisticsGenerator Generator { get => generator; set => generator = value; }
+
+        private IStatisticsGenerator generator;
 
         public ContributorsViewModel()
         {
@@ -27,7 +30,11 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         private void OpenDetailsControl(object parameter)
         {
             ContributorModel recived = parameter as ContributorModel;
-            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator,new object[] { new ObservableCollection<StatisticsModel>() { new StatisticsModel("dupa", 1) } });
+            object[] tp = new object[1];
+
+            generator.SetMiner(LogicHolder.MainHolder.GetFileMiner(recived.PathsToFiles.ToArray(), false));
+            tp[0] = generator.GenerateStatisticsDisplay();
+            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator,tp);
 
             object[] properties = new object[] {StatsView,parameter as ContributorModel };
             UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl),mediator,properties);
@@ -37,10 +44,6 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         private void NewContributor()
         {
-            //NewContributorControl view = new NewContributorControl();
-            //NewContributorViewModel viewModel = new NewContributorViewModel();
-            //viewModel.Mediator = mediator;
-            //view.DataContext = viewModel;
             UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator,new object[] { });
             Mediator.LoadContent(view, this, this);
         }

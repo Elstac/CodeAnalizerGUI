@@ -11,6 +11,7 @@ using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Windows.Models;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
@@ -57,13 +58,10 @@ namespace CodeAnalizerGUI.Windows.ViewModels
             //vm.Mediator = mediator;
             //view.DataContext = vm;
 
-            ContributorModel recived = new ContributorModel();
-            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator, new object[] { new ObservableCollection<StatisticsModel>() { new StatisticsModel("dupa", 1) } });
+            object[] par = new object[] {new GeneralStatisticsGenerator() };
+            UserControl view = mediator.CreateControl(typeof(ContributorsControl), mediator, par);
 
-            object[] properties = new object[] { StatsView, recived };
-            UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl), mediator, properties);
-
-            mediator.LoadContent(detailControl);
+            mediator.LoadContent(view);
 
             //ContributorDetailsControl cdc = new ContributorDetailsControl();
             //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});
