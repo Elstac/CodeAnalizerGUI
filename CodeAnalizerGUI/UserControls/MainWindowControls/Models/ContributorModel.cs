@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.IO;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
 {
-    public class ContributorModel:INotifyPropertyChanged
+    public class ContributorModel: Model
     {
         private string name="Name";
         private string email="Email";
@@ -19,12 +19,10 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
             pathsToFiles = new List<string>();
         }
         
-        public string Name { get => name; set { name = value; RaisePropertyChange("Name"); } }
-        public string Email { get => email; set { email = value; RaisePropertyChange("Email"); } }
-        public string PathToImage { get => pathToImage; set { pathToImage = value; RaisePropertyChange("PathToImage"); } }
+        public string Name { get => name; set { name = value; RaisePropertyChanged("Name"); } }
+        public string Email { get => email; set { email = value; RaisePropertyChanged("Email"); } }
+        public string PathToImage { get => pathToImage; set { pathToImage = value; RaisePropertyChanged("PathToImage"); } }
         public List<string> PathsToFiles { get => pathsToFiles; set => pathsToFiles = value; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public override bool Equals(object obj)
         {
@@ -32,9 +30,5 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
             return (tem.name == name && tem.pathToImage == pathToImage && tem.email == email);
         }
 
-        private void RaisePropertyChange(string parameter)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(parameter));
-        }
     }
 }

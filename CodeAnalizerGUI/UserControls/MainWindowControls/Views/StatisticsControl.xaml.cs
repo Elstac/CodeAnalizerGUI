@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.Views
 {
     /// <summary>
-    /// Interaction logic for StatisticsControl.xaml
+    /// Requires dependencies: observablecollection containing statistics.
     /// </summary>
     public partial class StatisticsControl : UserControl
     {

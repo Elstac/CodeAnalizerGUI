@@ -22,6 +22,7 @@ namespace CodeAnalizerGUI.Windows.ViewModels
     {
         private List<Models.NavigationButtonModel> navigationButtons;
         private IControlsMediator mediator;
+        private UserControl contributorsControl;
         private IButtonsGenerator buttonsGenerator;
         private UserControl mainContent;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,40 +35,26 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         #endregion
 
         public List<NavigationButtonModel> NavigationButtons { get => navigationButtons; set => navigationButtons = value; }
-        public IControlsMediator Mediator { get => mediator; set => mediator = value; }
+        public IControlsMediator Mediator { get => mediator;
+            set
+            {
+                mediator = value;
+            } }
         public UserControl MainContent { get => mainContent; set { mainContent = value; RaisePropertyChange("MainContent"); } }
         public IButtonsGenerator ButtonsGenerator { get => buttonsGenerator; set { buttonsGenerator = value;LoadNavigationButtons(); } }
+
+        public UserControl ContributorsControl { get => contributorsControl; set => contributorsControl = value; }
 
         public MainWindowViewModel()
         {
             TestCommand = new SimpleCommand(RunTest);
         }
+        
 
         public void RunTest()
         {
-            //ContributorsControl tmp = new ContributorsControl();
-            //mainBus.PathToProject = "D:\\Documents\\Projekty\\CodeAnalizerGUI";
-            //mainBus.OpenProject();
+            mediator.LoadContent(contributorsControl);
 
-            //TestControl tc = new TestControl();
-            //mediator.LoadContent(tc);
-
-            //ViewModel vm = new ContributorsViewModel();
-            //UserControl view = new ContributorsControl();
-
-            //vm.Mediator = mediator;
-            //view.DataContext = vm;
-
-            object[] par = new object[] {new GeneralStatisticsGenerator() };
-            UserControl view = mediator.CreateControl(typeof(ContributorsControl), mediator, par);
-
-            mediator.LoadContent(view);
-
-            //ContributorDetailsControl cdc = new ContributorDetailsControl();
-            //mainBus.ContributorManager.AddContributor("Judasz Iskariota",new string[] {"D:\\AnalizerTest\\Kuba"});
-            //cdc.Contributor = mainBus.ContributorManager.Contributors[0];
-            //cdc.LoadContent();
-            //LoadContent(cdc);
         }
 
         public void DailyStats()
@@ -84,5 +71,7 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         {
             PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
+
+        
     }
 }

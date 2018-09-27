@@ -22,6 +22,16 @@ namespace CodeAnalizerGUITests
             
         }
 
+        public UserControl CreateControl(Type viewType, IControlsMediator mediator, object[] properties)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserControl CreateControl(Type viewType, IControlsMediator mediator)
+        {
+            throw new NotImplementedException();
+        }
+
         public void LoadContent(System.Windows.Controls.UserControl control)
         {
             throw new NotImplementedException();

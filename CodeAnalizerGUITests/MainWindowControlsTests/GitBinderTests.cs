@@ -22,7 +22,8 @@ namespace CodeAnalizerGUITests
                 new GitAuthorModel("3","3",3),
                 selected
             };
-            viewModel = new GitBinderViewModel(arr);
+            viewModel = new GitBinderViewModel();
+            viewModel.Authors = new System.Collections.ObjectModel.ObservableCollection<GitAuthorModel>(arr);
         }
         [SetUp]
         public void MediatorSetUp()

@@ -17,9 +17,10 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         private ObservableCollection<ContributorButtonModel> contributors;
         public ObservableCollection<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
         public IStatisticsGenerator Generator { get => generator; set => generator = value; }
+        public IDataSaver ContributorsSaver { get => contributorsSaver; set => contributorsSaver = value; }
 
         private IStatisticsGenerator generator;
-
+        private IDataSaver contributorsSaver;
         public ContributorsViewModel()
         {
             contributors = new ObservableCollection<ContributorButtonModel>();
@@ -32,7 +33,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             ContributorModel recived = parameter as ContributorModel;
             object[] tp = new object[1];
 
-            generator.SetMiner(LogicHolder.MainHolder.GetFileMiner(recived.PathsToFiles.ToArray(), false));
+            generator.SetMiner(LogicHolder.MainHolder.GetFileMiner(recived.PathsToFiles.ToArray(), true));
             tp[0] = generator.GenerateStatisticsDisplay();
             UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator,tp);
 
@@ -54,6 +55,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             ContributorModel toAdd = dataClass as ContributorModel;
             contributors.Add(new ContributorButtonModel(toAdd,new IndexCommand( OpenDetailsControl)));
             contributors.Add(button);
+            LogicHolder.MainHolder.GetFileMiner(toAdd.PathsToFiles.ToArray(),true);
         }
     }
 }

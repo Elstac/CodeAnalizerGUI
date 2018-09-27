@@ -16,9 +16,12 @@ namespace CodeAnalizerGUI.Classes
     class NavigationButtonsGenerator : Interfaces.IButtonsGenerator
     {
         private Interfaces.IControlsMediator mediator;
-        public NavigationButtonsGenerator(Interfaces.IControlsMediator mediator)
+        private UserControl contribControl;
+
+        public NavigationButtonsGenerator(Interfaces.IControlsMediator mediator, UserControl contrib)
         {
             this.mediator = mediator;
+            contribControl = contrib;
         }
 
         public List<NavigationButtonModel> GenerateButtons()
@@ -48,13 +51,16 @@ namespace CodeAnalizerGUI.Classes
 
         private void OpenContributorsControl()
         {
-            UserControl view = mediator.CreateControl(typeof(ContributorsControl), mediator);
-            mediator.LoadContent(view);
+            mediator.LoadContent(contribControl);
         }
 
         private void OpenGlobalStatistics()
         {
-            
+            GeneralStatisticsGenerator gen = new GeneralStatisticsGenerator();
+            gen.SetMiner(LogicHolder.MainHolder.GetGlobalFileMiner());
+            object[] dep = new object[] {gen.GenerateStatisticsDisplay() };
+            UserControl view = mediator.CreateControl(typeof(StatisticsControl),mediator, dep);
+            mediator.LoadContent(view);
         }
     }
 }

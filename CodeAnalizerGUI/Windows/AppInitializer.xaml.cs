@@ -36,11 +36,16 @@ namespace CodeAnalizerGUI.Windows
         {
             MainWindow win = new MainWindow();
             MainWindowViewModel vm = new MainWindowViewModel();
-
             MainWindowControlsMediator mainWindowControlsMediator = new MainWindowControlsMediator(vm);
-            vm.Mediator = mainWindowControlsMediator;
-            vm.ButtonsGenerator = new NavigationButtonsGenerator(mainWindowControlsMediator);
 
+            object[] par = new object[] { new GeneralStatisticsGenerator(),new DataSaver(null) };
+            UserControl contributorsControl = mainWindowControlsMediator.CreateControl(typeof(ContributorsControl), mainWindowControlsMediator, par);
+
+
+            vm.Mediator = mainWindowControlsMediator;
+            vm.ButtonsGenerator = new NavigationButtonsGenerator(mainWindowControlsMediator,contributorsControl);
+            vm.ContributorsControl = contributorsControl;
+            
             win.DataContext = vm;
 
             win.Show();

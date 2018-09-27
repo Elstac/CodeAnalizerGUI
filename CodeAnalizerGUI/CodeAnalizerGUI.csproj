@@ -89,6 +89,7 @@
     <Compile Include="Classes\ControlFactory.cs" />
     <Compile Include="Classes\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
+    <Compile Include="Classes\DataSaver.cs" />
     <Compile Include="Classes\GeneralStatisticsGenerator.cs" />
     <Compile Include="Classes\LogicHolder.cs" />
     <Compile Include="Classes\MainWindowControlsMediator.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Interfaces\IButtonGenerator.cs" />
     <Compile Include="Classes\SubControlMediator.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
+    <Compile Include="Interfaces\IDataSaver.cs" />
     <Compile Include="Interfaces\ILogicHolder.cs" />
     <Compile Include="Interfaces\IStatisticsGenerator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />

@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassesTests\ControlFactoryTests.cs" />
+    <Compile Include="ClassesTests\DataSaverTest.cs" />
     <Compile Include="MainWindowControlsTests\GitBinderTests.cs" />
     <Compile Include="MainWindowControlsTests\NewContributorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
