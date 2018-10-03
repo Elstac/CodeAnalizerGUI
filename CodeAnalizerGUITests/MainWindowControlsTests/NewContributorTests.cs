@@ -19,10 +19,12 @@ namespace CodeAnalizerGUITests
         [OneTimeSetUp]
         public void LoadControl()
         {
+            ControlFactory fac = new ControlFactory();
             model = new ContributorModel();
             viewModel = new NewContributorViewModel();
             viewModel.Contributor = model;
         }
+
         [SetUp]
         public void MediatorSetUp()
         {
@@ -30,6 +32,7 @@ namespace CodeAnalizerGUITests
             viewModel = new NewContributorViewModel();
             viewModel.Mediator = mediator;
         }
+
         [Test]
         public void SendNotChangedTest()
         {
@@ -40,6 +43,7 @@ namespace CodeAnalizerGUITests
             expected.PathsToFiles = tmpPaths.ToList();
             Assert.AreEqual(expected, mediator.recivedData);
         }
+
         [Test]
         public void SendWithNoFileTest()
         {

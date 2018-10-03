@@ -13,13 +13,17 @@ namespace CodeAnalizerGUI.Classes
     /// </summary>
     class SubControlMediator : ControlsMediator
     {
-        private ISubControlOwner parent;
-        public ISubControlOwner Parent { get => parent; set => parent = value; }
+        private IControlsMediator parent;
+        public IControlsMediator Parent { get => parent; set { parent = value; } }
 
         public override void LoadContent(UserControl control)
         {
-            parent.GetMediator().LoadContent(control);
+            parent.LoadMainControl(control);
         }
-        
+
+        public override void CloseControl()
+        {
+            parent.CloseControl();
+        }
     }
 }

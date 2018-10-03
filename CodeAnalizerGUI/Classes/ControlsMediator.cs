@@ -9,6 +9,7 @@ using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Exceptions;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
 
 namespace CodeAnalizerGUI.Classes
 {
@@ -17,31 +18,26 @@ namespace CodeAnalizerGUI.Classes
         private ISubControlDataReciver openedReciver = null;
         private IControlFactory factory;
         bool operationInProgres = false;
-
-        List<ChainLink> controlsDependencies= new List<ChainLink>();
+        ControlsChain chain;
         public ControlsMediator()
         {
-            factory = ControlFactory.Factory;
+            factory = ControlFactory.Factory;  
+            chain = new ControlsChain();
         }
+
         public void BreakOperation()
         {
             operationInProgres = false;
             openedReciver = null;
         }
 
-        public void CloseControl(ViewModel toClose)
+        public virtual void CloseControl()
         {
-            var result = from dependecy in controlsDependencies where dependecy.child == toClose.View select dependecy;
+           ChainLink tmp = chain.GetNextLink();
 
-            if (result.Count() > 1)
-                throw new DependencyMadnessException(toClose);
-            ChainLink link = result.ElementAt(0);
-            LoadContent(link.parent.View);
-            link = null;
-
-
+           LoadContent(tmp.view);
         }
-
+            
         public UserControl CreateControl(Type viewType, IControlsMediator mediator,object[] properties)
         {
             return factory.Create(viewType, mediator,properties);
@@ -53,23 +49,25 @@ namespace CodeAnalizerGUI.Classes
         }
 
         public abstract void LoadContent(UserControl control);
-        
 
-        public void LoadContent(UserControl control, ViewModel parent, ISubControlDataReciver owner)
+        public void LoadMainControl(UserControl control, ISubControlDataReciver owner)
         {
             if (operationInProgres)
                 throw new NotImplementedException();
 
-            LoadContent(control, parent);
+            LoadMainControl(control);
             openedReciver = owner;
             operationInProgres = true;
         }
-
-        public void LoadContent(UserControl control, ViewModel parent)
+        
+        public void LoadSubControl(UserControl control)
         {
-            ChainLink link = new ChainLink(parent, control);
-            controlsDependencies.Add(link);
+            LoadContent(control);
+        }
 
+        public void LoadMainControl(UserControl control)
+        {
+            chain.AddNewLink(new ChainLink(control));
             LoadContent(control);
         }
 
@@ -82,7 +80,6 @@ namespace CodeAnalizerGUI.Classes
             operationInProgres = false;
             openedReciver = null;
         }
-
         
     }
 }

@@ -57,7 +57,7 @@ namespace CodeAnalizerGUI
         {
             PrepareLogic();
             LoadContent();
-            mediator.LoadContent(statisitcsViews[0]);
+            mediator.LoadMainControl(statisitcsViews[0]);
         }
 
         private void PrepareLogic()
@@ -122,7 +122,7 @@ namespace CodeAnalizerGUI
                     ShowErrorMessage("Invalid index");
                     return;
                 }
-            mediator.LoadContent(statisitcsViews[index]);
+            mediator.LoadMainControl(statisitcsViews[index]);
         }
         #endregion
 

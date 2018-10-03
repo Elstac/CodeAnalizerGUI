@@ -7,19 +7,19 @@ using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using System.Windows.Controls;
 namespace CodeAnalizerGUI.Classes
 {
-    class ChainLink
+    public class ChainLink
     {
-        public ViewModel parent;
-        public UserControl child;
-
-        public ChainLink(ViewModel parent, UserControl child)
-        {
-            this.parent = parent;
-            this.child = child;
-        }
+        public ChainLink prev=null;
+        public UserControl view;
+        
         public ChainLink()
         {
 
+        }
+
+        public ChainLink( UserControl view)
+        {
+            this.view = view;
         }
     }
 }

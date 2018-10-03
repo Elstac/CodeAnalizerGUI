@@ -38,7 +38,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         public void Close()
         {
-            mediator.CloseControl(this);
+            mediator.CloseControl();
         }
     }
 }

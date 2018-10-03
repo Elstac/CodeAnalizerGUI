@@ -13,7 +13,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         public StatisticsViewModel()
         {
-            statistics = new ObservableCollection<StatisticsModel>(); 
+            //statistics = new ObservableCollection<StatisticsModel>(); 
         }
 
         public ObservableCollection<Models.StatisticsModel> Statistics { get => statistics; set => statistics = value; }
