@@ -8,6 +8,7 @@ using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using NUnit.Framework;
 using CodeAnalizerGUI.Exceptions;
+using Moq;
 namespace CodeAnalizerGUITests
 {
     [TestFixture]
@@ -36,6 +37,7 @@ namespace CodeAnalizerGUITests
         [Test]
         public void SendNotChangedTest()
         {
+            Mock fileListMck =
             string[] tmpPaths = new string[] { "" };
             viewModel.Contributor.PathsToFiles = tmpPaths.ToList();
             viewModel.Send();

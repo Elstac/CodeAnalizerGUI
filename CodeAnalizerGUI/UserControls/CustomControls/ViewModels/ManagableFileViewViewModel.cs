@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 namespace CodeAnalizerGUI.UserControls.CustomControls.ViewModels
 {
-    class ManagableFileViewViewModel:SubViewModel,ISubControlDataReciver
+    class ManagableFileViewViewModel:SubViewModel,ISubControlDataReciver,ISubControlSender<List<string>>
     {
         private List<string> files;
 
@@ -47,6 +47,11 @@ namespace CodeAnalizerGUI.UserControls.CustomControls.ViewModels
         public void ReciveData(object dataClass)
         {
             files.Add(dataClass as string);
+        }
+
+        public List<string> GetData()
+        {
+            return files;
         }
     }
 }
