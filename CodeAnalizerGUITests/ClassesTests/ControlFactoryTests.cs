@@ -17,7 +17,7 @@ namespace CodeAnalizerGUITests.ClassesTests
     {
         class TestClass
         {
-            public int classDep { get; set; }
+            public string classDep { get; set; }
             public IControlFactory interaceDep { get; set; }
             public ControlsMediator subClassDep { get; set; }
         }
@@ -50,10 +50,11 @@ namespace CodeAnalizerGUITests.ClassesTests
         public void InjectClassTest()
         {
             TestClass ss = new TestClass();
+            ss.classDep = null;
             Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(fac);
-            obj.Invoke("InjectProperties", ss, new object[] { 10 });
+            obj.Invoke("InjectProperties", ss, new object[] { "dd" });
 
-            Assert.AreEqual(10, ss.classDep);
+            Assert.AreEqual("dd", ss.classDep);
         }
 
         [Test]

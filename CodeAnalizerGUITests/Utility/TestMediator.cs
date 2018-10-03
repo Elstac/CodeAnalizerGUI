@@ -17,9 +17,10 @@ namespace CodeAnalizerGUITests
             throw new NotImplementedException();
         }
 
-        public void CloseControl(ViewModel toClose)
+
+
+        public void CloseControl()
         {
-            
         }
 
         public UserControl CreateControl(Type viewType, IControlsMediator mediator, object[] properties)
@@ -48,6 +49,21 @@ namespace CodeAnalizerGUITests
         }
 
         public void LoadContent(UserControl control, ViewModel child)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadMainControl(UserControl control)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadMainControl(UserControl control, ISubControlDataReciver owner)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadSubControl(UserControl control)
         {
             throw new NotImplementedException();
         }
