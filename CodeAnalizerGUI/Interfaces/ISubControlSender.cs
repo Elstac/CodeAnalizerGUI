@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeAnalizerGUI.Interfaces
 {
-    interface ISubControlSender<T>
+    public interface ISubControlSender<T>
     {
         T GetData();
     }

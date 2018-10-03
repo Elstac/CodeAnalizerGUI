@@ -8,6 +8,7 @@ using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using NUnit.Framework;
 using CodeAnalizerGUI.Exceptions;
+using CodeAnalizerGUI.Interfaces;
 using Moq;
 namespace CodeAnalizerGUITests
 {
@@ -32,15 +33,20 @@ namespace CodeAnalizerGUITests
             mediator = new TestMediator();
             viewModel = new NewContributorViewModel();
             viewModel.Mediator = mediator;
+
+            var fileListMck = new Mock<ISubControlSender<List<string>>>();
+            fileListMck.Setup(x => x.GetData()).Returns(new List<string>() { "" });
+
+            viewModel.FileList = fileListMck.Object;
         }
 
         [Test]
         public void SendNotChangedTest()
         {
-            Mock fileListMck =
             string[] tmpPaths = new string[] { "" };
-            viewModel.Contributor.PathsToFiles = tmpPaths.ToList();
+
             viewModel.Send();
+
             ContributorModel expected = new ContributorModel();
             expected.PathsToFiles = tmpPaths.ToList();
             Assert.AreEqual(expected, mediator.recivedData);
@@ -49,6 +55,10 @@ namespace CodeAnalizerGUITests
         [Test]
         public void SendWithNoFileTest()
         {
+            var fileListMck = new Mock<ISubControlSender<List<string>>>();
+            fileListMck.Setup(x => x.GetData()).Returns(new List<string>() {  });
+
+            viewModel.FileList = fileListMck.Object;
             Assert.Throws(typeof(NoFileSelectedException), new TestDelegate(viewModel.Send));
         }
 

@@ -107,6 +107,7 @@
     <Compile Include="Interfaces\IStatisticsGenerator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="Interfaces\ISubControlOwner.cs" />
+    <Compile Include="Interfaces\ISubControlSender.cs" />
     <Compile Include="TestControl.xaml.cs">
       <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>

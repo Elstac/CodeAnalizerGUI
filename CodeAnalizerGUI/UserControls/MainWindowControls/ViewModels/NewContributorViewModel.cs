@@ -21,8 +21,6 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         private IControlFactory controlFactory;
         private IControlsMediator subControlMediator;
 
-        public UserControl FileList { get; set; }
-
         #region Commands
         public ICommand SendCommand { get; set; }
         public ICommand CloseCommand{ get; set; }
@@ -44,10 +42,11 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
         internal IControlFactory ControlFactory { get => controlFactory; set => controlFactory = value; }
         public IControlsMediator SubControlMediator { get => subControlMediator; set => subControlMediator = value; }
+        public ISubControlSender<List<string>> FileList { get; set; }
 
         public void Send()
         {
-            contributor.PathsToFiles = (FileList.DataContext as ManagableFileViewViewModel).Files;
+            contributor.PathsToFiles = FileList.GetData();
             if (contributor.PathsToFiles.Count == 0)
                 throw new NoFileSelectedException("Contributor contains no file");
 

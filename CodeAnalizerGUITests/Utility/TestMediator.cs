@@ -14,7 +14,6 @@ namespace CodeAnalizerGUITests
         public object recivedData=null;
         public void BreakOperation()
         {
-            throw new NotImplementedException();
         }
 
 
@@ -35,37 +34,30 @@ namespace CodeAnalizerGUITests
 
         public void LoadContent(System.Windows.Controls.UserControl control)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadContent(System.Windows.Controls.UserControl control, ISubControlDataReciver owner)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadContent(UserControl control, ViewModel child, ISubControlDataReciver owner)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadContent(UserControl control, ViewModel child)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadMainControl(UserControl control)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadMainControl(UserControl control, ISubControlDataReciver owner)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadSubControl(UserControl control)
         {
-            throw new NotImplementedException();
         }
 
         public void SendData(object dataClass)
