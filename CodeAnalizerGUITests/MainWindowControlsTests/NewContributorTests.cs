@@ -68,5 +68,7 @@ namespace CodeAnalizerGUITests
             viewModel.Cancel();
             Assert.AreEqual(null, mediator.recivedData);
         }
+
+        
     }
 }
