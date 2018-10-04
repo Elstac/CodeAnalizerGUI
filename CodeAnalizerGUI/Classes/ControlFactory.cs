@@ -41,6 +41,8 @@ namespace CodeAnalizerGUI.Classes
                 {
                     if(property.GetType().IsSubclassOf(item.PropertyType)||property.GetType().Equals( item.PropertyType)|| item.PropertyType.IsAssignableFrom(property.GetType()))
                     {
+                        if (item.GetValue(obj)!= null)
+                            continue;
                         found = true;
                         item.SetValue(obj, property);
                     }
@@ -55,7 +57,7 @@ namespace CodeAnalizerGUI.Classes
         {
             if (viewType.BaseType != typeof(UserControl))
                 throw new InvalidOperationException("Cannot add type of non-view-class");
-            if (viewModelType.BaseType != typeof(ViewModel))
+            if (!viewModelType.IsSubclassOf(typeof(ViewModel)))
                 throw new InvalidOperationException("Cannot add type of non-viewModel-class");
             if (dic.ContainsKey(viewType))
                 throw new InvalidOperationException("Given view type has related viewModel type");

@@ -53,7 +53,7 @@ namespace CodeAnalizerGUI.Windows.ViewModels
 
         public void RunTest()
         {
-            mediator.LoadContent(contributorsControl);
+            mediator.LoadMainControl(contributorsControl);
 
         }
 

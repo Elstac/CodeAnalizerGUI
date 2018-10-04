@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.Classes;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
@@ -37,16 +39,23 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             tp[0] = generator.GenerateStatisticsDisplay();
             UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator,tp);
 
-            object[] properties = new object[] {StatsView,parameter as ContributorModel };
+            SubControlMediator subMed =new SubControlMediator();
+            subMed.Parent = mediator;
+
+            object[] properties = new object[] {StatsView,parameter as ContributorModel,subMed };
             UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl),mediator,properties);
 
-            mediator.LoadContent(detailControl);
+            mediator.LoadMainControl(detailControl);
         }
 
         private void NewContributor()
         {
-            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator,new object[] { });
-            Mediator.LoadContent(view, this, this);
+            SubControlMediator subMed = new SubControlMediator();
+            subMed.Parent = mediator;
+            UserControl list = mediator.CreateControl(typeof(ManageableFileView), subMed);
+            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator,new object[] { subMed,list});
+            
+            Mediator.LoadMainControl(view,this);
         }
         public void ReciveData(object dataClass)
         {

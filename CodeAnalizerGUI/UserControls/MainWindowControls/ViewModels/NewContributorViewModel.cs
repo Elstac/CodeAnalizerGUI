@@ -17,11 +17,9 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     public class NewContributorViewModel:ViewModel,ISubControlOwner
     {
-        private IControlsMediator subControlsMediator;
         private ContributorModel contributor;
         private IControlFactory controlFactory;
-
-        public UserControl FileList { get; set; }
+        private IControlsMediator subControlMediator;
 
         #region Commands
         public ICommand SendCommand { get; set; }
@@ -37,57 +35,43 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             CloseCommand = new SimpleCommand(Cancel);
             ChoseImageCommand = new SimpleCommand(ChoseImage);
             GitBinderCommand = new SimpleCommand(OpenBinder);
-
-            SubControlMediator med = new SubControlMediator();
-            med.Parent = this;
-            subControlsMediator = med;
-
+            
             contributor = new ContributorModel();
-
-            //ManagableFileViewViewModel vm = new ManagableFileViewViewModel();
-            //vm.Mediator = subControlsMediator;
-            //ManageableFileView view = new ManageableFileView();
-            //view.DataContext = vm;
-            //FileList = view;
-            UserControl view = subControlsMediator.CreateControl(typeof(ManageableFileView), subControlsMediator);
-            FileList = view;
         }
-        
+
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
         internal IControlFactory ControlFactory { get => controlFactory; set => controlFactory = value; }
+        public IControlsMediator SubControlMediator { get => subControlMediator; set => subControlMediator = value; }
+        public ISubControlSender<List<string>> FileList { get; set; }
 
         public void Send()
         {
-            contributor.PathsToFiles = (FileList.DataContext as ManagableFileViewViewModel).Files;
+            contributor.PathsToFiles = FileList.GetData();
             if (contributor.PathsToFiles.Count == 0)
                 throw new NoFileSelectedException("Contributor contains no file");
 
             mediator.SendData(contributor);
-            mediator.CloseControl(this);
+            mediator.CloseControl();
         }
 
         public void OpenBinder()
         {
-            //GitBinderViewModel tmpVM = new GitBinderViewModel(null);
-            //tmpVM.Mediator = subControlsMediator;
-            //GitBinderControl view = new GitBinderControl();
-            //view.DataContext = tmpVM;
-            UserControl view = mediator.CreateControl(typeof(GitBinderControl), subControlsMediator);
-            subControlsMediator.LoadContent(view,this);
+            UserControl view = mediator.CreateControl(typeof(GitBinderControl), subControlMediator);
+            subControlMediator.LoadMainControl(view,this);
         }
 
         public void Cancel()
         {
-            mediator.CloseControl(this);
+            mediator.BreakOperation();
+            mediator.CloseControl();
         }
 
         public void ChoseImage()
         {
-            FileExplorerControl control = new FileExplorerControl();
-            control.Formats = new string[] { ".jpg", ".png", ".bmp" };
-            control.Mediator = subControlsMediator;
-            control.TreeParent = View;
-            subControlsMediator.LoadContent(control, this,this);
+            string[] Formats = new string[] { ".jpg", ".png", ".bmp" };
+            UserControl control = mediator.CreateControl(typeof(FileExplorerControl),subControlMediator,new object[] { Formats });
+
+            subControlMediator.LoadMainControl(control,this);
         }
 
         public IControlsMediator GetMediator()

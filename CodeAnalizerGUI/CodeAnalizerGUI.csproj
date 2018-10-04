@@ -87,6 +87,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\ChainLink.cs" />
     <Compile Include="Classes\ControlFactory.cs" />
+    <Compile Include="Classes\ControlsChain.cs" />
     <Compile Include="Classes\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Classes\DataSaver.cs" />
@@ -106,15 +107,19 @@
     <Compile Include="Interfaces\IStatisticsGenerator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="Interfaces\ISubControlOwner.cs" />
+    <Compile Include="Interfaces\ISubControlSender.cs" />
     <Compile Include="TestControl.xaml.cs">
       <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CustomControls\ViewModels\SubViewModel.cs" />
     <Compile Include="UserControls\CustomControls\Views\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CustomControls\ViewModels\ManagableFileViewViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Commands\IndexCommand.cs" />
     <Compile Include="UserControls\MainWindowControls\Commands\SimpleCommand.cs" />
+    <Compile Include="UserControls\MainWindowControls\Models\FileTreeNodeModel.cs" />
+    <Compile Include="UserControls\MainWindowControls\ViewModels\FileExplorerViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\GlobalStatisticsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Views\ContributorDetailsControl.xaml.cs">
       <DependentUpon>ContributorDetailsControl.xaml</DependentUpon>

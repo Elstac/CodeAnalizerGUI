@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace CodeAnalizerGUI.Interfaces
 {
-    interface IControlFactory
+    public interface IControlFactory
     {
         UserControl Create(Type viewType,IControlsMediator mediator,object[] properties);
         UserControl Create(Type viewType,IControlsMediator mediator);

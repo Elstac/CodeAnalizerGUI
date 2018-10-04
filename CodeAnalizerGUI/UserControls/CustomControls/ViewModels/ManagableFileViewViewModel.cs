@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
 using System.Windows.Input;
 using System.Windows.Controls;
 namespace CodeAnalizerGUI.UserControls.CustomControls.ViewModels
 {
-    class ManagableFileViewViewModel:ViewModel,ISubControlDataReciver
+    class ManagableFileViewViewModel:SubViewModel,ISubControlDataReciver,ISubControlSender<List<string>>
     {
         private List<string> files;
 
@@ -30,11 +31,9 @@ namespace CodeAnalizerGUI.UserControls.CustomControls.ViewModels
 
         private void OpenExplorer()
         {
-            FileExplorerControl view = new FileExplorerControl();
-            view.Formats = new string[] { ".cs" };
-            view.Mediator = mediator;
-            view.TreeParent = ((mediator as SubControlMediator ).Parent as ViewModel).View;
-            mediator.LoadContent(view, this, this);
+            string[] formats = new string[] { ".cs" };
+            UserControl view = mediator.CreateControl(typeof(FileExplorerControl), mediator, new object[] { formats });
+            mediator.LoadMainControl(view,this);
         }
 
         private void DeleteFile()
@@ -48,6 +47,11 @@ namespace CodeAnalizerGUI.UserControls.CustomControls.ViewModels
         public void ReciveData(object dataClass)
         {
             files.Add(dataClass as string);
+        }
+
+        public List<string> GetData()
+        {
+            return files;
         }
     }
 }

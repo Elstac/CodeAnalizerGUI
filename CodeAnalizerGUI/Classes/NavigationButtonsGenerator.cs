@@ -51,7 +51,8 @@ namespace CodeAnalizerGUI.Classes
 
         private void OpenContributorsControl()
         {
-            mediator.LoadContent(contribControl);
+            mediator.LoadMainControl(contribControl);
+            mediator.BreakOperation();
         }
 
         private void OpenGlobalStatistics()
@@ -60,7 +61,8 @@ namespace CodeAnalizerGUI.Classes
             gen.SetMiner(LogicHolder.MainHolder.GetGlobalFileMiner());
             object[] dep = new object[] {gen.GenerateStatisticsDisplay() };
             UserControl view = mediator.CreateControl(typeof(StatisticsControl),mediator, dep);
-            mediator.LoadContent(view);
+            mediator.LoadMainControl(view);
+            mediator.BreakOperation();
         }
     }
 }

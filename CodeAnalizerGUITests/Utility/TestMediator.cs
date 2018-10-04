@@ -14,42 +14,50 @@ namespace CodeAnalizerGUITests
         public object recivedData=null;
         public void BreakOperation()
         {
-            throw new NotImplementedException();
         }
 
-        public void CloseControl(ViewModel toClose)
+
+
+        public void CloseControl()
         {
-            
         }
 
         public UserControl CreateControl(Type viewType, IControlsMediator mediator, object[] properties)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public UserControl CreateControl(Type viewType, IControlsMediator mediator)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public void LoadContent(System.Windows.Controls.UserControl control)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadContent(System.Windows.Controls.UserControl control, ISubControlDataReciver owner)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadContent(UserControl control, ViewModel child, ISubControlDataReciver owner)
         {
-            throw new NotImplementedException();
         }
 
         public void LoadContent(UserControl control, ViewModel child)
         {
-            throw new NotImplementedException();
+        }
+
+        public void LoadMainControl(UserControl control)
+        {
+        }
+
+        public void LoadMainControl(UserControl control, ISubControlDataReciver owner)
+        {
+        }
+
+        public void LoadSubControl(UserControl control)
+        {
         }
 
         public void SendData(object dataClass)
