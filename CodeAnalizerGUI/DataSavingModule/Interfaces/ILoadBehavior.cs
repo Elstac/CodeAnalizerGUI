@@ -9,5 +9,6 @@ namespace CodeAnalizerGUI.DataSavingModule
     interface ILoadBehavior<T>
     {
         T Load();
+        void SetPath(string path);
     }
 }

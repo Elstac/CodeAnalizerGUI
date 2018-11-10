@@ -14,8 +14,6 @@ namespace CodeAnalizerGUI.DataSavingModule
         private string path;
         private XmlSerializer serializer;
 
-       
-
         public XmlDataSaver()
         {
             serializer = new XmlSerializer(typeof(T));
@@ -32,6 +30,11 @@ namespace CodeAnalizerGUI.DataSavingModule
             StreamWriter writer = new StreamWriter(path);
             serializer.Serialize(writer, dataObject);
             writer.Close();
+        }
+
+        public void SetPath(string path)
+        {
+            this.path = path+Properties.Settings.Default.contibFile;
         }
     }
 }

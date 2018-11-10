@@ -31,5 +31,10 @@ namespace CodeAnalizerGUI.DataSavingModule
             reader.Close();
             return ret;
         }
+
+        public void SetPath(string path)
+        {
+            this.path = path + Properties.Settings.Default.contibFile;
+        }
     }
 }

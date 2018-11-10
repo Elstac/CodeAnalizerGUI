@@ -49,11 +49,20 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         {
             TestCommand = new SimpleCommand(RunTest);
         }
-        
 
+        int pom = 0;
         public void RunTest()
         {
-            mediator.LoadMainControl(contributorsControl);
+            if (pom == 0)
+            {
+                mediator.LoadMainControl(contributorsControl);
+                pom++;
+            }
+            else
+            {
+                var tmp = contributorsControl.DataContext as ContributorsViewModel;
+                tmp.SaveContributors();
+            }
 
         }
 

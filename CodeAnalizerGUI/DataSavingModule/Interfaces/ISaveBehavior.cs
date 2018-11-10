@@ -9,5 +9,6 @@ namespace CodeAnalizerGUI.DataSavingModule
     interface ISaveBehavior<T>
     {
         void Save(T dataObject);
+        void SetPath(string path);
     }
 }

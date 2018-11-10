@@ -30,10 +30,10 @@ namespace CodeAnalizerGUI.Windows
         public AppInitializer()
         {
 
+            InitializeData();
             InitializeComponent();
             InitializeFactory();
             InitializeMainWindow();
-            InitializeData();
             LogicHolder holder = new LogicHolder();
         }
 
@@ -41,8 +41,6 @@ namespace CodeAnalizerGUI.Windows
         private void InitializeData()
         {
             DIContainer.InitializeContainer();
-
-            DataManager dm = DIContainer.Container.Resolve<DataManager>();
         }
 
         private void InitializeMainWindow()
@@ -56,7 +54,7 @@ namespace CodeAnalizerGUI.Windows
 
             UserControl list = mainWindowControlsMediator.CreateControl(typeof(ManageableFileView),subMed, new object[] { });
 
-            object[] par = new object[] { new GeneralStatisticsGenerator(),new DataSaver(null) };
+            object[] par = new object[] { new GeneralStatisticsGenerator(),DIContainer.Container.Resolve<DataManager>() };
             UserControl contributorsControl = mainWindowControlsMediator.CreateControl(typeof(ContributorsControl), mainWindowControlsMediator, par);
 
 

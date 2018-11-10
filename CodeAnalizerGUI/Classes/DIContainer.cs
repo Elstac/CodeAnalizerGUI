@@ -29,7 +29,6 @@ namespace CodeAnalizerGUI.Classes
                                                       ContributorSaver = c.Resolve<ISaveBehavior<ContributorModel[]>>()});
 
             container = builder.Build();
-           
         }
 
     }

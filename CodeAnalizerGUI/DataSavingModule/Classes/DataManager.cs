@@ -13,10 +13,18 @@ namespace CodeAnalizerGUI.DataSavingModule
 
         public DataManager()
         {
-
+            
         }
 
         public ISaveBehavior<ContributorModel[]> ContributorSaver { get => contributorSaver; set => contributorSaver = value; }
         public ILoadBehavior<ContributorModel[]> ContributorLoader { get => contributorLoader; set => contributorLoader = value; }
+
+        public void SetPath(string path)
+        {
+            if (!System.IO.Directory.Exists(path))
+                System.IO.Directory.CreateDirectory(path);
+            contributorLoader.SetPath(path);
+            contributorSaver.SetPath(path);
+        }
     }
 }
