@@ -20,6 +20,22 @@
         <DataTemplate x:Key="Image">
             <Image Name="ContributorImage" HorizontalAlignment="Center" Width="128" Height="128" Source="{Binding Path=PathToImage}"/>
         </DataTemplate>
+
+        <DataTemplate x:Key="FileView">
+            <Grid Name="MainGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Name="ControlRow" Height="45"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Row="0" Name="FilesList" Grid.ColumnSpan="2" ItemsSource="{Binding Path=Files,Mode=TwoWay}" SelectedItem="{Binding Path=SelectedItem,Mode=TwoWay}"/>
+                <Button Content="Add" Command="{Binding AddCommand}"  Grid.Row="1" Grid.Column="1"/>
+                <Button Content="Delete" Command="{Binding DeleteCommand}" Grid.Row="1"/>
+            </Grid>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -42,10 +58,10 @@
             
         </StackPanel>
         <ContentControl Grid.Column="1" ContentTemplate="{StaticResource TextBoxTemp}" Content="{Binding Contributor}"/>
-        
-        <ContentControl Grid.Row="1" Content="{Binding FileList}"/>
 
-       
+        <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FileView}" Content="{Binding FileList}" />
+
+
         <Button Content="Confirm" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Command="{Binding SendCommand}"/>
         <Button Content="Cancel" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75" Command="{Binding CloseCommand}" />
         <Button Content="Get GIT data" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="75" Command="{Binding GitBinderCommand}"/>

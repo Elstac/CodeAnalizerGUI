@@ -13,10 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
 using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.Windows.ViewModels;
+using CodeAnalizerGUI.DataSavingModule;
+using Autofac;
 namespace CodeAnalizerGUI.Windows
 {
     /// <summary>
@@ -26,11 +29,20 @@ namespace CodeAnalizerGUI.Windows
     {
         public AppInitializer()
         {
+
             InitializeComponent();
             InitializeFactory();
             InitializeMainWindow();
-
+            InitializeData();
             LogicHolder holder = new LogicHolder();
+        }
+
+       
+        private void InitializeData()
+        {
+            DIContainer.InitializeContainer();
+
+            DataManager dm = DIContainer.Container.Resolve<DataManager>();
         }
 
         private void InitializeMainWindow()
@@ -38,8 +50,7 @@ namespace CodeAnalizerGUI.Windows
             MainWindow win = new MainWindow();
             MainWindowViewModel vm = new MainWindowViewModel();
             MainWindowControlsMediator mainWindowControlsMediator = new MainWindowControlsMediator(vm);
-
-
+            
             SubControlMediator subMed = new SubControlMediator();
             subMed.Parent = mainWindowControlsMediator;
 

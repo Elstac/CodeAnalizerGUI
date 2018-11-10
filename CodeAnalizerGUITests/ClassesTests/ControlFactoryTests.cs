@@ -20,8 +20,16 @@ namespace CodeAnalizerGUITests.ClassesTests
             public string classDep { get; set; }
             public IControlFactory interaceDep { get; set; }
             public ControlsMediator subClassDep { get; set; }
+            public GenericInterface<int> genericInterfaceDep{ get; set; }
         }
+        interface GenericInterface<T>
+        {
 
+        }
+        class GenericImplementation: TestClass,GenericInterface<List<string>>, GenericInterface<int>
+        {
+
+        }
         private ControlFactory fac;
 
         [SetUp]
@@ -78,6 +86,16 @@ namespace CodeAnalizerGUITests.ClassesTests
             obj.Invoke("InjectProperties", ss, new object[] { expected });
 
             Assert.AreEqual(expected, ss.subClassDep);
+        }
+        [Test]
+        public void InjectGenericInterface()
+        {
+            TestClass ss = new TestClass();
+            GenericImplementation expected = new GenericImplementation();
+            Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(fac);
+            obj.Invoke("InjectProperties", ss, new object[] { expected });
+
+            Assert.AreEqual(expected, ss.genericInterfaceDep);
         }
     }
 }

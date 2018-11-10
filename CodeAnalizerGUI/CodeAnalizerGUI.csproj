@@ -54,6 +54,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.8.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.8.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="CodeAnalizer">
       <HintPath>C:\Users\Kuba\source\repos\CodeAnalizer\CodeAnalizer\bin\Debug\CodeAnalizer.dll</HintPath>
     </Reference>
@@ -86,18 +89,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ChainLink.cs" />
+    <Compile Include="Classes\ContributorHolder.cs" />
     <Compile Include="Classes\ControlFactory.cs" />
     <Compile Include="Classes\ControlsChain.cs" />
     <Compile Include="Classes\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Classes\DataSaver.cs" />
+    <Compile Include="Classes\DIContainer.cs" />
     <Compile Include="Classes\GeneralStatisticsGenerator.cs" />
     <Compile Include="Classes\LogicHolder.cs" />
     <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
     <Compile Include="Classes\NavigationButtonsGenerator.cs" />
+    <Compile Include="DataSavingModule\Classes\DataManager.cs" />
+    <Compile Include="DataSavingModule\Classes\XmlDataLoader.cs" />
+    <Compile Include="DataSavingModule\Classes\XmlDataSaver.cs" />
+    <Compile Include="DataSavingModule\Interfaces\ILoadBehavior.cs" />
+    <Compile Include="DataSavingModule\Interfaces\ISaveBehavior.cs" />
     <Compile Include="Exceptions\DependencyMadnessException.cs" />
     <Compile Include="Exceptions\NoFileSelectedException.cs" />
+    <Compile Include="Interfaces\IContributorHolder.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
     <Compile Include="Interfaces\IButtonGenerator.cs" />
     <Compile Include="Classes\SubControlMediator.cs" />

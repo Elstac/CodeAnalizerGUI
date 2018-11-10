@@ -20,7 +20,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         private ContributorModel contributor;
         private IControlFactory controlFactory;
         private IControlsMediator subControlMediator;
-
+        private ISubControlSender<List<string>> fileList;
         #region Commands
         public ICommand SendCommand { get; set; }
         public ICommand CloseCommand{ get; set; }
@@ -42,7 +42,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
         internal IControlFactory ControlFactory { get => controlFactory; set => controlFactory = value; }
         public IControlsMediator SubControlMediator { get => subControlMediator; set => subControlMediator = value; }
-        public ISubControlSender<List<string>> FileList { get; set; }
+        public ISubControlSender<List<string>> FileList { get=>fileList; set=> fileList = value; }
 
         public void Send()
         {

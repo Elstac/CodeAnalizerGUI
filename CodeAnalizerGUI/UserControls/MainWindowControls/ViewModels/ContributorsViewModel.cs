@@ -16,13 +16,14 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     class ContributorsViewModel : ViewModel,ISubControlDataReciver
     {
+        private IStatisticsGenerator generator;
+        private IDataSaver contributorsSaver;
         private ObservableCollection<ContributorButtonModel> contributors;
+
         public ObservableCollection<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
         public IStatisticsGenerator Generator { get => generator; set => generator = value; }
         public IDataSaver ContributorsSaver { get => contributorsSaver; set => contributorsSaver = value; }
 
-        private IStatisticsGenerator generator;
-        private IDataSaver contributorsSaver;
         public ContributorsViewModel()
         {
             contributors = new ObservableCollection<ContributorButtonModel>();
@@ -53,7 +54,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             SubControlMediator subMed = new SubControlMediator();
             subMed.Parent = mediator;
             UserControl list = mediator.CreateControl(typeof(ManageableFileView), subMed);
-            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator,new object[] { subMed,list});
+            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator,new object[] { subMed,list.DataContext});
             
             Mediator.LoadMainControl(view,this);
         }

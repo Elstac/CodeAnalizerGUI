@@ -8,13 +8,14 @@ using CodeAnalizer.FileAnalizerModule.Classes;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizer;
 using CodeAnalizerGUI.Interfaces;
+
 namespace CodeAnalizerGUI
 {
-    class LogicHolder : Interfaces.ILogicHolder
+    class LogicHolder : ILogicHolder
     {
         private ProjectMiner projectminer;
-        public static Interfaces.ILogicHolder MainHolder;
-
+        public static ILogicHolder MainHolder;
+        
         public LogicHolder()
         {
             MainHolder = this;

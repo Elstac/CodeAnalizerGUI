@@ -39,6 +39,8 @@ namespace CodeAnalizerGUI.Classes
                 found = false;
                 foreach (var item in prop)
                 {
+                    if (found)
+                        continue;
                     if(property.GetType().IsSubclassOf(item.PropertyType)||property.GetType().Equals( item.PropertyType)|| item.PropertyType.IsAssignableFrom(property.GetType()))
                     {
                         if (item.GetValue(obj)!= null)
