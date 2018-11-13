@@ -83,6 +83,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
         private void Exit()
         {
+            mediator.BreakOperation();
             mediator.CloseControl();
         }
 

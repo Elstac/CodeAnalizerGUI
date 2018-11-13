@@ -53,14 +53,22 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         int pom = 0;
         public void RunTest()
         {
+            var tmp = contributorsControl.DataContext as ContributorsViewModel;
             if (pom == 0)
             {
+                try
+                {
+                    tmp.LoadContributors();
+                }
+                catch (System.IO.FileNotFoundException e)
+                {
+                    Console.WriteLine("Brak pliku: " + e.FileName);
+                }
                 mediator.LoadMainControl(contributorsControl);
                 pom++;
             }
             else
             {
-                var tmp = contributorsControl.DataContext as ContributorsViewModel;
                 tmp.SaveContributors();
             }
 

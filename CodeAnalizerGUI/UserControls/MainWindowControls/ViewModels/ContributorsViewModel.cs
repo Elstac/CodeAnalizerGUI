@@ -88,6 +88,8 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         public void LoadContributors()
         {
             var loaded = dataManager.ContributorLoader.Load();
+            var plus = contributors.Last();
+
             if (contributors.Count != 0)
                 contributors.Clear();
 
@@ -96,6 +98,8 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 
             foreach (var button in tmp)
                 contributors.Add(button);
+
+            contributors.Add(plus);
         }
     }
 }

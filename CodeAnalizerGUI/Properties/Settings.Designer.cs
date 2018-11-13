@@ -35,15 +35,21 @@ namespace CodeAnalizerGUI.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Contributors.xml")]
         public string contibFile {
             get {
                 return ((string)(this["contibFile"]));
             }
-            set {
-                this["contibFile"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Resources\\")]
+        public string resPath {
+            get {
+                return ((string)(this["resPath"]));
             }
         }
     }

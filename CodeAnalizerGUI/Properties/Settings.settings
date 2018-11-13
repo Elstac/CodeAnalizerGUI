@@ -5,8 +5,11 @@
     <Setting Name="savePath" Type="System.String" Scope="User">
       <Value Profile="(Default)">..\..\Data\</Value>
     </Setting>
-    <Setting Name="contibFile" Type="System.String" Scope="User">
+    <Setting Name="contibFile" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Contributors.xml</Value>
+    </Setting>
+    <Setting Name="resPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">..\..\Resources\</Value>
     </Setting>
   </Settings>
 </SettingsFile>

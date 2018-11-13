@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfContributorModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ContributorModel>
+    <Name>Dupa</Name>
+    <Email>Email</Email>
+    <PathToImage>D:\Python image.png</PathToImage>
+    <PathsToFiles>
+      <string>D:\NotImplementedWindow.xaml.cs</string>
+    </PathsToFiles>
+  </ContributorModel>
+</ArrayOfContributorModel>

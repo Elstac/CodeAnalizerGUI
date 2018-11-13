@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeAnalizerGUI.DataSavingModule
+namespace CodeAnalizerGUI.Interfaces
 {
-    public interface ILoadBehavior<T>
+    public interface IFileCollector
     {
-        T Load();
-        void SetPath(string path);
+        void MoveToResources(string path);
     }
 }

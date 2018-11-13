@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeAnalizerGUI.DataSavingModule
 {
-    interface ISaveBehavior<T>
+    public interface ISaveBehavior<T>
     {
         void Save(T dataObject);
         void SetPath(string path);

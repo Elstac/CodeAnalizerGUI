@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 namespace CodeAnalizerGUI.DataSavingModule
 {
-    class DataManager
+    public class DataManager
     {
         private ISaveBehavior<ContributorModel[]> contributorSaver;
         private ILoadBehavior<ContributorModel[]> contributorLoader;

@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <convert:StringToImageSourceConverter x:Key="Converter"/>
     </UserControl.Resources>
-    <ItemsControl ItemsSource="{Binding Contributors}">
+    <ItemsControl ItemsSource="{Binding Contributors, Mode=TwoWay}">
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <StackPanel Orientation="Horizontal"/>
