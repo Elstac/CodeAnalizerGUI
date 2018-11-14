@@ -16,7 +16,7 @@ namespace CodeAnalizerGUI.Classes
             this.pathToRes = pathToRes;
         }
 
-        public void MoveToResources(string path)
+        public string MoveToResources(string path)
         {
             int index = path.LastIndexOf('\\')+1;
             string fileName = path.Substring(index);
@@ -26,6 +26,7 @@ namespace CodeAnalizerGUI.Classes
                 tmp = fileName.Insert(fileName.LastIndexOf('.'), "(" + ++index + ")");
 
             File.Copy(path, pathToRes+ tmp);
+            return pathToRes + tmp;
         }
     }
 }

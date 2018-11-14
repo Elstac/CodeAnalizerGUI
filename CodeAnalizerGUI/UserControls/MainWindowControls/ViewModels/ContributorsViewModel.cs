@@ -18,6 +18,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     class ContributorsViewModel : ViewModel,ISubControlDataReciver
     {
+        private IFileCollector collector;
         private IStatisticsGenerator generator;
         private ObservableCollection<ContributorButtonModel> contributors;
         private DataManager dataManager;
@@ -31,6 +32,8 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
                 dataManager.SetPath(Properties.Settings.Default.savePath);
             }
         }
+
+        public IFileCollector Collector { get => collector; set => collector = value; }
 
         public ContributorsViewModel()
         {
@@ -68,10 +71,13 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         }
         public void ReciveData(object dataClass)
         {
-            ContributorButtonModel button = contributors.Last();
+            var button = contributors.Last();
             contributors.Remove(contributors.Last());
+
             ContributorModel toAdd = dataClass as ContributorModel;
+            toAdd.PathToImage = collector.MoveToResources(toAdd.PathToImage);
             contributors.Add(new ContributorButtonModel(toAdd,new IndexCommand( OpenDetailsControl)));
+
             contributors.Add(button);
             LogicHolder.MainHolder.GetFileMiner(toAdd.PathsToFiles.ToArray(),true);
         }

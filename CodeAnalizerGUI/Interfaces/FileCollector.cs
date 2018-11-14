@@ -8,6 +8,6 @@ namespace CodeAnalizerGUI.Interfaces
 {
     public interface IFileCollector
     {
-        void MoveToResources(string path);
+        string MoveToResources(string path);
     }
 }

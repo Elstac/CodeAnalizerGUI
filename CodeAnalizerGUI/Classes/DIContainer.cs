@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Autofac;
 using CodeAnalizerGUI.DataSavingModule;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
-
+using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.Classes
 {
     public static class DIContainer
     {
-        private static IContainer container;
+        private static IContainer container = null;
 
         public static IContainer Container { get => container;}
 
@@ -27,6 +27,8 @@ namespace CodeAnalizerGUI.Classes
 
             builder.Register(c => new DataManager() { ContributorLoader = c.Resolve<ILoadBehavior<ContributorModel[]>>(),
                                                       ContributorSaver = c.Resolve<ISaveBehavior<ContributorModel[]>>()});
+
+            builder.Register(c => new FileCollector(Properties.Settings.Default.resPath)).As<IFileCollector>();
 
             container = builder.Build();
         }

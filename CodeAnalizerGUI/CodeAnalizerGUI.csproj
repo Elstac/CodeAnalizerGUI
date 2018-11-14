@@ -97,7 +97,7 @@
     <Compile Include="Classes\DataSaver.cs" />
     <Compile Include="Classes\DIContainer.cs" />
     <Compile Include="Classes\GeneralStatisticsGenerator.cs" />
-    <Compile Include="Classes\ImageColector.cs" />
+    <Compile Include="Classes\FileCollector.cs" />
     <Compile Include="Classes\LogicHolder.cs" />
     <Compile Include="Classes\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
@@ -115,7 +115,7 @@
     <Compile Include="Classes\SubControlMediator.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
     <Compile Include="Interfaces\IDataSaver.cs" />
-    <Compile Include="Interfaces\IImageColector.cs" />
+    <Compile Include="Interfaces\FileCollector.cs" />
     <Compile Include="Interfaces\ILogicHolder.cs" />
     <Compile Include="Interfaces\IStatisticsGenerator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />

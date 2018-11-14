@@ -25,7 +25,7 @@ namespace CodeAnalizerGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Data\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Documents\\Projekty\\CodeAnalizerGUI\\CodeAnalizerGUI\\Data\\")]
         public string savePath {
             get {
                 return ((string)(this["savePath"]));
@@ -46,7 +46,7 @@ namespace CodeAnalizerGUI.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\Resources\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Documents\\Projekty\\CodeAnalizerGUI\\CodeAnalizerGUI\\Resources\\")]
         public string resPath {
             get {
                 return ((string)(this["resPath"]));

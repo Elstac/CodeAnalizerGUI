@@ -8,4 +8,12 @@
       <string>D:\NotImplementedWindow.xaml.cs</string>
     </PathsToFiles>
   </ContributorModel>
+  <ContributorModel>
+    <Name>Name</Name>
+    <Email>Email</Email>
+    <PathToImage>D:\Documents\Projekty\CodeAnalizerGUI\CodeAnalizerGUI\Resources\Python image(4).png</PathToImage>
+    <PathsToFiles>
+      <string>D:\NotImplementedWindow.xaml.cs</string>
+    </PathsToFiles>
+  </ContributorModel>
 </ArrayOfContributorModel>

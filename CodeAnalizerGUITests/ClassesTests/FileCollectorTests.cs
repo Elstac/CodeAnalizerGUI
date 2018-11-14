@@ -30,7 +30,7 @@ namespace CodeAnalizerGUITests.ClassesTests
         [Test]
         public void MoveIncorrectFile()
         {
-            Action<string> toTest = imCol.MoveToResources;
+            Func<string,string> toTest = imCol.MoveToResources;
             Assert.Throws<FileNotFoundException>(()=>toTest("D:\\Dupa.dupa"));
         }
         [Test]
@@ -43,6 +43,15 @@ namespace CodeAnalizerGUITests.ClassesTests
             imCol.MoveToResources(path);
 
             Assert.IsTrue(File.Exists(path) && File.Exists(resPath + "XD(1).txt"));
+        }
+        [Test]
+        public void ReturnPathToMovedFileTest()
+        {
+            string path = resPath + "t.txt";
+            if (File.Exists(path))
+                File.Delete(path);
+
+            Assert.AreEqual( imCol.MoveToResources(testFile), path);
         }
 
         [OneTimeTearDown]
