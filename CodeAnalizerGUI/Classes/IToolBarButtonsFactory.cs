@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+namespace CodeAnalizerGUI.Classes
+{
+    public interface IButtonsListFactory
+    {
+        ObservableCollection<ButtonModel> GenerateButtons();
+    }
+}

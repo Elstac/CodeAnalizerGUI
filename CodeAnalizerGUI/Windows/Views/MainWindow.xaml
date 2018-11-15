@@ -18,13 +18,16 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
-            <Button Content="OpenProject" Command="{Binding OpenCommand}"/>
-            <Button Content="Exit" Command="{Binding ExitCommand}"/>
-            <Button Content="Options" Command="{Binding OptionsCommand}"/>
-            <Button Content="TEST" Command="{Binding TestCommand}"/>
-        </ToolBar>
-
+        <ToolBarTray Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <ToolBar  Grid.Row="0" Grid.ColumnSpan="3" ItemsSource="{Binding ToolbarButtons}">
+                <ToolBar.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}" Command="{Binding Command}"/>
+                    </DataTemplate>
+                </ToolBar.ItemTemplate>
+                
+            </ToolBar>
+        </ToolBarTray>
         <ToolBarTray Orientation="Vertical" Grid.Column="0" Grid.Row="1">
             <ToolBar ItemsSource="{Binding NavigationButtons}">
                 <ToolBar.ItemTemplate>

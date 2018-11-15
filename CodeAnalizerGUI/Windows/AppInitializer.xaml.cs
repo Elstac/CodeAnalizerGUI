@@ -49,15 +49,16 @@ namespace CodeAnalizerGUI.Windows
 
             UserControl list = mainWindowControlsMediator.CreateControl(typeof(ManageableFileView),subMed, new object[] { });
 
-            object[] par = new object[] { new GeneralStatisticsGenerator(),DIContainer.Container.Resolve<DataManager>(),DIContainer.Container.Resolve<IFileCollector>() };
+            object[] par = new object[] { new GeneralStatisticsGenerator(),DIContainer.Container.Resolve<DataManager>(),
+                                            DIContainer.Container.Resolve<IFileCollector>() };
             UserControl contributorsControl = mainWindowControlsMediator.CreateControl(typeof(ContributorsControl), mainWindowControlsMediator, par);
 
 
-            vm.Mediator = mainWindowControlsMediator;
-            vm.ButtonsGenerator = new NavigationButtonsGenerator(mainWindowControlsMediator,contributorsControl);
-            vm.ContributorsControl = contributorsControl;
-            
             win.DataContext = vm;
+            vm.Mediator = mainWindowControlsMediator;
+            vm.ButtonsGenerator = new NavigationButtonsGenerator(mainWindowControlsMediator, contributorsControl);
+            vm.ToolbarGenerator = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType", ListType.start));
+            vm.ContributorsControl = contributorsControl;
 
             win.Show();
             Close();
@@ -73,6 +74,7 @@ namespace CodeAnalizerGUI.Windows
             fac.RegisterViewType(typeof(StatisticsControl), typeof(StatisticsViewModel));
             fac.RegisterViewType(typeof(ContributorDetailsControl), typeof(ContributorDetailsViewModel));
             fac.RegisterViewType(typeof(FileExplorerControl), typeof(FileExplorerViewModel));
+            fac.RegisterViewType(typeof(ButtonPanelView), typeof(ButtonPanelViewModel));
         }
     }
 }

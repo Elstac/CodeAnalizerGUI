@@ -23,6 +23,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         private object selectedFile;
         private string[] formats;
         private ObservableCollection<TreeViewItem> treeItems;
+        
 
         public FileExplorerViewModel()
         {

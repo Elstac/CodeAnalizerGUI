@@ -20,21 +20,19 @@ namespace CodeAnalizerGUI.Windows.ViewModels
 {
     public class MainWindowViewModel : ViewModel,INotifyPropertyChanged
     {
-        private List<Models.NavigationButtonModel> navigationButtons;
+        private List<NavigationButtonModel> navigationButtons;
         private IControlsMediator mediator;
         private UserControl contributorsControl;
         private IButtonsGenerator buttonsGenerator;
+        private IButtonsListFactory toolbarGenerator;
         private UserControl mainContent;
         public event PropertyChangedEventHandler PropertyChanged;
+        private ObservableCollection<ButtonModel> toolBarButtons;
 
-        #region Commands
-        public ICommand OptionsCommand { get; set; }
-        public ICommand ExitCommand { get; set; }
-        public ICommand TestCommand { get; set; }
-        public ICommand DailyStatsCommand { get; set; }
-        #endregion
+        public ICommand TestCommand;
 
         public List<NavigationButtonModel> NavigationButtons { get => navigationButtons; set => navigationButtons = value; }
+        public ObservableCollection<ButtonModel> ToolbarButtons { get => toolBarButtons; set => toolBarButtons = value; }
         public IControlsMediator Mediator { get => mediator;
             set
             {
@@ -44,6 +42,13 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         public IButtonsGenerator ButtonsGenerator { get => buttonsGenerator; set { buttonsGenerator = value;LoadNavigationButtons(); } }
 
         public UserControl ContributorsControl { get => contributorsControl; set => contributorsControl = value; }
+        public IButtonsListFactory ToolbarGenerator { get => toolbarGenerator; set { toolbarGenerator = value; LoadToolbarButtons(); } }
+
+        private void LoadToolbarButtons()
+        {
+            toolBarButtons = toolbarGenerator.GenerateButtons();
+            ToolbarButtons.Add(new ButtonModel(new SimpleCommand(RunTest), "TEST"));
+        }
 
         public MainWindowViewModel()
         {

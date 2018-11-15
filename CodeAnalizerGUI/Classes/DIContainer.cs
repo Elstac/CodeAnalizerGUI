@@ -10,6 +10,7 @@ using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.Classes
 {
+    
     public static class DIContainer
     {
         private static IContainer container = null;
@@ -29,7 +30,19 @@ namespace CodeAnalizerGUI.Classes
                                                       ContributorSaver = c.Resolve<ISaveBehavior<ContributorModel[]>>()});
 
             builder.Register(c => new FileCollector(Properties.Settings.Default.resPath)).As<IFileCollector>();
-
+            builder.Register<IButtonsListFactory>((c, p) =>
+            {
+                var type = p.Named<ListType>("listType");
+                switch (type)
+                {
+                    case ListType.start:
+                        return new StartingToolbarFactory();
+                    case ListType.pCreation:
+                        return new ProjectCreationButtonsFactory();
+                    default:
+                        return new StartingToolbarFactory();
+                }
+            });
             container = builder.Build();
         }
 
