@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     class ContributorDetailsViewModel:ViewModel

@@ -88,7 +88,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\ButtonFactoryEventArgs.cs" />
     <Compile Include="Classes\ButtonsListFactory.cs" />
     <Compile Include="Classes\ChainLink.cs" />
     <Compile Include="Classes\ContributorHolder.cs" />
@@ -129,7 +128,7 @@
     <Compile Include="TestControl.xaml.cs">
       <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CustomControls\ViewModels\SubViewModel.cs" />
+    <Compile Include="Abstractions\SubViewModel.cs" />
     <Compile Include="UserControls\CustomControls\Views\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
@@ -152,13 +151,13 @@
     </Compile>
     <Compile Include="UserControls\MainWindowControls\Models\ContributorButtonModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\ContributorModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Models\Model.cs" />
+    <Compile Include="Abstractions\Model.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\StatisticsModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorDetailsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorsViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\NewContributorViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\StatisticsViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\ViewModel.cs" />
+    <Compile Include="Abstractions\ViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml.cs">
       <DependentUpon>GitBinderControl.xaml</DependentUpon>
     </Compile>
@@ -243,6 +242,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Windows\ViewModels\NewProjectWindowViewModel.cs" />
     <Compile Include="Windows\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

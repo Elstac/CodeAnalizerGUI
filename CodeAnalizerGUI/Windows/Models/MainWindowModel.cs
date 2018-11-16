@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.Windows.Models
 {
     class MainWindowModel:Model

@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
+namespace CodeAnalizerGUI.Abstractions
 {
     public abstract class Model: INotifyPropertyChanged
     {
