@@ -88,6 +88,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ButtonFactoryEventArgs.cs" />
     <Compile Include="Classes\ButtonsListFactory.cs" />
     <Compile Include="Classes\ChainLink.cs" />
     <Compile Include="Classes\ContributorHolder.cs" />

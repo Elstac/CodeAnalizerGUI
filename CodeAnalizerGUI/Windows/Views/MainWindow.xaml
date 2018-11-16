@@ -25,7 +25,6 @@
                         <Button Content="{Binding Name}" Command="{Binding Command}"/>
                     </DataTemplate>
                 </ToolBar.ItemTemplate>
-                
             </ToolBar>
         </ToolBarTray>
         <ToolBarTray Orientation="Vertical" Grid.Column="0" Grid.Row="1">

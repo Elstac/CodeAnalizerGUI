@@ -23,15 +23,12 @@ namespace CodeAnalizerGUI.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("D:\\Documents\\Projekty\\CodeAnalizerGUI\\CodeAnalizerGUI\\Data\\")]
-        public string savePath {
+        public string AppData {
             get {
-                return ((string)(this["savePath"]));
-            }
-            set {
-                this["savePath"] = value;
+                return ((string)(this["AppData"]));
             }
         }
         
@@ -44,12 +41,24 @@ namespace CodeAnalizerGUI.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("D:\\Documents\\Projekty\\CodeAnalizerGUI\\CodeAnalizerGUI\\Resources\\")]
-        public string resPath {
+        public string ProjectPath {
             get {
-                return ((string)(this["resPath"]));
+                return ((string)(this["ProjectPath"]));
+            }
+            set {
+                this["ProjectPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Projects.xml")]
+        public string ProjectListFile {
+            get {
+                return ((string)(this["ProjectListFile"]));
             }
         }
     }

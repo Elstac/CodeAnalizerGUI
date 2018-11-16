@@ -29,14 +29,26 @@ namespace CodeAnalizerGUI.Classes
             builder.Register(c => new DataManager() { ContributorLoader = c.Resolve<ILoadBehavior<ContributorModel[]>>(),
                                                       ContributorSaver = c.Resolve<ISaveBehavior<ContributorModel[]>>()});
 
-            builder.Register(c => new FileCollector(Properties.Settings.Default.resPath)).As<IFileCollector>();
+            builder.Register(c => new FileCollector(Properties.Settings.Default.ProjectPath)).As<IFileCollector>();
             builder.Register<IButtonsListFactory>((c, p) =>
             {
                 var type = p.Named<ListType>("listType");
+                IControlsMediator mediator;
+                try
+                {
+                    mediator = p.Named<IControlsMediator>("mediator");
+                }
+                catch(InvalidOperationException)
+                {
+                    if (type == ListType.start)
+                        throw new InvalidOperationException("No mediator");
+                    else
+                        mediator = null;
+                }
                 switch (type)
                 {
                     case ListType.start:
-                        return new StartingToolbarFactory();
+                        return new StartingToolbarFactory { Mediator = mediator };
                     case ListType.pCreation:
                         return new ProjectCreationButtonsFactory();
                     default:

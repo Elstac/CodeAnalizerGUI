@@ -57,7 +57,8 @@ namespace CodeAnalizerGUI.Windows
             win.DataContext = vm;
             vm.Mediator = mainWindowControlsMediator;
             vm.ButtonsGenerator = new NavigationButtonsGenerator(mainWindowControlsMediator, contributorsControl);
-            vm.ToolbarGenerator = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType", ListType.start));
+            vm.ToolbarGenerator = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType", ListType.start),
+                                                                                     new NamedParameter("mediator", mainWindowControlsMediator));
             vm.ContributorsControl = contributorsControl;
 
             win.Show();

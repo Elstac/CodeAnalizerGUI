@@ -29,7 +29,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         set
             {
                 dataManager = value;
-                dataManager.SetPath(Properties.Settings.Default.savePath);
+                dataManager.SetPath(Properties.Settings.Default.ProjectPath);
             }
         }
 
@@ -39,7 +39,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         {
             contributors = new ObservableCollection<ContributorButtonModel>();
             ContributorModel des = new ContributorModel(); 
-            contributors.Add(new ContributorButtonModel(null , new SimpleCommand(NewContributor)));
+            contributors.Add(new ContributorButtonModel(null , new SimpleCommand(NewContributorClick)));
         }
 
         private void OpenDetailsControl(object parameter)
@@ -60,7 +60,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             mediator.LoadMainControl(detailControl);
         }
 
-        private void NewContributor()
+        private void NewContributorClick()
         {
             SubControlMediator subMed = new SubControlMediator();
             subMed.Parent = mediator;
@@ -75,11 +75,16 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             contributors.Remove(contributors.Last());
 
             ContributorModel toAdd = dataClass as ContributorModel;
-            toAdd.PathToImage = collector.MoveToResources(toAdd.PathToImage);
-            contributors.Add(new ContributorButtonModel(toAdd,new IndexCommand( OpenDetailsControl)));
-
+            NewContributor(toAdd);
             contributors.Add(button);
-            LogicHolder.MainHolder.GetFileMiner(toAdd.PathsToFiles.ToArray(),true);
+        }
+
+        private void NewContributor(ContributorModel toAdd)
+        {
+            toAdd.PathToImage = collector.MoveToResources(toAdd.PathToImage);
+            contributors.Add(new ContributorButtonModel(toAdd, new IndexCommand(OpenDetailsControl)));
+
+            LogicHolder.MainHolder.GetFileMiner(toAdd.PathsToFiles.ToArray(), true);
         }
 
         public void SaveContributors()
@@ -99,11 +104,8 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
             if (contributors.Count != 0)
                 contributors.Clear();
 
-            var tmp = from c in loaded
-                      select new ContributorButtonModel(c, new IndexCommand(OpenDetailsControl));
-
-            foreach (var button in tmp)
-                contributors.Add(button);
+            foreach (var contributor in loaded)
+                NewContributor(contributor);
 
             contributors.Add(plus);
         }
