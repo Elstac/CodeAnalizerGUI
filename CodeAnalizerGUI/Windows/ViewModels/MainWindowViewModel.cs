@@ -8,21 +8,19 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
+using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Windows.Models;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using System.Reflection;
-using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.Windows.ViewModels
 {
     public class MainWindowViewModel : ViewModel,INotifyPropertyChanged
     {
         private List<NavigationButtonModel> navigationButtons;
-        private IControlsMediator mediator;
+        private IControlsMediator  mediator;
         private UserControl contributorsControl;
         private IButtonsGenerator buttonsGenerator;
         private IButtonsListFactory toolbarGenerator;

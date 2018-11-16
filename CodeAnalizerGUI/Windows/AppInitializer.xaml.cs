@@ -11,7 +11,6 @@ using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.CustomControls;
-using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.Windows.ViewModels;
 using CodeAnalizerGUI.DataSavingModule;
 using Autofac;

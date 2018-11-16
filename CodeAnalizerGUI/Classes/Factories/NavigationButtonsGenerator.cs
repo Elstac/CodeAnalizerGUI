@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
+using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.Windows.Models;
 using System.Windows.Input;

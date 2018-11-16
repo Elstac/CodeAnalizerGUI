@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
+using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using System.Windows.Input;
 using Autofac;

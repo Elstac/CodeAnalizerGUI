@@ -123,9 +123,6 @@
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="Interfaces\ISubControlOwner.cs" />
     <Compile Include="Interfaces\ISubControlSender.cs" />
-    <Compile Include="TestControl.xaml.cs">
-      <DependentUpon>TestControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Abstractions\SubViewModel.cs" />
     <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
@@ -134,8 +131,8 @@
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CustomControls\ViewModels\ManagableFileViewViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Commands\IndexCommand.cs" />
-    <Compile Include="UserControls\MainWindowControls\Commands\SimpleCommand.cs" />
+    <Compile Include="Abstractions\Commands\IndexCommand.cs" />
+    <Compile Include="Abstractions\Commands\SimpleCommand.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\ButtonModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Models\FileTreeNodeModel.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\ButtonPanelViewModel.cs" />
@@ -183,10 +180,6 @@
     <Compile Include="Windows\Models\MainWindowModel.cs" />
     <Compile Include="Windows\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Windows\Models\NavigationButtonModel.cs" />
-    <Page Include="TestControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\CustomControls\ButtonWithDescription.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
