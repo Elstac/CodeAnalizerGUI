@@ -7,6 +7,7 @@ using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.Abstractions;
 using NUnit.Framework;
 using System.Windows.Controls;
 using System.Reflection;

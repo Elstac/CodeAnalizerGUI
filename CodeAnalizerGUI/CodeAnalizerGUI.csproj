@@ -88,24 +88,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\ButtonsListFactory.cs" />
-    <Compile Include="Classes\ChainLink.cs" />
-    <Compile Include="Classes\ContributorHolder.cs" />
-    <Compile Include="Classes\ControlFactory.cs" />
-    <Compile Include="Classes\ControlsChain.cs" />
-    <Compile Include="Classes\ControlsMediator.cs" />
+    <Compile Include="Classes\Factories\ButtonsListFactory.cs" />
+    <Compile Include="Classes\CommunicationModel\ChainLink.cs" />
+    <Compile Include="Classes\Factories\ControlFactory.cs" />
+    <Compile Include="Classes\CommunicationModel\ControlsChain.cs" />
+    <Compile Include="Classes\CommunicationModel\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
-    <Compile Include="Classes\DataSaver.cs" />
-    <Compile Include="Classes\DIContainer.cs" />
-    <Compile Include="Classes\GeneralStatisticsGenerator.cs" />
+    <Compile Include="Classes\Globals\DIContainer.cs" />
+    <Compile Include="Classes\Factories\GeneralStatisticsGenerator.cs" />
     <Compile Include="Classes\FileCollector.cs" />
-    <Compile Include="Classes\IToolBarButtonsFactory.cs" />
-    <Compile Include="Classes\LogicHolder.cs" />
-    <Compile Include="Classes\MainWindowControlsMediator.cs" />
+    <Compile Include="Classes\Factories\IButtonListFactory.cs" />
+    <Compile Include="Classes\Globals\LogicHolder.cs" />
+    <Compile Include="Classes\CommunicationModel\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
-    <Compile Include="Classes\NavigationButtonsGenerator.cs" />
-    <Compile Include="Classes\ProjectCreationButtonsFactory.cs" />
-    <Compile Include="Classes\StartingToolbarFactory.cs" />
+    <Compile Include="Classes\Factories\NavigationButtonsGenerator.cs" />
+    <Compile Include="Classes\Factories\ProjectCreationButtonsFactory.cs" />
+    <Compile Include="Classes\Factories\StartingToolbarFactory.cs" />
     <Compile Include="DataSavingModule\Classes\DataManager.cs" />
     <Compile Include="DataSavingModule\Classes\XmlDataLoader.cs" />
     <Compile Include="DataSavingModule\Classes\XmlDataSaver.cs" />
@@ -116,7 +114,7 @@
     <Compile Include="Interfaces\IContributorHolder.cs" />
     <Compile Include="Interfaces\IControlFactory.cs" />
     <Compile Include="Interfaces\IButtonGenerator.cs" />
-    <Compile Include="Classes\SubControlMediator.cs" />
+    <Compile Include="Classes\CommunicationModel\SubControlMediator.cs" />
     <Compile Include="Interfaces\IControlsMediator.cs" />
     <Compile Include="Interfaces\IDataSaver.cs" />
     <Compile Include="Interfaces\FileCollector.cs" />
@@ -175,7 +173,6 @@
     <Compile Include="UserControls\MainWindowControls\Views\GlobalStatsControl.xaml.cs">
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\UIBus.cs" />
     <Compile Include="UserControls\MainWindowControls\ViewModels\GitBinderViewModel.cs" />
     <Compile Include="UserControls\MainWindowControls\Views\StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
