@@ -39,7 +39,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
         {
             contributors = new ObservableCollection<ContributorButtonModel>();
             ContributorModel des = new ContributorModel(); 
-            contributors.Add(new ContributorButtonModel(null , new SimpleCommand(NewContributorClick)));
+            contributors.Add(new ContributorButtonModel(new ContributorModel {PathToImage = Properties.Settings.Default.AppData + "\\plus.png" } , new SimpleCommand(NewContributorClick)));
         }
 
         private void OpenDetailsControl(object parameter)

@@ -10,12 +10,13 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
 {
     class ContributorButtonModel:Model
     {
-        private ContributorModel contributor;
+        private ContributorModel contributor = new ContributorModel();
         private ICommand buttonCommand;
-        private int id;
+
         public ContributorButtonModel(ContributorModel contributor, ICommand buttonCommand)
         {
-            this.contributor = contributor;
+            if(contributor!=null)
+                this.contributor = contributor;
             this.buttonCommand = buttonCommand;
         }
 

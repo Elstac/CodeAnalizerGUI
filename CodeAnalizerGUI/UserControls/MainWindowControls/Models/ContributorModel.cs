@@ -12,7 +12,7 @@ namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
     {
         private string name="Name";
         private string email="Email";
-        private string pathToImage= Directory.GetCurrentDirectory() + "\\plus.png";
+        private string pathToImage= Properties.Settings.Default.AppData + "\\NoFile.png";
         private List<string> pathsToFiles;
 
         public ContributorModel()
