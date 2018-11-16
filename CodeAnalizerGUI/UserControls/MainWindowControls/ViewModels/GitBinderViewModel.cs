@@ -10,6 +10,7 @@ using CodeAnalizer.GitTrackerModule.Classes;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     public class GitBinderViewModel:ViewModel

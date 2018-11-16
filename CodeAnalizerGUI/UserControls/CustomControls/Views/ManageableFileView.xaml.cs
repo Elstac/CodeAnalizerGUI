@@ -16,6 +16,7 @@ using CodeAnalizerGUI.Interfaces;
 using System.ComponentModel;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI
 {
     /// <summary>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
 {
     class ContributorButtonModel:Model

@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     class FileExplorerViewModel:ViewModel

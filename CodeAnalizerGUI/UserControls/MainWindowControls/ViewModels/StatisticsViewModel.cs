@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using System.Collections.ObjectModel;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     class StatisticsViewModel:ViewModel

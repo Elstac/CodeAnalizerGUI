@@ -7,12 +7,13 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Exceptions;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
-using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
+using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using System.Windows.Input;
 using System.IO;
 using System.Windows.Controls;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {
     public class NewContributorViewModel:ViewModel,ISubControlOwner

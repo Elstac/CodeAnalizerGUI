@@ -129,6 +129,9 @@
       <DependentUpon>TestControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Abstractions\SubViewModel.cs" />
+    <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
+      <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CustomControls\Views\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
@@ -166,9 +169,6 @@
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IFileExplorerUser.cs" />
-    <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
-      <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\MainWindowControls\Views\ContributorsControl.xaml.cs">
       <DependentUpon>ContributorsControl.xaml</DependentUpon>
     </Compile>
@@ -189,6 +189,10 @@
     <Page Include="TestControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomControls\ButtonWithDescription.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\CustomControls\Views\ManageableFileView.xaml">
       <SubType>Designer</SubType>
@@ -211,10 +215,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MainWindowControls\Views\NewContributorControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\CustomControls\ButtonWithDescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

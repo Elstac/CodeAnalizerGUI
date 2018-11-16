@@ -12,7 +12,7 @@ using CodeAnalizerGUI.UserControls.MainWindowControls;
 using System.Windows.Input;
 using System.Windows.Controls;
 using CodeAnalizerGUI.Abstractions;
-namespace CodeAnalizerGUI.UserControls.CustomControls.ViewModels
+namespace CodeAnalizerGUI.UserControls.CustomControls
 {
     class ManagableFileViewViewModel:SubViewModel,ISubControlDataReciver, ISubControlSender<List<string>>
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
-using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
+using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Commands;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.Classes;
@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.DataSavingModule;
+using CodeAnalizerGUI.Abstractions;
 
 namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
 {

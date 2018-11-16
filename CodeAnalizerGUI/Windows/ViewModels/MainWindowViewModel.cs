@@ -16,6 +16,7 @@ using CodeAnalizerGUI.Windows.Models;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
 using System.Reflection;
+using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.Windows.ViewModels
 {
     public class MainWindowViewModel : ViewModel,INotifyPropertyChanged

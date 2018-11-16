@@ -19,7 +19,7 @@ using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
 using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
 using CodeAnalizerGUI.UserControls.MainWindowControls;
-using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
+using CodeAnalizerGUI.UserControls.CustomControls;
 namespace CodeAnalizerGUI
 {
     /// <summary>

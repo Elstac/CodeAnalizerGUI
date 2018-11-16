@@ -9,7 +9,7 @@ using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Exceptions;
 using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
-using CodeAnalizerGUI.UserControls.CustomControls.ViewModels;
+using CodeAnalizerGUI.UserControls.CustomControls;
 
 namespace CodeAnalizerGUI.Classes
 {
