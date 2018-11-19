@@ -124,6 +124,9 @@
     <Compile Include="Interfaces\ISubControlOwner.cs" />
     <Compile Include="Interfaces\ISubControlSender.cs" />
     <Compile Include="Abstractions\SubViewModel.cs" />
+    <Compile Include="ProjectModule\Classes\NewProjectXMLConfigurationCreator.cs" />
+    <Compile Include="ProjectModule\Classes\ProjectConfig.cs" />
+    <Compile Include="ProjectModule\Interfacers\INewProjectConfigurationCreator.cs" />
     <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
     </Compile>
@@ -232,7 +235,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\ViewModels\NewProjectWindowViewModel.cs" />
+    <Compile Include="Windows\ViewModels\NDNewProjectViewModel.cs" />
     <Compile Include="Windows\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

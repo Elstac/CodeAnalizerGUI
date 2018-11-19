@@ -20,6 +20,7 @@ namespace CodeAnalizerGUI.Classes
         {
             int index = path.LastIndexOf('\\')+1;
             string fileName = path.Substring(index);
+            
             index = 0;
             string tmp=fileName;
             while (File.Exists(pathToRes + tmp))
