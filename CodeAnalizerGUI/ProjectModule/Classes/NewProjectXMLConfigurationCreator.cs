@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,21 @@ namespace CodeAnalizerGUI.ProjectModule
     {
         private XmlSerializer serializer;
 
+        public NewProjectXMLConfigurationCreator()
+        {
+            serializer = new XmlSerializer(typeof(ProjectConfig));
+        }
+
         public ProjectConfig CreateConfiguration(string name, string description,string path)
         {
-            throw new NotImplementedException();
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            var ret = new ProjectConfig() { Name = name, Description = description, Files = null };
+            StreamWriter writer = new StreamWriter(path + "//Configuration.xml");
+            serializer.Serialize(writer, ret);
+            writer.Close();
+            return ret;
         }
     }
 }

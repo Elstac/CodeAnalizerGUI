@@ -12,7 +12,7 @@ namespace CodeAnalizerGUITests.ClassesTests
     [TestFixture]
     class NewProjectXMLConfigurationCreatorTests
     {
-        private NewProjectXMLConfigurationCreator creator;
+        private NewProjectXMLConfigurationCreator creator = new NewProjectXMLConfigurationCreator();
 
         [Test]
         public void ReturnValidConfigurationAfterActOfCreation()
@@ -21,7 +21,7 @@ namespace CodeAnalizerGUITests.ClassesTests
             string des = "des";
 
             var expected = new ProjectConfig() { Name = name, Description = des, Files = null };
-            var output =creator.CreateConfiguration(name, des, "CreatorTest");
+            var output =creator.CreateConfiguration(name, des, "D:\\CreatorTest");
 
             Assert.AreEqual(expected, output);
         }
@@ -37,7 +37,7 @@ namespace CodeAnalizerGUITests.ClassesTests
             Directory.CreateDirectory(dir);
             
             creator.CreateConfiguration(name, des, dir);
-            Assert.IsTrue(File.Exists(dir+"\\Configuration.xml"));
+            Assert.IsTrue(File.Exists(dir+ "\\Configuration.xml"));
         }
         [Test]
         public void CreateFileInNewDirectory()
@@ -50,6 +50,15 @@ namespace CodeAnalizerGUITests.ClassesTests
             creator.CreateConfiguration(name, des, dir);
             Assert.IsTrue(File.Exists(dir + "\\Configuration.xml"));
         }
+
+        [OneTimeTearDown]
+        public void DeleteDir()
+        {
+            string dir = "D:\\CreatorTest";
+            if (Directory.Exists(dir))
+                Directory.Delete(dir, true);
+        }
+
         
     }
 }
