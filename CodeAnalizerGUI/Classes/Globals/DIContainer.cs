@@ -19,6 +19,7 @@ namespace CodeAnalizerGUI.Classes
 
         public static void InitializeContainer()
         {
+
             ContainerBuilder builder = new ContainerBuilder();
             Assembly assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().AsSelf();
@@ -57,6 +58,5 @@ namespace CodeAnalizerGUI.Classes
             });
             container = builder.Build();
         }
-
     }
 }
