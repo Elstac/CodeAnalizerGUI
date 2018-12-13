@@ -15,10 +15,10 @@ using System.Windows.Shapes;
 using CodeAnalizer;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.UserControls.CustomControls;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
-using CodeAnalizerGUI.UserControls.MainWindowControls;
+using CodeAnalizerGUI.ViewModels;
+
 namespace CodeAnalizerGUI
 {
     /// <summary>

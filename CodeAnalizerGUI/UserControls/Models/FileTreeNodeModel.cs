@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Abstractions;
 
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
+namespace CodeAnalizerGUI.Models
 {
     class FileTreeNodeModel:Model
     {

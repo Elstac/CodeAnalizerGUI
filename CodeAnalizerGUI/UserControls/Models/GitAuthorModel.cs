@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
 using CodeAnalizerGUI.Abstractions;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
+namespace CodeAnalizerGUI.Models
 {
     public class GitAuthorModel : Model
     {

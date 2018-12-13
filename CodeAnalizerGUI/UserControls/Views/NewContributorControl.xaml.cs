@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.ViewModels;
 namespace CodeAnalizerGUI
 {
     /// <summary>

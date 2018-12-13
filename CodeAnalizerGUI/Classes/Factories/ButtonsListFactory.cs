@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using System.Collections.ObjectModel;
 namespace CodeAnalizerGUI.Classes
 {

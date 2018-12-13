@@ -14,9 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizer.GitTrackerModule.Classes;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.ViewModels;
 
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.Views
+namespace CodeAnalizerGUI.Views
 {
     /// <summary>
     /// Interaction logic for GitBinderControl.xaml

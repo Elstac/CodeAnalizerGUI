@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.ViewModels;
 using CodeAnalizerGUI.Abstractions;
-using CodeAnalizerGUI.UserControls.MainWindowControls;
+
 using System.IO;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
+namespace CodeAnalizerGUI.ViewModels
 {
     class FileExplorerViewModel:ViewModel
     {

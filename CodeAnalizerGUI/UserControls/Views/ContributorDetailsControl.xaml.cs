@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using CodeAnalizer;
 using CodeAnalizerGUI.Classes.Converters;
 using System.IO;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.Views
+namespace CodeAnalizerGUI.Views
 {
     /// <summary>
     /// Interaction logic for ContributorDetailsControl.xaml

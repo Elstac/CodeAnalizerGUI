@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Abstractions;
 
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
+namespace CodeAnalizerGUI.ViewModels
 {
     class GlobalStatisticsViewModel:ViewModel
     {

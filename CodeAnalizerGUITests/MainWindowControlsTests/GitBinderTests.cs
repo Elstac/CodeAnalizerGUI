@@ -1,6 +1,6 @@
 ﻿using System;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.ViewModels;
+using CodeAnalizerGUI.Models;
 using NUnit.Framework;
 namespace CodeAnalizerGUITests
 {

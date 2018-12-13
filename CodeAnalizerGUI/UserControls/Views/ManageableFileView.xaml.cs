@@ -14,8 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using CodeAnalizerGUI.Interfaces;
 using System.ComponentModel;
-using CodeAnalizerGUI.UserControls.MainWindowControls;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+
+using CodeAnalizerGUI.ViewModels;
 using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI
 {

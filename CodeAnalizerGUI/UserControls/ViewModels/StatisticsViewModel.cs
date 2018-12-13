@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.Abstractions;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
+namespace CodeAnalizerGUI.ViewModels
 {
     class StatisticsViewModel:ViewModel
     {

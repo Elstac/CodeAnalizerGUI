@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.IO;
 using CodeAnalizerGUI.Abstractions;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.Models
+namespace CodeAnalizerGUI.Models
 {
     public class ContributorModel: Model
     {

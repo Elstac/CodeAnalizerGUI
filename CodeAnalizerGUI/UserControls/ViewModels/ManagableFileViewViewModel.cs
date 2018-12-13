@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.ViewModels;
+using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.Abstractions;
-using CodeAnalizerGUI.UserControls.MainWindowControls;
+
 using System.Windows.Input;
 using System.Windows.Controls;
 namespace CodeAnalizerGUI.UserControls.CustomControls

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using CodeAnalizer.FileAnalizerModule.Interfaces;
 namespace CodeAnalizerGUI.Classes
 {

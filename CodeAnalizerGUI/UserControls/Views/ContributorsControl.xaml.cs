@@ -15,8 +15,8 @@ using System.Windows.Shapes;
 using CodeAnalizerGUI.Classes.Converters;
 using CodeAnalizerGUI.Interfaces;
 using System.IO;
-using CodeAnalizerGUI.UserControls.MainWindowControls;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+
+using CodeAnalizerGUI.ViewModels;
 namespace CodeAnalizerGUI
 {
     /// <summary>

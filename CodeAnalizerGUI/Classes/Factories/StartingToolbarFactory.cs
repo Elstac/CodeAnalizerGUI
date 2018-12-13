@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Abstractions;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.Views;
 using System.Windows.Input;
 using Autofac;
 namespace CodeAnalizerGUI.Classes

@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.Abstractions;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
+using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.Classes;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.DataSavingModule;
 
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
+namespace CodeAnalizerGUI.ViewModels
 {
     class ContributorsViewModel : ViewModel,ISubControlDataReciver
     {

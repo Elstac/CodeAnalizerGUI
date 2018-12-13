@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Abstractions;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
+namespace CodeAnalizerGUI.ViewModels
 {
     class ButtonPanelViewModel:ViewModel
     {

@@ -7,13 +7,13 @@ using CodeAnalizerGUI.Windows;
 using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Input;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.ViewModels;
 using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Windows.Models;
 using System.Collections.ObjectModel;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using System.Reflection;
 namespace CodeAnalizerGUI.Windows.ViewModels
 {

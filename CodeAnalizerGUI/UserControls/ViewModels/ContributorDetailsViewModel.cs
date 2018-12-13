@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CodeAnalizerGUI.Interfaces;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Abstractions;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
+namespace CodeAnalizerGUI.ViewModels
 {
     class ContributorDetailsViewModel:ViewModel
     {

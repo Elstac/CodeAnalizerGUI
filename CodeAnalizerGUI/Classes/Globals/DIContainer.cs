@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using CodeAnalizerGUI.DataSavingModule;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.Classes
 {

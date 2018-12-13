@@ -14,8 +14,8 @@ using System.Windows.Shapes;
 using System.IO;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizer;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Views;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.Views
+using CodeAnalizerGUI.Views;
+namespace CodeAnalizerGUI.Views
 {
     /// <summary>
     /// Interaction logic for FileExplorerControl.xaml

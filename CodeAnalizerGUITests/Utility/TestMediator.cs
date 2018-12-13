@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using System.Windows.Controls;
 using CodeAnalizerGUI.Abstractions;
-using CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels;
+using CodeAnalizerGUI.ViewModels;
 
 namespace CodeAnalizerGUITests
 {

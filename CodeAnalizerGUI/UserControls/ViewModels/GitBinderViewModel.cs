@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CodeAnalizerGUI.UserControls.MainWindowControls.Models;
+using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizer.GitTrackerModule.Classes;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-namespace CodeAnalizerGUI.UserControls.MainWindowControls.ViewModels
+namespace CodeAnalizerGUI.ViewModels
 {
     public class GitBinderViewModel:ViewModel
     {

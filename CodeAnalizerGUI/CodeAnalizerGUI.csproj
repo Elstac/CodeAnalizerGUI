@@ -132,54 +132,54 @@
     <Compile Include="ProjectModule\Classes\NewProjectXMLConfigurationCreator.cs" />
     <Compile Include="ProjectModule\Classes\ProjectConfig.cs" />
     <Compile Include="ProjectModule\Interfacers\INewProjectConfigurationCreator.cs" />
-    <Compile Include="UserControls\CustomControls\ButtonWithDescription.xaml.cs">
+    <Compile Include="UserControls\Views\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CustomControls\Views\ManageableFileView.xaml.cs">
+    <Compile Include="UserControls\Views\ManageableFileView.xaml.cs">
       <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CustomControls\ViewModels\ManagableFileViewViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\ManagableFileViewViewModel.cs" />
     <Compile Include="Abstractions\Commands\IndexCommand.cs" />
     <Compile Include="Abstractions\Commands\SimpleCommand.cs" />
-    <Compile Include="UserControls\MainWindowControls\Models\ButtonModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Models\FileTreeNodeModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\ButtonPanelViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\FileExplorerViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\GlobalStatisticsViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Views\ButtonPanelView.xaml.cs">
+    <Compile Include="UserControls\Models\ButtonModel.cs" />
+    <Compile Include="UserControls\Models\FileTreeNodeModel.cs" />
+    <Compile Include="UserControls\ViewModels\ButtonPanelViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\FileExplorerViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\GlobalStatisticsViewModel.cs" />
+    <Compile Include="UserControls\Views\ButtonPanelView.xaml.cs">
       <DependentUpon>ButtonPanelView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\Views\ContributorDetailsControl.xaml.cs">
+    <Compile Include="UserControls\Views\ContributorDetailsControl.xaml.cs">
       <DependentUpon>ContributorDetailsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\FileExplorerControl.xaml.cs">
+    <Compile Include="UserControls\Views\FileExplorerControl.xaml.cs">
       <DependentUpon>FileExplorerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\Models\ContributorButtonModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Models\ContributorModel.cs" />
+    <Compile Include="UserControls\Models\ContributorButtonModel.cs" />
+    <Compile Include="UserControls\Models\ContributorModel.cs" />
     <Compile Include="Abstractions\Model.cs" />
-    <Compile Include="UserControls\MainWindowControls\Models\StatisticsModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorDetailsViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\ContributorsViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\NewContributorViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\ViewModels\StatisticsViewModel.cs" />
+    <Compile Include="UserControls\Models\StatisticsModel.cs" />
+    <Compile Include="UserControls\ViewModels\ContributorDetailsViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\ContributorsViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\NewContributorViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\StatisticsViewModel.cs" />
     <Compile Include="Abstractions\ViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml.cs">
+    <Compile Include="UserControls\Views\GitBinderControl.xaml.cs">
       <DependentUpon>GitBinderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\Models\GitAuthorModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Views\NewContributorControl.xaml.cs">
+    <Compile Include="UserControls\Models\GitAuthorModel.cs" />
+    <Compile Include="UserControls\Views\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IFileExplorerUser.cs" />
-    <Compile Include="UserControls\MainWindowControls\Views\ContributorsControl.xaml.cs">
+    <Compile Include="UserControls\Views\ContributorsControl.xaml.cs">
       <DependentUpon>ContributorsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\Views\GlobalStatsControl.xaml.cs">
+    <Compile Include="UserControls\Views\GlobalStatsControl.xaml.cs">
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainWindowControls\ViewModels\GitBinderViewModel.cs" />
-    <Compile Include="UserControls\MainWindowControls\Views\StatisticsControl.xaml.cs">
+    <Compile Include="UserControls\ViewModels\GitBinderViewModel.cs" />
+    <Compile Include="UserControls\Views\StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AppInitializer.xaml.cs">
@@ -188,43 +188,43 @@
     <Compile Include="Windows\Models\MainWindowModel.cs" />
     <Compile Include="Windows\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Windows\Models\NavigationButtonModel.cs" />
-    <Page Include="UserControls\CustomControls\ButtonWithDescription.xaml">
+    <Page Include="UserControls\Views\ButtonWithDescription.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\CustomControls\Views\ManageableFileView.xaml">
+    <Page Include="UserControls\Views\ManageableFileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\Views\ButtonPanelView.xaml">
+    <Page Include="UserControls\Views\ButtonPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\Views\ContributorDetailsControl.xaml">
+    <Page Include="UserControls\Views\ContributorDetailsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\FileExplorerControl.xaml">
+    <Page Include="UserControls\Views\FileExplorerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\Views\GitBinderControl.xaml">
+    <Page Include="UserControls\Views\GitBinderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\Views\NewContributorControl.xaml">
+    <Page Include="UserControls\Views\NewContributorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\Views\ContributorsControl.xaml">
+    <Page Include="UserControls\Views\ContributorsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\Views\GlobalStatsControl.xaml">
+    <Page Include="UserControls\Views\GlobalStatsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainWindowControls\Views\StatisticsControl.xaml">
+    <Page Include="UserControls\Views\StatisticsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,7 +286,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UserControls\OptionsWindowControls\" />
     <Folder Include="Windows\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
