@@ -8,20 +8,23 @@ namespace CodeAnalizerGUI
 {
     public enum MVVMMessage
     {
-
+        OpenNewControl,
+        CloseControl,
+        NewContributorCreated
     }
+
     public sealed class VMMediator:IVMMediator
     {
-        private MultiDictionary<MVVMMessage,Action<object>> messageList;
+        private MultiDictionary<MVVMMessage,Action<object>> messageList= new MultiDictionary<MVVMMessage, Action<object>>();
 
-        private static VMMediator instance =new VMMediator();
-        public static VMMediator Instance
+        private static IVMMediator instance =new VMMediator();
+        public static IVMMediator Instance
         {
             get => instance;
         }
         static VMMediator()
         {
-
+            
         }
 
         public void Register(MVVMMessage msg, Action<object>callback)

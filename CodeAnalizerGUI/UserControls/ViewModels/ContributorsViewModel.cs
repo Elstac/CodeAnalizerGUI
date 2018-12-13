@@ -8,6 +8,7 @@ using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.Views;
+using CodeAnalizerGUI.ViewModels;
 using CodeAnalizerGUI.Classes;
 using System.Windows.Input;
 using System.Windows.Controls;
@@ -16,7 +17,7 @@ using CodeAnalizerGUI.DataSavingModule;
 
 namespace CodeAnalizerGUI.ViewModels
 {
-    class ContributorsViewModel : ViewModel,ISubControlDataReciver
+    class ContributorsViewModel : ViewModel
     {
         private IFileCollector collector;
         private IStatisticsGenerator generator;
@@ -38,8 +39,9 @@ namespace CodeAnalizerGUI.ViewModels
         public ContributorsViewModel()
         {
             contributors = new ObservableCollection<ContributorButtonModel>();
-            ContributorModel des = new ContributorModel(); 
             contributors.Add(new ContributorButtonModel(new ContributorModel {PathToImage = Properties.Settings.Default.AppData + "\\plus.png" } , new SimpleCommand(NewContributorClick)));
+
+            VMMediator.Instance.Register(MVVMMessage.NewContributorCreated, ReciveNewContributor);
         }
 
         private void OpenDetailsControl(object parameter)
@@ -62,14 +64,12 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void NewContributorClick()
         {
-            SubControlMediator subMed = new SubControlMediator();
-            subMed.Parent = mediator;
-            UserControl list = mediator.CreateControl(typeof(ManageableFileView), subMed);
-            UserControl view = mediator.CreateControl(typeof(NewContributorControl), mediator,new object[] { subMed,list.DataContext});
-            
-            Mediator.LoadMainControl(view,this);
+            var vm = DIContainer.Resolve<NewContributorViewModel>();
+            vm.FileList = DIContainer.Resolve<ManagableFileViewViewModel>();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, vm);
         }
-        public void ReciveData(object dataClass)
+
+        public void ReciveNewContributor(object dataClass)
         {
             var button = contributors.Last();
             contributors.Remove(contributors.Last());

@@ -19,17 +19,21 @@ namespace CodeAnalizerGUI.Windows.ViewModels
 {
     public class MainWindowViewModel : ViewModel,INotifyPropertyChanged
     {
+        #region Fields
         private List<NavigationButtonModel> navigationButtons;
         private IControlsMediator  mediator;
         private UserControl contributorsControl;
         private IButtonsGenerator buttonsGenerator;
         private IButtonsListFactory toolbarGenerator;
+        private IVMStack commStack;
         private UserControl mainContent;
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<ButtonModel> toolBarButtons;
 
         public ICommand TestCommand;
+        #endregion
 
+        #region Properties
         public List<NavigationButtonModel> NavigationButtons { get => navigationButtons; set => navigationButtons = value; }
         public ObservableCollection<ButtonModel> ToolbarButtons { get => toolBarButtons; set => toolBarButtons = value; }
         public IControlsMediator Mediator { get => mediator;
@@ -37,21 +41,27 @@ namespace CodeAnalizerGUI.Windows.ViewModels
             {
                 mediator = value;
             } }
-        public UserControl MainContent { get => mainContent; set { mainContent = value; RaisePropertyChange("MainContent"); } }
+        public UserControl MainContent { get => mainContent; set { mainContent = value; } }
         public IButtonsGenerator ButtonsGenerator { get => buttonsGenerator; set { buttonsGenerator = value;LoadNavigationButtons(); } }
 
         public UserControl ContributorsControl { get => contributorsControl; set => contributorsControl = value; }
         public IButtonsListFactory ToolbarGenerator { get => toolbarGenerator; set { toolbarGenerator = value; LoadToolbarButtons(); } }
 
-        private void LoadToolbarButtons()
-        {
-            toolBarButtons = toolbarGenerator.GenerateButtons();
-            ToolbarButtons.Add(new ButtonModel(new SimpleCommand(RunTest), "TEST"));
-        }
+        public IVMStack CommStack { get => commStack; set => commStack = value; }
+        #endregion
+
 
         public MainWindowViewModel()
         {
             TestCommand = new SimpleCommand(RunTest);
+            VMMediator.Instance.Register(MVVMMessage.OpenNewControl, LoadContent);
+            VMMediator.Instance.Register(MVVMMessage.CloseControl, RevertContent);
+        }
+
+        private void LoadToolbarButtons()
+        {
+            toolBarButtons = toolbarGenerator.GenerateButtons();
+            ToolbarButtons.Add(new ButtonModel(new SimpleCommand(RunTest), "TEST"));
         }
 
         int pom = 0;
@@ -92,7 +102,16 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         {
             PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-
         
+        private void LoadContent(object viewModel)
+        {
+            mainContent.Content = viewModel;
+            CommStack.NewVM(viewModel as ViewModel);
+        }
+
+        private void RevertContent(object viewModel)
+        {
+            mainContent.Content = CommStack.PreviousVM();
+        }
     }
 }

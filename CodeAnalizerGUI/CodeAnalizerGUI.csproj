@@ -104,7 +104,8 @@
     <Compile Include="Classes\Factories\NavigationButtonsGenerator.cs" />
     <Compile Include="Classes\Factories\ProjectCreationButtonsFactory.cs" />
     <Compile Include="Classes\Factories\StartingToolbarFactory.cs" />
-    <Compile Include="Classes\Globals\ViewFactory.cs" />
+    <Compile Include="Classes\Globals\ViewModelFactory.cs" />
+    <Compile Include="Classes\VMStack.cs" />
     <Compile Include="Communication\IVMMediator.cs" />
     <Compile Include="Communication\MultiDictionary.cs" />
     <Compile Include="Communication\VMMediator.cs" />
@@ -129,14 +130,12 @@
     <Compile Include="Interfaces\ISubControlSender.cs" />
     <Compile Include="Abstractions\SubViewModel.cs" />
     <Compile Include="Interfaces\IViewFactory.cs" />
+    <Compile Include="Interfaces\IVMStack.cs" />
     <Compile Include="ProjectModule\Classes\NewProjectXMLConfigurationCreator.cs" />
     <Compile Include="ProjectModule\Classes\ProjectConfig.cs" />
     <Compile Include="ProjectModule\Interfacers\INewProjectConfigurationCreator.cs" />
     <Compile Include="UserControls\Views\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Views\ManageableFileView.xaml.cs">
-      <DependentUpon>ManageableFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ViewModels\ManagableFileViewViewModel.cs" />
     <Compile Include="Abstractions\Commands\IndexCommand.cs" />
@@ -168,6 +167,9 @@
       <DependentUpon>GitBinderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Models\GitAuthorModel.cs" />
+    <Compile Include="UserControls\Views\ManageableFileView.xaml.cs">
+      <DependentUpon>ManageableFileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Views\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
@@ -185,16 +187,15 @@
     <Compile Include="Windows\AppInitializer.xaml.cs">
       <DependentUpon>AppInitializer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ContentHolder.xaml.cs">
+      <DependentUpon>ContentHolder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Models\MainWindowModel.cs" />
     <Compile Include="Windows\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Windows\Models\NavigationButtonModel.cs" />
     <Page Include="UserControls\Views\ButtonWithDescription.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\Views\ManageableFileView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Views\ButtonPanelView.xaml">
       <SubType>Designer</SubType>
@@ -211,6 +212,10 @@
     <Page Include="UserControls\Views\GitBinderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Views\ManageableFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="UserControls\Views\NewContributorControl.xaml">
       <SubType>Designer</SubType>
@@ -229,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AppInitializer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ContentHolder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

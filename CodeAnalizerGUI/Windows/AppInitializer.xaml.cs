@@ -42,11 +42,11 @@ namespace CodeAnalizerGUI.Windows
             MainWindow win = new MainWindow();
             MainWindowViewModel vm = new MainWindowViewModel();
             MainWindowControlsMediator mainWindowControlsMediator = new MainWindowControlsMediator(vm);
-            
+
             SubControlMediator subMed = new SubControlMediator();
             subMed.Parent = mainWindowControlsMediator;
 
-            UserControl list = mainWindowControlsMediator.CreateControl(typeof(ManageableFileView),subMed, new object[] { });
+            UserControl list = mainWindowControlsMediator.CreateControl(typeof(ManageableFileView), subMed, new object[] { });
 
             object[] par = new object[] { new GeneralStatisticsGenerator(),DIContainer.Container.Resolve<DataManager>(),
                                             DIContainer.Container.Resolve<IFileCollector>() };
@@ -58,8 +58,14 @@ namespace CodeAnalizerGUI.Windows
             vm.ButtonsGenerator = new NavigationButtonsGenerator(mainWindowControlsMediator, contributorsControl);
             vm.ToolbarGenerator = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType", ListType.start),
                                                                                      new NamedParameter("mediator", mainWindowControlsMediator));
-            vm.ContributorsControl = contributorsControl;
 
+            vm.CommStack = DIContainer.Resolve<IVMStack>();
+            vm.ContributorsControl = contributorsControl;
+            vm.MainContent = new ContentHolder();
+
+            var contrib = DIContainer.Container.Resolve<ContributorsViewModel>();
+            contrib.Collector = new FileCollector(Properties.Settings.Default.ProjectPath);
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, contrib);
             win.Show();
             Close();
         }

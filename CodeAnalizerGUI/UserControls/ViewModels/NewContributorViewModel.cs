@@ -47,11 +47,11 @@ namespace CodeAnalizerGUI.ViewModels
         public void Send()
         {
             contributor.PathsToFiles = FileList.GetData();
-            if (contributor.PathsToFiles.Count == 0)
-                throw new NoFileSelectedException("Contributor contains no file");
+            //if (contributor.PathsToFiles.Count == 0)
+            //    throw new NoFileSelectedException("Contributor contains no file");
 
-            mediator.SendData(contributor);
-            mediator.CloseControl();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.NewContributorCreated, contributor);
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         public void OpenBinder()

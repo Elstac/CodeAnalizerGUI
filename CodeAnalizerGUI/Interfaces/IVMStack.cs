@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CodeAnalizerGUI
 {
-    public interface IVMMediator
+    public interface IVMStack
     {
-        void Register(MVVMMessage msg, Action<object> callback);
-        void NotifyColleagues(MVVMMessage msg, object args);
+        void NewVM(Abstractions.ViewModel viewModel);
+        Abstractions.ViewModel PreviousVM();
     }
 }

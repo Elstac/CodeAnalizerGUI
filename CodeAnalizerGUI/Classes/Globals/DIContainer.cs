@@ -19,6 +19,8 @@ namespace CodeAnalizerGUI.Classes
 
         public static void InitializeContainer()
         {
+            if (container != null)
+                return;
 
             ContainerBuilder builder = new ContainerBuilder();
             Assembly assembly = Assembly.GetExecutingAssembly();
@@ -58,5 +60,11 @@ namespace CodeAnalizerGUI.Classes
             });
             container = builder.Build();
         }
+
+        public static T Resolve<T>()
+        {
+            return container.Resolve<T>();
+        }
+          
     }
 }
