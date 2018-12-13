@@ -104,6 +104,10 @@
     <Compile Include="Classes\Factories\NavigationButtonsGenerator.cs" />
     <Compile Include="Classes\Factories\ProjectCreationButtonsFactory.cs" />
     <Compile Include="Classes\Factories\StartingToolbarFactory.cs" />
+    <Compile Include="Classes\Globals\ViewFactory.cs" />
+    <Compile Include="Communication\IVMMediator.cs" />
+    <Compile Include="Communication\MultiDictionary.cs" />
+    <Compile Include="Communication\VMMediator.cs" />
     <Compile Include="DataSavingModule\Classes\DataManager.cs" />
     <Compile Include="DataSavingModule\Classes\XmlDataLoader.cs" />
     <Compile Include="DataSavingModule\Classes\XmlDataSaver.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Interfaces\ISubControlOwner.cs" />
     <Compile Include="Interfaces\ISubControlSender.cs" />
     <Compile Include="Abstractions\SubViewModel.cs" />
+    <Compile Include="Interfaces\IViewFactory.cs" />
     <Compile Include="ProjectModule\Classes\NewProjectXMLConfigurationCreator.cs" />
     <Compile Include="ProjectModule\Classes\ProjectConfig.cs" />
     <Compile Include="ProjectModule\Interfacers\INewProjectConfigurationCreator.cs" />
