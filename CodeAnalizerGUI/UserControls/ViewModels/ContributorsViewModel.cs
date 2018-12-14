@@ -17,27 +17,21 @@ using CodeAnalizerGUI.DataSavingModule;
 
 namespace CodeAnalizerGUI.ViewModels
 {
-    class ContributorsViewModel : ViewModel
+    class ContributorsViewModel
     {
-        private IFileCollector collector;
-        private IStatisticsGenerator generator;
         private ObservableCollection<ContributorButtonModel> contributors;
+        private IFileCollector collector;
         private DataManager dataManager;
 
         public ObservableCollection<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
-        public IStatisticsGenerator Generator { get => generator; set => generator = value; }
-        public DataManager DataManager { get => dataManager;
-        set
-            {
-                dataManager = value;
-                dataManager.SetPath(Properties.Settings.Default.ProjectPath);
-            }
-        }
+        
 
-        public IFileCollector Collector { get => collector; set => collector = value; }
-
-        public ContributorsViewModel()
+        public ContributorsViewModel(IFileCollector collector,DataManager manager)
         {
+            this.collector = collector;
+            dataManager = manager;
+            manager.SetPath(Properties.Settings.Default.ProjectPath);
+
             contributors = new ObservableCollection<ContributorButtonModel>();
             contributors.Add(new ContributorButtonModel(new ContributorModel {PathToImage = Properties.Settings.Default.AppData + "\\plus.png" } , new SimpleCommand(NewContributorClick)));
 
@@ -46,20 +40,7 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void OpenDetailsControl(object parameter)
         {
-            ContributorModel recived = parameter as ContributorModel;
-            object[] tp = new object[1];
 
-            generator.SetMiner(LogicHolder.MainHolder.GetFileMiner(recived.PathsToFiles.ToArray(), true));
-            tp[0] = generator.GenerateStatisticsDisplay();
-            UserControl StatsView = mediator.CreateControl(typeof(StatisticsControl), mediator,tp);
-
-            SubControlMediator subMed =new SubControlMediator();
-            subMed.Parent = mediator;
-
-            object[] properties = new object[] {StatsView,parameter as ContributorModel,subMed };
-            UserControl detailControl = mediator.CreateControl(typeof(ContributorDetailsControl),mediator,properties);
-
-            mediator.LoadMainControl(detailControl);
         }
 
         private void NewContributorClick()

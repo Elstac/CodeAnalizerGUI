@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.ViewModels;
 using CodeAnalizerGUI.Abstractions;
+using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.Windows.Models;
 using System.Windows.Input;
@@ -15,12 +16,10 @@ namespace CodeAnalizerGUI.Classes
 {
     class NavigationButtonsGenerator : Interfaces.IButtonsGenerator
     {
-        private Interfaces.IControlsMediator mediator;
-        private UserControl contribControl;
+        private object contribControl;
 
-        public NavigationButtonsGenerator(Interfaces.IControlsMediator mediator, UserControl contrib)
+        public NavigationButtonsGenerator( object contrib)
         {
-            this.mediator = mediator;
             contribControl = contrib;
         }
 
@@ -51,8 +50,7 @@ namespace CodeAnalizerGUI.Classes
 
         private void OpenContributorsControl()
         {
-            mediator.LoadMainControl(contribControl);
-            mediator.BreakOperation();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, contribControl);
         }
 
         private void OpenGlobalStatistics()
@@ -60,9 +58,6 @@ namespace CodeAnalizerGUI.Classes
             GeneralStatisticsGenerator gen = new GeneralStatisticsGenerator();
             gen.SetMiner(LogicHolder.MainHolder.GetGlobalFileMiner());
             object[] dep = new object[] {gen.GenerateStatisticsDisplay() };
-            UserControl view = mediator.CreateControl(typeof(StatisticsControl),mediator, dep);
-            mediator.LoadMainControl(view);
-            mediator.BreakOperation();
         }
     }
 }

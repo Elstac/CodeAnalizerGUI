@@ -21,7 +21,6 @@ namespace CodeAnalizerGUI.Windows.ViewModels
     {
         #region Fields
         private List<NavigationButtonModel> navigationButtons;
-        private IControlsMediator  mediator;
         private UserControl contributorsControl;
         private IButtonsGenerator buttonsGenerator;
         private IButtonsListFactory toolbarGenerator;

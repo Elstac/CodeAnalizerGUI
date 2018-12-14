@@ -21,6 +21,11 @@ namespace CodeAnalizerGUI.Classes
             this.mainWindow = mainWindow;
         }
 
+        public MainWindowControlsMediator():base()
+        {
+
+        }
+
         public MainWindowViewModel MainWindow { get => mainWindow;}
 
         public override void LoadContent(UserControl control)
