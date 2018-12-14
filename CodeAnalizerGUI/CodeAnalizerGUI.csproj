@@ -124,6 +124,7 @@
     <Compile Include="Interfaces\IDataSaver.cs" />
     <Compile Include="Interfaces\FileCollector.cs" />
     <Compile Include="Interfaces\ILogicHolder.cs" />
+    <Compile Include="Interfaces\IManageableFileList.cs" />
     <Compile Include="Interfaces\IStatisticsGenerator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
     <Compile Include="Interfaces\ISubControlOwner.cs" />
@@ -137,7 +138,7 @@
     <Compile Include="UserControls\Views\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ViewModels\ManagableFileViewViewModel.cs" />
+    <Compile Include="UserControls\ViewModels\ManageableFileListModel.cs" />
     <Compile Include="Abstractions\Commands\IndexCommand.cs" />
     <Compile Include="Abstractions\Commands\SimpleCommand.cs" />
     <Compile Include="UserControls\Models\ButtonModel.cs" />

@@ -15,59 +15,59 @@ namespace CodeAnalizerGUITests
     [TestFixture]
     class NewContributorTests
     {
-        private NewContributorViewModel viewModel;
-        private TestMediator mediator;
-        private ContributorModel model;
-        [OneTimeSetUp]
-        public void LoadControl()
-        {
-            ControlFactory fac = new ControlFactory();
-            model = new ContributorModel();
-            viewModel = new NewContributorViewModel();
-            viewModel.Contributor = model;
-        }
+    //    private NewContributorViewModel viewModel;
+    //    private TestMediator mediator;
+    //    private ContributorModel model;
+    //    [OneTimeSetUp]
+    //    public void LoadControl()
+    //    {
+    //        ControlFactory fac = new ControlFactory();
+    //        model = new ContributorModel();
+    //        viewModel = new NewContributorViewModel();
+    //        viewModel.Contributor = model;
+    //    }
 
-        [SetUp]
-        public void MediatorSetUp()
-        {
-            mediator = new TestMediator();
-            viewModel = new NewContributorViewModel();
-            viewModel.Mediator = mediator;
+    //    [SetUp]
+    //    public void MediatorSetUp()
+    //    {
+    //        mediator = new TestMediator();
+    //        viewModel = new NewContributorViewModel();
+    //        viewModel.Mediator = mediator;
 
-            var fileListMck = new Mock<ISubControlSender<List<string>>>();
-            fileListMck.Setup(x => x.GetData()).Returns(new List<string>() { "" });
+    //        var fileListMck = new Mock<ISubControlSender<List<string>>>();
+    //        fileListMck.Setup(x => x.GetData()).Returns(new List<string>() { "" });
 
-            viewModel.FileList = fileListMck.Object;
-        }
+    //        viewModel.FileList = fileListMck.Object;
+    //    }
 
-        [Test]
-        public void SendNotChangedTest()
-        {
-            string[] tmpPaths = new string[] { "" };
+    //    [Test]
+    //    public void SendNotChangedTest()
+    //    {
+    //        string[] tmpPaths = new string[] { "" };
 
-            viewModel.Send();
+    //        viewModel.Send();
 
-            ContributorModel expected = new ContributorModel();
-            expected.PathsToFiles = tmpPaths.ToList();
-            Assert.AreEqual(expected, mediator.recivedData);
-        }
+    //        ContributorModel expected = new ContributorModel();
+    //        expected.PathsToFiles = tmpPaths.ToList();
+    //        Assert.AreEqual(expected, mediator.recivedData);
+    //    }
 
-        [Test]
-        public void SendWithNoFileTest()
-        {
-            var fileListMck = new Mock<ISubControlSender<List<string>>>();
-            fileListMck.Setup(x => x.GetData()).Returns(new List<string>() {  });
+    //    [Test]
+    //    public void SendWithNoFileTest()
+    //    {
+    //        var fileListMck = new Mock<ISubControlSender<List<string>>>();
+    //        fileListMck.Setup(x => x.GetData()).Returns(new List<string>() {  });
 
-            viewModel.FileList = fileListMck.Object;
-            Assert.Throws(typeof(NoFileSelectedException), new TestDelegate(viewModel.Send));
-        }
+    //        viewModel.FileList = fileListMck.Object;
+    //        Assert.Throws(typeof(NoFileSelectedException), new TestDelegate(viewModel.Send));
+    //    }
 
-        [Test]
-        public void CancelTest()
-        {
-            viewModel.Cancel();
-            Assert.AreEqual(null, mediator.recivedData);
-        }
+    //    [Test]
+    //    public void CancelTest()
+    //    {
+    //        viewModel.Cancel();
+    //        Assert.AreEqual(null, mediator.recivedData);
+    //    }
 
         
     }

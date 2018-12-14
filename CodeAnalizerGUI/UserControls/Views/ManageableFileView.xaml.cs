@@ -30,8 +30,6 @@ namespace CodeAnalizerGUI
             InitializeComponent();
         }
 
-        
-
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
             base.OnPropertyChanged(e);

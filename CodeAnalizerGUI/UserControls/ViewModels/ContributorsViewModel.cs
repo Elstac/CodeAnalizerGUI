@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Models;
-using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.ViewModels;
@@ -17,7 +16,7 @@ using CodeAnalizerGUI.DataSavingModule;
 
 namespace CodeAnalizerGUI.ViewModels
 {
-    class ContributorsViewModel
+    class ContributorsViewModel:ViewModel
     {
         private ObservableCollection<ContributorButtonModel> contributors;
         private IFileCollector collector;
@@ -46,7 +45,10 @@ namespace CodeAnalizerGUI.ViewModels
         private void NewContributorClick()
         {
             var vm = DIContainer.Resolve<NewContributorViewModel>();
-            vm.FileList = DIContainer.Resolve<ManagableFileViewViewModel>();
+            var list = DIContainer.Resolve<ManageableFileListModel>();
+            list.AllowedFormats = new string[] { ".cs", ".xaml.cs"};
+            vm.FileList = list;
+            
             VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, vm);
         }
 

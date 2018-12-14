@@ -11,29 +11,43 @@ using CodeAnalizerGUI.Abstractions;
 
 using System.Windows.Input;
 using System.Windows.Controls;
-namespace CodeAnalizerGUI.UserControls.CustomControls
+using System.IO;
+
+namespace CodeAnalizerGUI.ViewModels
 {
-    class ManagableFileViewViewModel:SubViewModel,ISubControlDataReciver, ISubControlSender<List<string>>
+    class ManageableFileListModel:ViewModel,IManageableFileList
     {
         private List<string> files;
-
-        public ManagableFileViewViewModel()
+        private string[] allowedFormats;
+        public ManageableFileListModel()
         {
             files = new List<string>();
             AddCommand = new SimpleCommand(OpenExplorer);
             DeleteCommand = new SimpleCommand(DeleteFile);
+
+            VMMediator.Instance.Register(MVVMMessage.FileChosed, ReciveFile);
         }
 
         public object SelectedItem { get; set; }
         public List<string> Files { get => files; set => files = value; }
         public ICommand AddCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
+        public string[] AllowedFormats { get => allowedFormats; set => allowedFormats = value; }
 
         private void OpenExplorer()
         {
             string[] formats = new string[] { ".cs" };
-            UserControl view = mediator.CreateControl(typeof(FileExplorerControl), mediator, new object[] { formats });
-            mediator.LoadMainControl(view,this);
+
+            var fac = DIContainer.Resolve<FileExplorerViewModel.Factory>();
+            var explorer = fac.Invoke(formats);
+
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, explorer);
+        }
+
+        private void ReciveFile(object path)
+        {
+            if(AllowedFormats==null|| AllowedFormats.Contains(Path.GetExtension(path.ToString())))
+                files.Add(path.ToString());
         }
 
         private void DeleteFile()
@@ -44,12 +58,7 @@ namespace CodeAnalizerGUI.UserControls.CustomControls
             files.Remove(SelectedItem.ToString());
         }
 
-        public void ReciveData(object dataClass)
-        {
-            files.Add(dataClass as string);
-        }
-
-        public List<string> GetData()
+        public List<string> getFilePaths()
         {
             return files;
         }

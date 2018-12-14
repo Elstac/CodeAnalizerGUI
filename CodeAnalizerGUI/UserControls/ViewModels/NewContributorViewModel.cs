@@ -7,7 +7,6 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Exceptions;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Models;
-using CodeAnalizerGUI.UserControls.CustomControls;
 using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.Abstractions;
 using System.Windows.Input;
@@ -15,12 +14,12 @@ using System.IO;
 using System.Windows.Controls;
 namespace CodeAnalizerGUI.ViewModels
 {
-    public class NewContributorViewModel:ViewModel,ISubControlOwner
+    public class NewContributorViewModel:ViewModel
     {
+        private readonly string[] imageFormats= {".png",".jpg",".bmp" };
+
         private ContributorModel contributor;
-        private IControlFactory controlFactory;
-        private IControlsMediator subControlMediator;
-        private ISubControlSender<List<string>> fileList;
+        private IManageableFileList fileList;
         #region Commands
         public ICommand SendCommand { get; set; }
         public ICommand CloseCommand{ get; set; }
@@ -29,26 +28,28 @@ namespace CodeAnalizerGUI.ViewModels
         
         #endregion
 
-        public NewContributorViewModel()
+        public NewContributorViewModel(IManageableFileList fileList)
         {
+            this.fileList = fileList;
+
             SendCommand = new SimpleCommand(Send);
             CloseCommand = new SimpleCommand(Cancel);
             ChoseImageCommand = new SimpleCommand(ChoseImage);
             GitBinderCommand = new SimpleCommand(OpenBinder);
             
             contributor = new ContributorModel();
+
+            VMMediator.Instance.Register(MVVMMessage.FileChosed, ReciveFilePath);
         }
 
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
-        internal IControlFactory ControlFactory { get => controlFactory; set => controlFactory = value; }
-        public IControlsMediator SubControlMediator { get => subControlMediator; set => subControlMediator = value; }
-        public ISubControlSender<List<string>> FileList { get=>fileList; set=> fileList = value; }
+        public IManageableFileList FileList { get=>fileList; set=> fileList = value; }
 
         public void Send()
         {
-            contributor.PathsToFiles = FileList.GetData();
-            //if (contributor.PathsToFiles.Count == 0)
-            //    throw new NoFileSelectedException("Contributor contains no file");
+            contributor.PathsToFiles = fileList.getFilePaths();
+            if (contributor.PathsToFiles.Count == 0)
+                throw new NoFileSelectedException("Contributor contains no file");
 
             VMMediator.Instance.NotifyColleagues(MVVMMessage.NewContributorCreated, contributor);
             VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
@@ -56,8 +57,7 @@ namespace CodeAnalizerGUI.ViewModels
 
         public void OpenBinder()
         {
-            UserControl view = mediator.CreateControl(typeof(GitBinderControl), subControlMediator);
-            subControlMediator.LoadMainControl(view,this);
+            
         }
 
         public void Cancel()
@@ -68,30 +68,16 @@ namespace CodeAnalizerGUI.ViewModels
 
         public void ChoseImage()
         {
-            string[] Formats = new string[] { ".jpg", ".png", ".bmp" };
-            UserControl control = mediator.CreateControl(typeof(FileExplorerControl),subControlMediator,new object[] { Formats });
-
-            subControlMediator.LoadMainControl(control,this);
+            var fac = DIContainer.Resolve<FileExplorerViewModel.Factory>();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, fac.Invoke(imageFormats));
         }
-
-        public IControlsMediator GetMediator()
+        
+        public void ReciveFilePath(object path)
         {
-            return Mediator;
-        }
-
-        public void ReciveData(object dataClass)
-        {
-            if (dataClass is string)
-                contributor.PathToImage = dataClass as string;
-            else if(dataClass is GitAuthorModel)
+            var extention = Path.GetExtension(path.ToString());
+            if (imageFormats.Contains(extention))
             {
-                GitAuthorModel tmp = dataClass as GitAuthorModel;
-                contributor.Email = tmp.Email;
-                contributor.Name = tmp.Name;
-            }
-            else
-            {
-                throw new InvalidOperationException("Recived data cannot be processed");
+                Contributor.PathToImage = path.ToString();
             }
         }
     }

@@ -12,5 +12,12 @@
         <DataTemplate DataType="{x:Type vm:ContributorsViewModel}">
             <local:ContributorsControl/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:FileExplorerViewModel}">
+            <v:FileExplorerControl/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type vm:ManageableFileListModel}">
+            <local:ManageableFileView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

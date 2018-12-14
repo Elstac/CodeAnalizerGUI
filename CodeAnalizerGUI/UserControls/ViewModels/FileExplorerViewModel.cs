@@ -16,17 +16,19 @@ using System.Collections.ObjectModel;
 using System.Windows;
 namespace CodeAnalizerGUI.ViewModels
 {
-    class FileExplorerViewModel:ViewModel
+    public class FileExplorerViewModel:ViewModel
     {
         private bool newSequence = true;
 
         private object selectedFile;
         private string[] formats;
         private ObservableCollection<TreeViewItem> treeItems;
-        
 
-        public FileExplorerViewModel()
+        public delegate FileExplorerViewModel Factory(string[] formats);
+
+        public FileExplorerViewModel(string[] formats)
         {
+            this.formats = formats;
             treeItems = new ObservableCollection<TreeViewItem>();
             LoadTree();
             if (treeItems.Count == 0)
@@ -42,7 +44,6 @@ namespace CodeAnalizerGUI.ViewModels
         public ICommand ExitCommand { get; set; }
 
         public object SelectedFile { get => selectedFile.ToString(); set => selectedFile = value; }
-        public string[] Formats { get => formats; set => formats = value; }
         public ObservableCollection<TreeViewItem> TreeItems { get => treeItems; set => treeItems = value; }
         #endregion
 
@@ -78,14 +79,13 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void Select()
         {
-            mediator.SendData(selectedFile);
-            mediator.CloseControl();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.FileChosed, selectedFile);
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         private void Exit()
         {
-            mediator.BreakOperation();
-            mediator.CloseControl();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         void FolderExpanded(object sender, RoutedEventArgs e)

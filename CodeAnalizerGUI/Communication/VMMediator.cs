@@ -10,7 +10,9 @@ namespace CodeAnalizerGUI
     {
         OpenNewControl,
         CloseControl,
-        NewContributorCreated
+        NewContributorCreated,
+        FileChosed,
+        ImageChosed
     }
 
     public sealed class VMMediator:IVMMediator

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizerGUI.ViewModels;
-using CodeAnalizerGUI.UserControls.CustomControls;
+
 using CodeAnalizer;
 namespace CodeAnalizerGUI.Interfaces
 {

@@ -16,7 +16,7 @@ using CodeAnalizer;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Views;
-using CodeAnalizerGUI.UserControls.CustomControls;
+
 using CodeAnalizerGUI.ViewModels;
 
 namespace CodeAnalizerGUI

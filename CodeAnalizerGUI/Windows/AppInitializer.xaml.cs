@@ -10,7 +10,7 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.ViewModels;
-using CodeAnalizerGUI.UserControls.CustomControls;
+
 using CodeAnalizerGUI.Windows.ViewModels;
 using CodeAnalizerGUI.DataSavingModule;
 using Autofac;
@@ -69,7 +69,7 @@ namespace CodeAnalizerGUI.Windows
             //fac.RegisterViewType(typeof(ContributorsControl), typeof(ContributorsViewModel));
             fac.RegisterViewType(typeof(GitBinderControl), typeof(GitBinderViewModel));
             fac.RegisterViewType(typeof(NewContributorControl), typeof(NewContributorViewModel));
-            fac.RegisterViewType(typeof(ManageableFileView), typeof(ManagableFileViewViewModel));
+            fac.RegisterViewType(typeof(ManageableFileView), typeof(ManageableFileListModel));
             fac.RegisterViewType(typeof(StatisticsControl), typeof(StatisticsViewModel));
             fac.RegisterViewType(typeof(ContributorDetailsControl), typeof(ContributorDetailsViewModel));
             fac.RegisterViewType(typeof(FileExplorerControl), typeof(FileExplorerViewModel));
