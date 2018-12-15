@@ -20,7 +20,7 @@ namespace CodeAnalizerGUI
     /// </summary>
     public partial class GlobalStatsControl : UserControl
     {
-        public GlobalStatsControl(List<string> globalStats)
+        public GlobalStatsControl()
         {
             InitializeComponent();
         }

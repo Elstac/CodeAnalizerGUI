@@ -31,6 +31,6 @@
                 </ContentControl.ContentTemplate>
             </ContentControl>
         </StackPanel>
-        <ContentControl Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding StatisticsView}"/>
+        <ContentControl Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding StatisticsViewModel}"/>
     </Grid>
 </UserControl>

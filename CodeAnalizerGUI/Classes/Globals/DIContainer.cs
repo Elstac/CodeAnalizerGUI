@@ -8,6 +8,7 @@ using Autofac;
 using CodeAnalizerGUI.DataSavingModule;
 using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Interfaces;
+using CodeAnalizerGUI.ViewModels;
 namespace CodeAnalizerGUI.Classes
 {
     
@@ -27,7 +28,7 @@ namespace CodeAnalizerGUI.Classes
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().AsSelf();
 
             builder.RegisterType<MainWindowControlsMediator>().As<IControlsMediator>();
-
+            
             builder.RegisterGeneric(typeof(XmlDataSaver<>)).As(typeof(ISaveBehavior<>));
             builder.RegisterGeneric(typeof(XmlDataLoader<>)).As(typeof(ILoadBehavior<>));
 

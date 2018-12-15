@@ -30,13 +30,24 @@ namespace CodeAnalizerGUI.ViewModels
 
         public NewContributorViewModel(IManageableFileList fileList)
         {
+            Initialize(fileList);
+        }
+
+        public NewContributorViewModel(IManageableFileList fileList,ContributorModel contributor)
+        {
+            this.contributor = contributor;
+            Initialize(fileList);
+        }
+
+        private void Initialize(IManageableFileList fileList)
+        {
             this.fileList = fileList;
 
             SendCommand = new SimpleCommand(Send);
             CloseCommand = new SimpleCommand(Cancel);
             ChoseImageCommand = new SimpleCommand(ChoseImage);
             GitBinderCommand = new SimpleCommand(OpenBinder);
-            
+
             contributor = new ContributorModel();
 
             VMMediator.Instance.Register(MVVMMessage.FileChosed, ReciveFilePath);

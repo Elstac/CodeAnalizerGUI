@@ -19,5 +19,12 @@
         <DataTemplate DataType="{x:Type vm:ManageableFileListModel}">
             <local:ManageableFileView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ContributorDetailsViewModel}">
+            <v:ContributorDetailsControl/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:GlobalStatisticsViewModel}">
+            <local:GlobalStatsControl/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

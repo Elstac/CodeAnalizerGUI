@@ -12,6 +12,5 @@ namespace CodeAnalizerGUI.Abstractions
         public UserControl View { get; set; }
         protected IControlsMediator mediator;
         public IControlsMediator Mediator { get => mediator; set => mediator = value; }
-
     }
 }

@@ -8,22 +8,37 @@ using System.Windows.Input;
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Abstractions;
+using CodeAnalizer.FileAnalizerModule.Interfaces;
+using CodeAnalizerGUI.Classes;
+using Autofac;
+
 namespace CodeAnalizerGUI.ViewModels
 {
     class ContributorDetailsViewModel:ViewModel
     {
-        private UserControl statisticsView;
+        private ViewModel statisticsViewModel;
         private ContributorModel contributor;
         private IControlsMediator subControlsMediator;
+        private IFileMiner dataMiner;
+        private IStatisticsGenerator generator;
 
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public ContributorDetailsViewModel()
-        {
 
+        public ContributorDetailsViewModel(IStatisticsGenerator generator,IFileMiner miner,ContributorModel contributor)
+        {
+            this.contributor = contributor;
+            this.generator = generator;
+            dataMiner = miner;
+            generator.SetMiner(dataMiner);
+            this.generator = generator;
+            var stats = generator.GenerateStatisticsDisplay();
+
+            statisticsViewModel = DIContainer.Container.Resolve<GlobalStatisticsViewModel>(new NamedParameter("data", stats));
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, statisticsViewModel);
         }
 
-        public UserControl StatisticsView { get => statisticsView; set => statisticsView = value; }
+        public ViewModel StatisticsViewModel { get => statisticsViewModel; set => statisticsViewModel = value; }
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
         public IControlsMediator SubControlsMediator { get => subControlsMediator; set => subControlsMediator = value; }
     }

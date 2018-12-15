@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.DataSavingModule;
+using Autofac;
 
 namespace CodeAnalizerGUI.ViewModels
 {
@@ -39,7 +40,13 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void OpenDetailsControl(object parameter)
         {
+            var selected = parameter as ContributorModel;
 
+            var detView = DIContainer.Container.Resolve<ContributorDetailsViewModel>(
+                new NamedParameter("miner", LogicHolder.MainHolder.GetFileMiner(selected.PathsToFiles.ToArray(), false)),
+                new NamedParameter("contributor",selected));
+
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, detView);
         }
 
         private void NewContributorClick()
