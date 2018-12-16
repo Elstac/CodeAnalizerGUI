@@ -7,6 +7,7 @@ using CodeAnalizer.FileAnalizerModule.Interfaces;
 using CodeAnalizer.FileAnalizerModule.Classes;
 using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizer;
+using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Interfaces;
 
 namespace CodeAnalizerGUI
@@ -14,18 +15,22 @@ namespace CodeAnalizerGUI
     class LogicHolder : ILogicHolder
     {
         private ProjectMiner projectminer;
+        private IVMMediator mediator;
         public static ILogicHolder MainHolder;
-        
-        public LogicHolder()
+
+        private List<ContributorModel> contributors;
+
+
+        public List<ContributorModel> Contributors { get => contributors;}
+
+        public LogicHolder(IVMMediator mediator)
         {
+            this.mediator = mediator;
             MainHolder = this;
             projectminer = new ProjectMiner();
-        }
+            contributors = new List<ContributorModel>();
 
-        public LogicHolder(string[] paths)
-        {
-            MainHolder = this;
-            projectminer = new ProjectMiner(paths);
+            mediator.Register(MVVMMessage.NewContributorCreated, NewContributor);
         }
 
         public IFileMiner GetFileMiner(string[] paths, bool addToProject)
@@ -40,6 +45,14 @@ namespace CodeAnalizerGUI
         public IFileMiner GetGlobalFileMiner()
         {
             return projectminer;
+        }
+
+        private void NewContributor(object contributor)
+        {
+            if (contributor is ContributorModel)
+                contributors.Add(contributor as ContributorModel);
+            if (contributor is IEnumerable<ContributorModel>)
+                contributors.AddRange(contributor as IEnumerable<ContributorModel>);
         }
     }
 }

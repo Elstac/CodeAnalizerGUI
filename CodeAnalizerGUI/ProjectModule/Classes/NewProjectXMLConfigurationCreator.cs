@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using CodeAnalizerGUI.Interfaces;
+using System.IO;
 using System.Xml.Serialization;
 namespace CodeAnalizerGUI.ProjectModule
 {

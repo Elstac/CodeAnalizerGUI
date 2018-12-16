@@ -27,8 +27,9 @@ namespace CodeAnalizerGUI.Windows
             InitializeData();
             InitializeComponent();
             InitializeFactory();
+            LogicHolder holder = DIContainer.Container.Resolve<LogicHolder>();
+
             InitializeMainWindow();
-            LogicHolder holder = new LogicHolder();
         }
 
        

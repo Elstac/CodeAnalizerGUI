@@ -135,6 +135,7 @@
     <Compile Include="ProjectModule\Classes\NewProjectXMLConfigurationCreator.cs" />
     <Compile Include="ProjectModule\Classes\ProjectConfig.cs" />
     <Compile Include="ProjectModule\Interfacers\INewProjectConfigurationCreator.cs" />
+    <Compile Include="UserControls\ViewModels\NewProjectViewModel.cs" />
     <Compile Include="UserControls\Views\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>
     </Compile>

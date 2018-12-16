@@ -50,6 +50,11 @@ namespace CodeAnalizerGUI.Classes
                         return new StartingToolbarFactory();
                 }
             });
+
+            builder.RegisterType<VMMediator>().As<IVMMediator>().SingleInstance();
+            builder.RegisterType<LogicHolder>().As<ILogicHolder>().SingleInstance();
+
+
             container = builder.Build();
         }
 

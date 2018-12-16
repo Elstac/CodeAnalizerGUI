@@ -14,7 +14,8 @@ namespace CodeAnalizerGUI
         NewContributorCreated,
         AuthorSelected,
         FileChosed,
-        ImageChosed
+        ImageChosed,
+        ProjectCreated
     }
 
     public sealed class VMMediator:IVMMediator
