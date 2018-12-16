@@ -94,6 +94,7 @@
     <Compile Include="Classes\CommunicationModel\ControlsChain.cs" />
     <Compile Include="Classes\CommunicationModel\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
+    <Compile Include="Classes\Factories\IViewModelFactory.cs" />
     <Compile Include="Classes\Globals\DIContainer.cs" />
     <Compile Include="Classes\Factories\GeneralStatisticsGenerator.cs" />
     <Compile Include="Classes\FileCollector.cs" />

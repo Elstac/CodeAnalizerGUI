@@ -78,7 +78,7 @@
     <Compile Include="MainWindowControlsTests\GitBinderTests.cs" />
     <Compile Include="MainWindowControlsTests\NDNewProjectViewModelTests.cs" />
     <Compile Include="MainWindowControlsTests\NewContributorTests.cs" />
-    <Compile Include="MainWindowControlsTests\NewProjectViewModelTests.cs" />
+    <Compile Include="MainWindowControlsTests\ContributorsViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\TestMediator.cs" />
   </ItemGroup>

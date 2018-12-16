@@ -8,7 +8,7 @@ using CodeAnalizerGUI.Models;
 using CodeAnalizer.FileAnalizerModule.Interfaces;
 namespace CodeAnalizerGUI.Interfaces
 {
-    interface IStatisticsGenerator
+    public interface IStatisticsGenerator
     {
         ObservableCollection<StatisticsModel> GenerateStatisticsDisplay();
         void SetMiner(IFileMiner fileMiner);

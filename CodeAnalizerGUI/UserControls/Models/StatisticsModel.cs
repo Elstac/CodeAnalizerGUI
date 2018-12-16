@@ -7,7 +7,7 @@ using CodeAnalizerGUI.Abstractions;
 
 namespace CodeAnalizerGUI.Models
 {
-    class StatisticsModel:Model
+    public class StatisticsModel:Model
     {
         private string name;
         private object value;

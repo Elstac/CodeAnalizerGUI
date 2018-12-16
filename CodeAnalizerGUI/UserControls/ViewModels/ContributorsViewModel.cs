@@ -17,46 +17,44 @@ using Autofac;
 
 namespace CodeAnalizerGUI.ViewModels
 {
-    class ContributorsViewModel:ViewModel
+    public class ContributorsViewModel:ViewModel
     {
         private ObservableCollection<ContributorButtonModel> contributors;
-        private IFileCollector collector;
-        private DataManager dataManager;
+        private IVMMediator mediator;
+        private ILogicHolder logicHolder;
+        private Func<NewContributorViewModel> newContributorVMFactory;
+        private Func<ContributorModel, ContributorDetailsViewModel> detailsVMFactory;
 
         public ObservableCollection<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
         
-
-        public ContributorsViewModel(IFileCollector collector,DataManager manager)
+        public ContributorsViewModel(IVMMediator mediator,ILogicHolder holder,Func<NewContributorViewModel> newContributorVMFactory, Func<ContributorModel, ContributorDetailsViewModel> detailsVMFactory)
         {
-            this.collector = collector;
-            dataManager = manager;
-            manager.SetPath(Properties.Settings.Default.ProjectPath);
+            this.detailsVMFactory = detailsVMFactory;
+            this.newContributorVMFactory = newContributorVMFactory;
+            this.mediator = mediator;
+            logicHolder = holder;
+
+            foreach (var contributor in logicHolder.GetContributorList())
+                NewContributor(contributor);
 
             contributors = new ObservableCollection<ContributorButtonModel>();
             contributors.Add(new ContributorButtonModel(new ContributorModel {PathToImage = Properties.Settings.Default.AppData + "\\plus.png" } , new SimpleCommand(NewContributorClick)));
 
-            VMMediator.Instance.Register(MVVMMessage.NewContributorCreated, ReciveNewContributor);
+            mediator.Register(MVVMMessage.NewContributorCreated, ReciveNewContributor);
         }
 
         private void OpenDetailsControl(object parameter)
         {
             var selected = parameter as ContributorModel;
-
-            var detView = DIContainer.Container.Resolve<ContributorDetailsViewModel>(
-                new NamedParameter("miner", LogicHolder.MainHolder.GetFileMiner(selected.PathsToFiles.ToArray(), false)),
-                new NamedParameter("contributor",selected));
-
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, detView);
+            
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, detailsVMFactory.Invoke(selected));
         }
 
         private void NewContributorClick()
         {
-            var vm = DIContainer.Resolve<NewContributorViewModel>();
-            var list = DIContainer.Resolve<ManageableFileListModel>();
-            list.AllowedFormats = new string[] { ".cs", ".xaml.cs"};
-            vm.FileList = list;
+            var vm = newContributorVMFactory.Invoke();
             
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, vm);
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, vm);
         }
 
         public void ReciveNewContributor(object dataClass)
@@ -71,33 +69,19 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void NewContributor(ContributorModel toAdd)
         {
-            toAdd.PathToImage = collector.MoveToResources(toAdd.PathToImage);
+            if (toAdd == null)
+                throw new NullReferenceException("Contributor to add cannot be null");
             contributors.Add(new ContributorButtonModel(toAdd, new IndexCommand(OpenDetailsControl)));
-
-            LogicHolder.MainHolder.GetFileMiner(toAdd.PathsToFiles.ToArray(), true);
         }
 
         public void SaveContributors()
         {
-            var toSave = from x in contributors
-                         where x.Contributor!=null
-                         select x.Contributor;
 
-            dataManager.ContributorSaver.Save(toSave.ToArray());
         }
 
         public void LoadContributors()
         {
-            var loaded = dataManager.ContributorLoader.Load();
-            var plus = contributors.Last();
 
-            if (contributors.Count != 0)
-                contributors.Clear();
-
-            foreach (var contributor in loaded)
-                NewContributor(contributor);
-
-            contributors.Add(plus);
         }
     }
 }

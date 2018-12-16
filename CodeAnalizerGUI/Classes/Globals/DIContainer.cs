@@ -53,8 +53,22 @@ namespace CodeAnalizerGUI.Classes
 
             builder.RegisterType<VMMediator>().As<IVMMediator>().SingleInstance();
             builder.RegisterType<LogicHolder>().As<ILogicHolder>().SingleInstance();
+            builder.Register<Func<NewContributorViewModel>>(c => { return () => {
+                return container.Resolve<NewContributorViewModel>(new NamedParameter("fileList"
+                                                                    ,container.Resolve<IManageableFileList>(
+                                                                        new NamedParameter("allowedFormats",new string[] {".cs",".xaml.cs",".xaml" }))));
+            };
+            } );
 
-
+            builder.Register<Func<ContributorModel, ContributorDetailsViewModel>>(c =>
+            {
+                return (ContributorModel cm) =>
+                {
+                     return container.Resolve<ContributorDetailsViewModel>(
+                     new NamedParameter("miner", LogicHolder.MainHolder.GetFileMiner(cm.PathsToFiles.ToArray(), false)),
+                     new NamedParameter("contributor", cm));
+                };
+            });
             container = builder.Build();
         }
 

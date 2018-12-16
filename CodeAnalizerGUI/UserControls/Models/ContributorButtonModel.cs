@@ -8,7 +8,7 @@ using System.ComponentModel;
 using CodeAnalizerGUI.Abstractions;
 namespace CodeAnalizerGUI.Models
 {
-    class ContributorButtonModel:Model
+    public class ContributorButtonModel:Model
     {
         private ContributorModel contributor = new ContributorModel();
         private ICommand buttonCommand;

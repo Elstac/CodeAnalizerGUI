@@ -14,7 +14,7 @@ using Autofac;
 
 namespace CodeAnalizerGUI.ViewModels
 {
-    class ContributorDetailsViewModel:ViewModel
+    public class ContributorDetailsViewModel:ViewModel
     {
         private ViewModel statisticsViewModel;
         private ContributorModel contributor;

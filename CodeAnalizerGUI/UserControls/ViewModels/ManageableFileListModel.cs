@@ -19,8 +19,9 @@ namespace CodeAnalizerGUI.ViewModels
     {
         private List<string> files;
         private string[] allowedFormats;
-        public ManageableFileListModel()
+        public ManageableFileListModel(string[] allowedFormats)
         {
+            this.allowedFormats = allowedFormats;
             files = new List<string>();
             AddCommand = new SimpleCommand(OpenExplorer);
             DeleteCommand = new SimpleCommand(DeleteFile);
@@ -32,7 +33,6 @@ namespace CodeAnalizerGUI.ViewModels
         public List<string> Files { get => files; set => files = value; }
         public ICommand AddCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public string[] AllowedFormats { get => allowedFormats; set => allowedFormats = value; }
 
         private void OpenExplorer()
         {
@@ -46,7 +46,7 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void ReciveFile(object path)
         {
-            if(AllowedFormats==null|| AllowedFormats.Contains(Path.GetExtension(path.ToString())))
+            if(allowedFormats==null|| allowedFormats.Contains(Path.GetExtension(path.ToString())))
                 files.Add(path.ToString());
         }
 
@@ -61,6 +61,11 @@ namespace CodeAnalizerGUI.ViewModels
         public List<string> getFilePaths()
         {
             return files;
+        }
+
+        public void SetAllowedFormats(string[] v)
+        {
+            allowedFormats = v;
         }
     }
 }

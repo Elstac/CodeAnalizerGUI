@@ -9,6 +9,7 @@ using CodeAnalizer.GitTrackerModule.Classes;
 using CodeAnalizer;
 using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Interfaces;
+using System.Collections.ObjectModel;
 
 namespace CodeAnalizerGUI
 {
@@ -19,9 +20,6 @@ namespace CodeAnalizerGUI
         public static ILogicHolder MainHolder;
 
         private List<ContributorModel> contributors;
-
-
-        public List<ContributorModel> Contributors { get => contributors;}
 
         public LogicHolder(IVMMediator mediator)
         {
@@ -53,6 +51,11 @@ namespace CodeAnalizerGUI
                 contributors.Add(contributor as ContributorModel);
             if (contributor is IEnumerable<ContributorModel>)
                 contributors.AddRange(contributor as IEnumerable<ContributorModel>);
+        }
+
+        public List<ContributorModel> GetContributorList()
+        {
+            return contributors;
         }
     }
 }

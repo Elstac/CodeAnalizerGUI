@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeAnalizerGUI.Interfaces
 {
-    public interface IManageableFileList
+    public interface IViewModelFactory
     {
-        List<string> getFilePaths();
-        void SetAllowedFormats(string[] v);
     }
 }

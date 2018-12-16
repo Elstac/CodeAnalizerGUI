@@ -25,8 +25,10 @@ namespace CodeAnalizerGUI.ViewModels
         public ICommand CloseCommand{ get; set; }
         public ICommand ChoseImageCommand{ get; set; }
         public ICommand GitBinderCommand{ get; set; }
-        
+
         #endregion
+
+        public delegate NewContributorViewModel Factory(IManageableFileList fileList);
 
         public NewContributorViewModel(IManageableFileList fileList)
         {
