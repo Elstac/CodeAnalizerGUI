@@ -24,7 +24,5 @@ namespace CodeAnalizerGUI.Models
         public string Email { get => email; set { email = value; RaisePropertyChanged("Email"); } }
         public string PathToImage { get => pathToImage; set { pathToImage = value; RaisePropertyChanged("PathToImage"); } }
         public List<string> PathsToFiles { get => pathsToFiles; set => pathsToFiles = value; }
-        
-
     }
 }

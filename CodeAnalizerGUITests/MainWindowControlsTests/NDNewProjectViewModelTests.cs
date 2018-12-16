@@ -9,133 +9,110 @@ using CodeAnalizerGUI.ProjectModule;
 using CodeAnalizerGUI.Windows;
 using CodeAnalizerGUI.Interfaces;
 using System.Reflection;
+using CodeAnalizerGUI.Classes;
+using CodeAnalizerGUI.ViewModels;
+using CodeAnalizerGUI.Models;
+using CodeAnalizerGUI.Exceptions;
+using CodeAnalizerGUI;
 namespace CodeAnalizerGUITests.MainWindowControlsTests
 {
     [TestFixture]
     class NDNewProjectViewModelTests
     {
-        //private NDNewProjectViewModel toTest;
-        //private int closeCounter;
-        //[SetUp]
-        //public void Setup()
-        //{
-        //    Mock<INewProjectConfigurationCreator> creator = new Mock<INewProjectConfigurationCreator>();
-        //    creator.Setup(h => h.CreateConfiguration(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
-        //    Mock<IControlsMediator> mediator = new Mock<IControlsMediator>();
-        //    mediator.Setup(h => h.SendData(It.IsAny<object>()));
+        Mock<INewProjectConfigurationCreator> creator;
+        Mock<IVMMediator> mediator;
+        private NewProjectViewModel toTest;
+        private int closeCounter;
+        [SetUp]
+        public void Setup()
+        {
+            creator = new Mock<INewProjectConfigurationCreator>();
+            creator.Setup(h => h.CreateConfiguration(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
 
-        //    toTest = new NDNewProjectViewModel { Creator = creator.Object,Mediator = mediator.Object };
-        //    toTest.EndOperation += CloseMock; 
-        //}
-        //[Test]
-        //public void PassNDTest()
-        //{
-        //    string[] par = null;
-        //    Mock<INewProjectConfigurationCreator> creator = new Mock<INewProjectConfigurationCreator>();
-        //    creator.Setup(h => h.CreateConfiguration(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Callback((string a1, string a2, string a3) => par = new string[] { a1, a2, a3 });
-        //    toTest.Creator = creator.Object;
+            mediator = new Mock<IVMMediator>();
+            mediator.Setup(foo => foo.Register(It.IsAny<MVVMMessage>(), It.IsAny<Action<object>>()));
+            mediator.Setup(h => h.NotifyColleagues(It.IsAny<MVVMMessage>(), It.IsAny<object>()));
 
-        //    string name = "name";
-        //    string des = "description";
-        //    string path = "path";
+            toTest = new NewProjectViewModel(creator.Object, mediator.Object, (string[] s) => {return null; });
+        }
+        [Test]
+        public void Pass_changed_project_details_to_creator_after_confirm()
+        {
+            string name = "name";
+            string des = "description";
+            string path = "path";
 
-        //    toTest.Name = name;
-        //    toTest.Description = des;
-        //    toTest.Path = path;
+            toTest.Name = name;
+            toTest.Description = des;
+            toTest.Directory = path;
 
-        //    var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-        //    po.Invoke("ConfirmClick");
+            var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
+            po.Invoke("CreateProject");
 
-        //    Assert.AreEqual(new string[] { name, des, path },par);
-        //}
-        //[Test]
-        //public void CloseWindowAfterConfirm()
-        //{
-        //    closeCounter = 0;
-        //    toTest.Name = "a";
-        //    toTest.Path = "[";
+            creator.Verify(x => x.CreateConfiguration(name, des, path), Times.Once);
+        }
 
-        //    var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-        //    po.Invoke("ConfirmClick");
+        [Test]
+        public void Send_close_msg_after_confirm()
+        {
+            closeCounter = 0;
+            toTest.Name = "a";
+            toTest.Directory = "[";
 
-        //    Assert.AreEqual(1, closeCounter);
-        //}
-        //[Test]
-        //public void CloseWindowAfterCancel()
-        //{
-        //    closeCounter = 0;
-        //    toTest.Name = "a";
-        //    toTest.Path = "b";
+            var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
+            po.Invoke("CreateProject");
 
-        //    var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-        //    po.Invoke("CancelClick");
+            mediator.Verify(x => x.NotifyColleagues(MVVMMessage.CloseControl, It.IsAny<object>()), Times.Once);
+        }
+        [Test]
+        public void Send_close_msg_after_cancel()
+        {
+            var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
+            po.Invoke("Cancel");
 
-        //    Assert.AreEqual(1, closeCounter);
-        //}
+            mediator.Verify(x => x.NotifyColleagues(MVVMMessage.CloseControl, It.IsAny<object>()), Times.Once);
+        }
+        
+        [Test]
+        public void Throw_InvalidOperationException_after_confirm_with_unset_name()
+        {
+            toTest.Name = "";
 
-        //[Test]
-        //public void SendDataAfterConfirmClickTest()
-        //{
-        //    object sended=null;
-        //    Mock<IControlsMediator> mediator = new Mock<IControlsMediator>();
-        //    mediator.Setup(h => h.SendData(It.IsAny<object>())).Callback((object par) => sended = par);
+            var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
 
-        //    toTest.Mediator = mediator.Object;
+            try
+            {
+                po.Invoke("CreateProject");
+            }
+            catch (TargetInvocationException e)
+            {
+                Assert.True(e.InnerException is InvalidOperationException);
+            }
+        }
+        [Test]
+        public void Throw_InvalidOperationException_after_confirm_with_unset_directory()
+        {
+            toTest.Name = "xd";
+            toTest.Directory = "";
 
-        //    var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-        //    po.Invoke("ConfirmClick");
+            var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
+            try
+            {
+                po.Invoke("CreateProject");
+            }
+            catch (TargetInvocationException e)
+            {
+                Assert.True(e.InnerException is InvalidOperationException);
+            }
+        }
 
-        //    Assert.AreEqual(true, (bool)sended);
-        //}
+        [Test]
+        public void Send_opneNewControl_msg_arter_choseDirectory_click()
+        {
+            var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
+            po.Invoke("OpenFileExplorer");
 
-        //[Test]
-        //public void DontSendAnythingAfterCancel()
-        //{
-        //    Mock<IControlsMediator> mediator = new Mock<IControlsMediator>();
-        //    mediator.Setup(h => h.SendData(It.IsAny<object>()));
-
-        //    toTest.Mediator = mediator.Object;
-
-        //    var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-        //    po.Invoke("CancelClick");
-
-        //    mediator.Verify(x => x.SendData(It.IsAny<object>()), Times.Never());
-        //}
-        //[Test]
-        //public void NoNameConfirmClickThrowException()
-        //{
-        //    toTest.Name = "";
-
-        //    var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-
-        //    try
-        //    {
-        //        po.Invoke("ConfirmClick");
-        //    }
-        //    catch (TargetInvocationException e)
-        //    {
-        //        Assert.True(e.InnerException is InvalidOperationException);
-        //    }
-        //}
-        //[Test]
-        //public void NoPathConfirmClickThrowsException()
-        //{
-        //    toTest.Name = "xd";
-        //    toTest.Path = "";
-
-        //    var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-        //    try
-        //    {
-        //        po.Invoke("ConfirmClick");
-        //    }
-        //    catch(TargetInvocationException e)
-        //    {
-        //        Assert.True(e.InnerException is InvalidOperationException);
-        //    }
-        //}
-        //private void CloseMock()
-        //{
-        //    closeCounter++;
-        //}
+            mediator.Verify(x => x.NotifyColleagues(MVVMMessage.OpenNewControl, null), Times.Once);
+        }
     }
 }
