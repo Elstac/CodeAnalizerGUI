@@ -36,7 +36,6 @@ namespace CodeAnalizerGUI.Windows
                 throw new InvalidOperationException("No path selected");
 
             Creator.CreateConfiguration(Name, Description, Path);
-            Mediator.SendData(true);
             EndOperation();
         }
 

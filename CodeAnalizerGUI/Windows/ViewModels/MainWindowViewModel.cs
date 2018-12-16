@@ -21,11 +21,10 @@ namespace CodeAnalizerGUI.Windows.ViewModels
     {
         #region Fields
         private List<NavigationButtonModel> navigationButtons;
-        private UserControl contributorsControl;
-        private IButtonsGenerator buttonsGenerator;
-        private IButtonsListFactory toolbarGenerator;
+        private IButtonsGenerator navigationFactory;
+        private IButtonsListFactory toolbarFactory;
         private IVMStack commStack;
-        private UserControl mainContent;
+        private object mainContent;
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<ButtonModel> toolBarButtons;
 
@@ -35,82 +34,61 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         #region Properties
         public List<NavigationButtonModel> NavigationButtons { get => navigationButtons; set => navigationButtons = value; }
         public ObservableCollection<ButtonModel> ToolbarButtons { get => toolBarButtons; set => toolBarButtons = value; }
-        public IControlsMediator Mediator { get => mediator;
-            set
-            {
-                mediator = value;
-            } }
-        public UserControl MainContent { get => mainContent; set { mainContent = value; } }
-        public IButtonsGenerator ButtonsGenerator { get => buttonsGenerator; set { buttonsGenerator = value;LoadNavigationButtons(); } }
-
-        public UserControl ContributorsControl { get => contributorsControl; set => contributorsControl = value; }
-        public IButtonsListFactory ToolbarGenerator { get => toolbarGenerator; set { toolbarGenerator = value; LoadToolbarButtons(); } }
-
-        public IVMStack CommStack { get => commStack; set => commStack = value; }
+        public object MainContent { get => mainContent; set { mainContent = value; RaisePropertyChange("MainContent"); } }
+        
         #endregion
 
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IButtonsGenerator navigationFactory,IButtonsListFactory toolbarFactory, IVMStack commStack)
         {
+            this.navigationFactory = navigationFactory;
+            this.toolbarFactory = toolbarFactory;
+            this.commStack = commStack;
+
+            LoadNavigationButtons();
+            LoadToolbarButtons();
+
             TestCommand = new SimpleCommand(RunTest);
             VMMediator.Instance.Register(MVVMMessage.OpenNewControl, LoadContent);
             VMMediator.Instance.Register(MVVMMessage.CloseControl, RevertContent);
+            VMMediator.Instance.Register(MVVMMessage.OpenNewRootControl, LoadRoot);
         }
 
         private void LoadToolbarButtons()
         {
-            toolBarButtons = toolbarGenerator.GenerateButtons();
+            toolBarButtons = toolbarFactory.GenerateButtons();
             ToolbarButtons.Add(new ButtonModel(new SimpleCommand(RunTest), "TEST"));
         }
-
-        int pom = 0;
+        
         public void RunTest()
         {
-            var tmp = contributorsControl.DataContext as ContributorsViewModel;
-            if (pom == 0)
-            {
-                try
-                {
-                    tmp.LoadContributors();
-                }
-                catch (System.IO.FileNotFoundException e)
-                {
-                    Console.WriteLine("Brak pliku: " + e.FileName);
-                }
-                mediator.LoadMainControl(contributorsControl);
-                pom++;
-            }
-            else
-            {
-                tmp.SaveContributors();
-            }
-
-        }
-
-        public void DailyStats()
-        {
-
         }
 
         private void LoadNavigationButtons()
         {
-            navigationButtons = ButtonsGenerator.GenerateButtons();
+            navigationButtons = navigationFactory.GenerateButtons();
         }
 
         private void RaisePropertyChange(string property)
         {
-            PropertyChanged(this, new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
         
         private void LoadContent(object viewModel)
         {
-            mainContent.Content = viewModel;
-            CommStack.NewVM(viewModel as ViewModel);
+            MainContent = viewModel;
+            commStack.NewVM(viewModel as ViewModel);
+        }
+
+        private void LoadRoot(object viewModel)
+        {
+            MainContent = viewModel;
+            commStack.RootVM(viewModel as ViewModel);
         }
 
         private void RevertContent(object viewModel)
         {
-            mainContent.Content = CommStack.PreviousVM();
+            MainContent = commStack.PreviousVM();
         }
     }
 }

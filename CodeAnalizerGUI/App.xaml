@@ -26,5 +26,9 @@
         <DataTemplate DataType="{x:Type vm:GlobalStatisticsViewModel}">
             <local:GlobalStatsControl/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:ButtonPanelViewModel}">
+            <v:ButtonPanelView/>
+        </DataTemplate>
     </Application.Resources>
 </Application>

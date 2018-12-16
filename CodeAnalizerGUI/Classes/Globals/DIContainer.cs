@@ -39,22 +39,11 @@ namespace CodeAnalizerGUI.Classes
             builder.Register<IButtonsListFactory>((c, p) =>
             {
                 var type = p.Named<ListType>("listType");
-                IControlsMediator mediator;
-                try
-                {
-                    mediator = p.Named<IControlsMediator>("mediator");
-                }
-                catch(InvalidOperationException)
-                {
-                    if (type == ListType.start)
-                        throw new InvalidOperationException("No mediator");
-                    else
-                        mediator = null;
-                }
+               
                 switch (type)
                 {
                     case ListType.start:
-                        return new StartingToolbarFactory { Mediator = mediator };
+                        return new StartingToolbarFactory();
                     case ListType.pCreation:
                         return new ProjectCreationButtonsFactory();
                     default:

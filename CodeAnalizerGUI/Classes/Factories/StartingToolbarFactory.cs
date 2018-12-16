@@ -9,21 +9,25 @@ using CodeAnalizerGUI.Abstractions;
 using CodeAnalizerGUI.Views;
 using System.Windows.Input;
 using Autofac;
+using CodeAnalizerGUI.ViewModels;
+
 namespace CodeAnalizerGUI.Classes
 {
     class StartingToolbarFactory : ButtonsListFactory
     {
-        public IControlsMediator Mediator { get; set; }
         public StartingToolbarFactory()
         {
             names = new string[] { "New Project", "Open Project" };
             commands = new ICommand[] { new SimpleCommand(NewProject), new SimpleCommand(OpenProject) };
         }
+
         private void NewProject()
         {
             var buttons = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType", ListType.pCreation)).GenerateButtons();
-            var view = Mediator.CreateControl(typeof(ButtonPanelView), Mediator, new object[] { buttons });
-            Mediator.LoadMainControl(view);
+            var view = DIContainer.Container.Resolve<ButtonPanelViewModel>();
+            view.ButtonsList = buttons;
+
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, view);
         }
 
         private void OpenProject()

@@ -76,8 +76,8 @@ namespace CodeAnalizerGUI.Classes
 
             UserControl view = (UserControl)Activator.CreateInstance(viewType);
             object viewModel = (ViewModel)Activator.CreateInstance(dic[viewType]);
-            (viewModel as ViewModel).View = view;
-            (viewModel as ViewModel).Mediator = mediator;
+            //(viewModel as ViewModel).View = view;
+            //(viewModel as ViewModel).Mediator = mediator;
             view.DataContext = viewModel;
 
             return view;

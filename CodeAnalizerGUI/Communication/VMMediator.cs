@@ -9,8 +9,10 @@ namespace CodeAnalizerGUI
     public enum MVVMMessage
     {
         OpenNewControl,
+        OpenNewRootControl,
         CloseControl,
         NewContributorCreated,
+        AuthorSelected,
         FileChosed,
         ImageChosed
     }

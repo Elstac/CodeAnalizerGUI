@@ -27,5 +27,11 @@ namespace CodeAnalizerGUI
             stack.Pop();
             return stack.Peek();
         }
+
+        public void RootVM(ViewModel viewModel)
+        {
+            stack.Clear();
+            stack.Push(viewModel);
+        }
     }
 }

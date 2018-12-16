@@ -73,8 +73,7 @@ namespace CodeAnalizerGUI.ViewModels
 
         public void Cancel()
         {
-            mediator.BreakOperation();
-            mediator.CloseControl();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl,this);
         }
 
         public void ChoseImage()

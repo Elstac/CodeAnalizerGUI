@@ -30,7 +30,7 @@ namespace CodeAnalizerGUI.Classes
 
         public override void LoadContent(UserControl control)
         {
-            mainWindow.MainContent= control;
+            //mainWindow.MainContent= control;
         }
         
                 

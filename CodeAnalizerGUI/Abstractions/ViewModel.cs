@@ -9,8 +9,6 @@ namespace CodeAnalizerGUI.Abstractions
 {
     public abstract class ViewModel
     {
-        public UserControl View { get; set; }
-        protected IControlsMediator mediator;
-        public IControlsMediator Mediator { get => mediator; set => mediator = value; }
+
     }
 }

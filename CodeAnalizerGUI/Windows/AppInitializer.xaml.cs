@@ -40,25 +40,14 @@ namespace CodeAnalizerGUI.Windows
         private void InitializeMainWindow()
         {
             MainWindow win = new MainWindow();
-            MainWindowViewModel vm = new MainWindowViewModel();
-            MainWindowControlsMediator mainWindowControlsMediator = new MainWindowControlsMediator(vm);
+            var toolbarFactory = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType",ListType.start));
+            var vm = DIContainer.Container.Resolve<MainWindowViewModel>(new NamedParameter("toolbarFactory",toolbarFactory));
 
-            SubControlMediator subMed = new SubControlMediator();
-            subMed.Parent = mainWindowControlsMediator;
-
-            UserControl list = mainWindowControlsMediator.CreateControl(typeof(ManageableFileView), subMed, new object[] { });
+            win.DataContext = vm;
 
             var contrib = DIContainer.Container.Resolve<ContributorsViewModel>();
-            win.DataContext = vm;
-            vm.Mediator = mainWindowControlsMediator;
-            vm.ButtonsGenerator = new NavigationButtonsGenerator( contrib);
-            vm.ToolbarGenerator = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType", ListType.start),
-                                                                                     new NamedParameter("mediator", mainWindowControlsMediator));
-
-            vm.CommStack = DIContainer.Resolve<IVMStack>();
-            vm.MainContent = new ContentHolder();
-
             VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, contrib);
+
             win.Show();
             Close();
         }
@@ -66,7 +55,7 @@ namespace CodeAnalizerGUI.Windows
         private static void InitializeFactory()
         {
             ControlFactory fac = new ControlFactory();
-            //fac.RegisterViewType(typeof(ContributorsControl), typeof(ContributorsViewModel));
+
             fac.RegisterViewType(typeof(GitBinderControl), typeof(GitBinderViewModel));
             fac.RegisterViewType(typeof(NewContributorControl), typeof(NewContributorViewModel));
             fac.RegisterViewType(typeof(ManageableFileView), typeof(ManageableFileListModel));

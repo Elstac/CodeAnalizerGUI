@@ -33,12 +33,12 @@ namespace CodeAnalizerGUI.ViewModels
         {
             if (selectedAuthor == null)
                 throw new NullReferenceException("No author selected");
-            mediator.SendData(authors.IndexOf(selectedAuthor));
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.AuthorSelected, selectedAuthor);
         }
 
         public void Close()
         {
-            mediator.CloseControl();
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
     }
 }

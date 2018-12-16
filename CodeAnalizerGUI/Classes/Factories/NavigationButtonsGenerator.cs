@@ -16,9 +16,9 @@ namespace CodeAnalizerGUI.Classes
 {
     class NavigationButtonsGenerator : Interfaces.IButtonsGenerator
     {
-        private object contribControl;
+        private ContributorsViewModel contribControl;
 
-        public NavigationButtonsGenerator( object contrib)
+        public NavigationButtonsGenerator( ContributorsViewModel contrib)
         {
             contribControl = contrib;
         }

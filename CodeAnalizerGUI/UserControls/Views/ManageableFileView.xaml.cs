@@ -29,15 +29,6 @@ namespace CodeAnalizerGUI
         {
             InitializeComponent();
         }
-
-        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
-        {
-            base.OnPropertyChanged(e);
-            if (e.Property.ToString() == "DataContext")
-            {
-                ViewModel vm = e.NewValue as ViewModel;
-                vm.View = this;
-            }
-        }
+        
     }
 }

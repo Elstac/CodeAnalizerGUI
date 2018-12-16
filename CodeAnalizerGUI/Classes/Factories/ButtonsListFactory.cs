@@ -13,6 +13,7 @@ namespace CodeAnalizerGUI.Classes
         start,
         pCreation
     }
+
     public abstract class ButtonsListFactory : IButtonsListFactory
     {
         protected string[] names;
