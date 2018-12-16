@@ -24,12 +24,7 @@ namespace CodeAnalizerGUI.Models
         public string Email { get => email; set { email = value; RaisePropertyChanged("Email"); } }
         public string PathToImage { get => pathToImage; set { pathToImage = value; RaisePropertyChanged("PathToImage"); } }
         public List<string> PathsToFiles { get => pathsToFiles; set => pathsToFiles = value; }
-
-        public override bool Equals(object obj)
-        {
-            ContributorModel tem = obj as ContributorModel;
-            return (tem.name == name && tem.pathToImage == pathToImage && tem.email == email);
-        }
+        
 
     }
 }

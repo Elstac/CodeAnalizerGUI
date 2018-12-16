@@ -27,7 +27,7 @@ namespace CodeAnalizerGUITests
             var mediator = new Mock<IVMMediator>();
             var logic = new Mock<ILogicHolder>();
 
-            t = new NewContributorViewModel(null);
+            t = null;
             d = null;
 
             logic.Setup(h => h.GetContributorList()).Returns(new List<ContributorModel>());

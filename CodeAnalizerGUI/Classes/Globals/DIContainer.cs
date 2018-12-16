@@ -69,6 +69,7 @@ namespace CodeAnalizerGUI.Classes
                      new NamedParameter("contributor", cm));
                 };
             });
+            
             container = builder.Build();
         }
 

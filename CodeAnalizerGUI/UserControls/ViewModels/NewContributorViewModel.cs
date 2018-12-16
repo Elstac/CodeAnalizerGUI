@@ -17,6 +17,8 @@ namespace CodeAnalizerGUI.ViewModels
     public class NewContributorViewModel:ViewModel
     {
         private readonly string[] imageFormats= {".png",".jpg",".bmp" };
+        private FileExplorerViewModel.Factory explorerFactory;
+        private IVMMediator mediator;
 
         private ContributorModel contributor;
         private IManageableFileList fileList;
@@ -30,20 +32,22 @@ namespace CodeAnalizerGUI.ViewModels
 
         public delegate NewContributorViewModel Factory(IManageableFileList fileList);
 
-        public NewContributorViewModel(IManageableFileList fileList)
+        public NewContributorViewModel(IManageableFileList fileList, FileExplorerViewModel.Factory explorerFactory, IVMMediator mediator)
         {
-            Initialize(fileList);
+            Initialize(fileList,explorerFactory,mediator);
         }
 
-        public NewContributorViewModel(IManageableFileList fileList,ContributorModel contributor)
+        public NewContributorViewModel(IManageableFileList fileList, FileExplorerViewModel.Factory explorerFactory,ContributorModel contributor, IVMMediator mediator)
         {
             this.contributor = contributor;
-            Initialize(fileList);
+            Initialize(fileList, explorerFactory,mediator);
         }
 
-        private void Initialize(IManageableFileList fileList)
+        private void Initialize(IManageableFileList fileList, FileExplorerViewModel.Factory explorerFactory,IVMMediator mediator)
         {
             this.fileList = fileList;
+            this.mediator = mediator;
+            this.explorerFactory = explorerFactory;
 
             SendCommand = new SimpleCommand(Send);
             CloseCommand = new SimpleCommand(Cancel);
@@ -52,7 +56,7 @@ namespace CodeAnalizerGUI.ViewModels
 
             contributor = new ContributorModel();
 
-            VMMediator.Instance.Register(MVVMMessage.FileChosed, ReciveFilePath);
+            mediator.Register(MVVMMessage.FileChosed, ReciveFilePath);
         }
 
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
@@ -64,8 +68,8 @@ namespace CodeAnalizerGUI.ViewModels
             if (contributor.PathsToFiles.Count == 0)
                 throw new NoFileSelectedException("Contributor contains no file");
 
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.NewContributorCreated, contributor);
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
+            mediator.NotifyColleagues(MVVMMessage.NewContributorCreated, contributor);
+            mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         public void OpenBinder()
@@ -75,13 +79,12 @@ namespace CodeAnalizerGUI.ViewModels
 
         public void Cancel()
         {
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl,this);
+            mediator.NotifyColleagues(MVVMMessage.CloseControl,this);
         }
 
         public void ChoseImage()
         {
-            var fac = DIContainer.Resolve<FileExplorerViewModel.Factory>();
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, fac.Invoke(imageFormats));
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, explorerFactory.Invoke(imageFormats));
         }
         
         public void ReciveFilePath(object path)

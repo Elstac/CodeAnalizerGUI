@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Classes;
-using CodeAnalizerGUI.ViewModels;
+using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Abstractions;
 
 using System.IO;
