@@ -10,12 +10,6 @@ namespace CodeAnalizerGUI.ProjectModule
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<string> Files { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            var tmp = obj as ProjectConfig;
-            return (tmp.Files == Files && tmp.Description == Description && tmp.Name == Name);
-        }
+        public string Directory{ get; set; }
     }
 }

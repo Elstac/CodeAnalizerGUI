@@ -57,5 +57,10 @@ namespace CodeAnalizerGUI
         {
             return contributors;
         }
+
+        public void ResetHolder()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

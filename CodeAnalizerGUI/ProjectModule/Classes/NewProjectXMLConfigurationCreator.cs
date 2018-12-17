@@ -17,7 +17,7 @@ namespace CodeAnalizerGUI.ProjectModule
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 
-            var ret = new ProjectConfig() { Name = name, Description = description, Files = null };
+            var ret = new ProjectConfig() { Name = name, Description = description, Directory = path };
             StreamWriter writer = new StreamWriter(path + "//Configuration.xml");
             serializer.Serialize(writer, ret);
             writer.Close();

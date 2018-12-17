@@ -13,5 +13,6 @@ namespace CodeAnalizerGUI.Interfaces
         IFileMiner GetFileMiner(string[] paths,bool addToProject);
         IFileMiner GetGlobalFileMiner();
         List<ContributorModel> GetContributorList();
+        void ResetHolder();
     }
 }

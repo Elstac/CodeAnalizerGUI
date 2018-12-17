@@ -40,7 +40,7 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void CreateProject()
         {
-
+            var config = confCreator.CreateConfiguration(name, description, directory);
         }
 
         private void Cancel()
