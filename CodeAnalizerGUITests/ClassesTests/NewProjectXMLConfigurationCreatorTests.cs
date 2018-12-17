@@ -20,7 +20,7 @@ namespace CodeAnalizerGUITests.ClassesTests
             string name = "name";
             string des = "des";
 
-            var expected = new ProjectConfig() { Name = name, Description = des, Files = null };
+            var expected = new ProjectConfig() { Name = name, Description = des, Directory = null };
             var output =creator.CreateConfiguration(name, des, "D:\\CreatorTest");
 
             Assert.AreEqual(expected, output);
@@ -30,7 +30,7 @@ namespace CodeAnalizerGUITests.ClassesTests
         public void CreateFileInExistingDirectory()
         {
             string name = "name", des = "des", dir = "D:\\CreatorTest";
-            var expected = new ProjectConfig() { Name = name, Description = des, Files = null };
+            var expected = new ProjectConfig() { Name = name, Description = des, Directory = null };
             if (Directory.Exists(dir))
                 Directory.Delete(dir, true);
 
@@ -43,7 +43,7 @@ namespace CodeAnalizerGUITests.ClassesTests
         public void CreateFileInNewDirectory()
         {
             string name = "name", des = "des", dir = "D:\\CreatorTest";
-            var expected = new ProjectConfig() { Name = name, Description = des, Files = null };
+            var expected = new ProjectConfig() { Name = name, Description = des, Directory = null };
             if (Directory.Exists(dir))
                 Directory.Delete(dir, true);
             

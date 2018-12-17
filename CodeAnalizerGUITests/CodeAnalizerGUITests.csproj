@@ -75,6 +75,7 @@
     <Compile Include="ClassesTests\ControlFactoryTests.cs" />
     <Compile Include="ClassesTests\FileCollectorTests.cs" />
     <Compile Include="ClassesTests\NewProjectXMLConfigurationCreatorTests.cs" />
+    <Compile Include="ClassesTests\ProjectInitializerTests.cs" />
     <Compile Include="MainWindowControlsTests\GitBinderTests.cs" />
     <Compile Include="MainWindowControlsTests\NDNewProjectViewModelTests.cs" />
     <Compile Include="MainWindowControlsTests\NewContributorTests.cs" />
