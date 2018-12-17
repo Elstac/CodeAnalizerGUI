@@ -41,16 +41,17 @@ namespace CodeAnalizerGUI.ViewModels
         private void CreateProject()
         {
             var config = confCreator.CreateConfiguration(name, description, directory);
+            mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         private void Cancel()
         {
-
+            mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         private void OpenFileExplorer()
         {
-
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, explorerFactory.Invoke(new string[] { }));
         }
 
         private void ReciveDirectory(object dir)
