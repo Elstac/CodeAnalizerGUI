@@ -26,16 +26,18 @@ namespace CodeAnalizerGUITests.ClassesTests
         public void Initialize()
         {
             Directory.CreateDirectory(path);
-
+        }
+        [SetUp]
+        public void SetUp()
+        {
             creatorMock = new Mock<INewProjectConfigurationCreator>();
 
             logicHolderMock = new Mock<ILogicHolder>();
 
             mediatorMock = new Mock<IVMMediator>();
 
-            initializer = new ProjectInitializer(logicHolderMock.Object, creatorMock.Object,mediatorMock.Object);
+            initializer = new ProjectInitializer(logicHolderMock.Object, creatorMock.Object, mediatorMock.Object);
         }
-
         [Test]
         public void Pass_arguments_to_config_creator()
         {

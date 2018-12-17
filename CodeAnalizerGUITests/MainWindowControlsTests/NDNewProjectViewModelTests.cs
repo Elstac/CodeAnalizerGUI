@@ -19,19 +19,15 @@ namespace CodeAnalizerGUITests.MainWindowControlsTests
     [TestFixture]
     class NDNewProjectViewModelTests
     {
-        Mock<INewProjectConfigurationCreator> creator;
+        Mock<IProjectInitializer> creator;
         Mock<IVMMediator> mediator;
         private NewProjectViewModel toTest;
-        private int closeCounter;
         [SetUp]
         public void Setup()
         {
-            creator = new Mock<INewProjectConfigurationCreator>();
-            creator.Setup(h => h.CreateConfiguration(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
+            creator = new Mock<IProjectInitializer>();
 
             mediator = new Mock<IVMMediator>();
-            mediator.Setup(foo => foo.Register(It.IsAny<MVVMMessage>(), It.IsAny<Action<object>>()));
-            mediator.Setup(h => h.NotifyColleagues(It.IsAny<MVVMMessage>(), It.IsAny<object>()));
 
             toTest = new NewProjectViewModel(creator.Object, mediator.Object, (string[] s) => {return null; });
         }
@@ -49,13 +45,12 @@ namespace CodeAnalizerGUITests.MainWindowControlsTests
             var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
             po.Invoke("CreateProject");
 
-            creator.Verify(x => x.CreateConfiguration(name, des, path), Times.Once);
+            creator.Verify(x => x.Initialize(name, des, path), Times.Once);
         }
 
         [Test]
         public void Send_close_msg_after_confirm()
         {
-            closeCounter = 0;
             toTest.Name = "a";
             toTest.Directory = "[";
 
