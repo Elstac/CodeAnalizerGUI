@@ -47,7 +47,7 @@ namespace CodeAnalizerGUITests.ClassesTests
         [Test]
         public void Clear_logic_holder_after_creating_new_project()
         {
-            initializer.Initialize("", "", path);
+            initializer.Initialize("a", "", path);
 
             logicHolderMock.Verify(x => x.ResetHolder(), Times.Once);
         }
@@ -55,7 +55,7 @@ namespace CodeAnalizerGUITests.ClassesTests
         [Test]
         public void Create_resource_directory_in_project_directory()
         {
-            initializer.Initialize("", "", path);
+            initializer.Initialize("a", "", path);
 
             Assert.True(Directory.Exists(path + "\\Resources"));
         }
@@ -65,9 +65,7 @@ namespace CodeAnalizerGUITests.ClassesTests
         {
             initializer.Initialize("a", "b", path);
 
-            var expectedConfig = new ProjectConfig() { Name = "a", Description = "b", Directory = path };
-
-            mediatorMock.Verify(x => x.NotifyColleagues(MVVMMessage.ProjectCreated, expectedConfig), Times.Once);
+            mediatorMock.Verify(x => x.NotifyColleagues(MVVMMessage.ProjectCreated, It.IsAny<ProjectConfig>()), Times.Once);
         }
         [Test]
         public void Throw_exception_after_recive__no_name()

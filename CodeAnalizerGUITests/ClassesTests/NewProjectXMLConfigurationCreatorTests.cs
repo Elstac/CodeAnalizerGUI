@@ -20,7 +20,7 @@ namespace CodeAnalizerGUITests.ClassesTests
             string name = "name";
             string des = "des";
 
-            var expected = new ProjectConfig() { Name = name, Description = des, Directory = null };
+            var expected = new ProjectConfig() { Name = name, Description = des, Directory = "D:\\CreatorTest" };
             var output =creator.CreateConfiguration(name, des, "D:\\CreatorTest");
 
             Assert.AreEqual(expected, output);
