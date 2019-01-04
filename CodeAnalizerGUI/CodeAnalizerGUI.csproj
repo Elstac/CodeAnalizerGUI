@@ -113,6 +113,7 @@
     <Compile Include="DataSavingModule\Classes\DataManager.cs" />
     <Compile Include="DataSavingModule\Classes\XmlDataLoader.cs" />
     <Compile Include="DataSavingModule\Classes\XmlDataSaver.cs" />
+    <Compile Include="DataSavingModule\Interfaces\IDataManager.cs" />
     <Compile Include="DataSavingModule\Interfaces\ILoadBehavior.cs" />
     <Compile Include="DataSavingModule\Interfaces\ISaveBehavior.cs" />
     <Compile Include="Exceptions\DependencyMadnessException.cs" />
@@ -186,6 +187,9 @@
       <DependentUpon>GlobalStatsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ViewModels\GitBinderViewModel.cs" />
+    <Compile Include="UserControls\Views\NewProjectView.xaml.cs">
+      <DependentUpon>NewProjectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Views\StatisticsControl.xaml.cs">
       <DependentUpon>StatisticsControl.xaml</DependentUpon>
     </Compile>
@@ -231,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Views\GlobalStatsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Views\NewProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

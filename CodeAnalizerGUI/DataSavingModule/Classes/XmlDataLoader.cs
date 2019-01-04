@@ -17,24 +17,14 @@ namespace CodeAnalizerGUI.DataSavingModule
         {
             serializer = new XmlSerializer(typeof(T));
         }
-
-        public XmlDataLoader(string pathToFile)
-        {
-            path = pathToFile;
-            serializer = new XmlSerializer(typeof(T));
-        }
-
-        public T Load()
+        
+        public T Load(string path)
         {
             StreamReader reader = new StreamReader(path);
             T ret= (T)serializer.Deserialize(reader);
             reader.Close();
             return ret;
         }
-
-        public void SetPath(string path)
-        {
-            this.path = path + Properties.Settings.Default.contibFile;
-        }
+        
     }
 }

@@ -14,7 +14,7 @@ namespace CodeAnalizerGUI.ViewModels
         private string description;
         private string directory;
 
-        private IProjectInitializer confCreator;
+        private IProjectInitializer initializer;
         private IVMMediator mediator;
         private FileExplorerViewModel.Factory explorerFactory;
 
@@ -22,11 +22,12 @@ namespace CodeAnalizerGUI.ViewModels
         public ICommand CancelCommand { get; set; }
         public ICommand ChoseFileCommand { get; set; }
 
-        public NewProjectViewModel(IProjectInitializer configurationCreator, IVMMediator mediator, FileExplorerViewModel.Factory explorerFactory)
+        public NewProjectViewModel(IProjectInitializer initializer, IVMMediator mediator, FileExplorerViewModel.Factory explorerFactory)
         {
             this.explorerFactory = explorerFactory;
             this.mediator = mediator;
-            confCreator = configurationCreator;
+            this.initializer = initializer;
+
             ConfirmCommand = new SimpleCommand(CreateProject);
             CancelCommand = new SimpleCommand(Cancel);
             ChoseFileCommand = new SimpleCommand(OpenFileExplorer);
@@ -41,7 +42,8 @@ namespace CodeAnalizerGUI.ViewModels
         private void CreateProject()
         {
             mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
-            confCreator.Initialize(name, description, directory);
+           
+            initializer.Initialize(name, description, directory);
         }
 
         private void Cancel()

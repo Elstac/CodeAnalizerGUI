@@ -15,8 +15,14 @@ namespace CodeAnalizerGUI.Classes
 {
     class StartingToolbarFactory : ButtonsListFactory
     {
-        public StartingToolbarFactory()
+        private IVMMediator mediator;
+        private FileExplorerViewModel.Factory explorer;
+        
+        public StartingToolbarFactory(IVMMediator mediator,FileExplorerViewModel.Factory explorer)
         {
+            this.explorer = explorer;
+            this.mediator = mediator;
+            mediator.Register(MVVMMessage.FileChosed)
             names = new string[] { "New Project", "Open Project" };
             commands = new ICommand[] { new SimpleCommand(NewProject), new SimpleCommand(OpenProject) };
         }
@@ -27,12 +33,12 @@ namespace CodeAnalizerGUI.Classes
             var view = DIContainer.Container.Resolve<ButtonPanelViewModel>();
             view.ButtonsList = buttons;
 
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, view);
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, view);
         }
 
         private void OpenProject()
         {
-            throw new NotImplementedException();
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, explorer.Invoke(new string[] { ".xml" }));
         }
     }
 }

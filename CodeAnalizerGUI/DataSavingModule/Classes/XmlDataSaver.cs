@@ -11,7 +11,6 @@ namespace CodeAnalizerGUI.DataSavingModule
 {
     class XmlDataSaver<T> : ISaveBehavior<T>
     {
-        private string path;
         private XmlSerializer serializer;
 
         public XmlDataSaver()
@@ -19,22 +18,12 @@ namespace CodeAnalizerGUI.DataSavingModule
             serializer = new XmlSerializer(typeof(T));
         }
 
-        public XmlDataSaver(string pathToFile)
-        {
-            path = pathToFile;
-            serializer = new XmlSerializer(typeof(T));
-        }
-
-        public void Save(T dataObject)
+        public void Save(T dataObject,string path)
         {
             StreamWriter writer = new StreamWriter(path);
             serializer.Serialize(writer, dataObject);
             writer.Close();
         }
-
-        public void SetPath(string path)
-        {
-            this.path = path+Properties.Settings.Default.contibFile;
-        }
+        
     }
 }

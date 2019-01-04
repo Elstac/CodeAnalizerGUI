@@ -7,19 +7,24 @@ using CodeAnalizerGUI.Interfaces;
 using CodeAnalizerGUI.Models;
 using System.Windows.Input;
 using CodeAnalizerGUI.Abstractions;
+using CodeAnalizerGUI.ViewModels;
+using CodeAnalizerGUI.Classes;
 namespace CodeAnalizerGUI.Classes
 {
     class ProjectCreationButtonsFactory : ButtonsListFactory
     {
-        public ProjectCreationButtonsFactory()
+        private IVMMediator mediator;
+        public ProjectCreationButtonsFactory(IVMMediator mediator)
         {
+            this.mediator = mediator;
             names = new string[] { "New project", "GIT", "Directory" };
             commands = new ICommand[] {new SimpleCommand(NewProject),new SimpleCommand(ProjectFromGIT),new SimpleCommand(ProjectFromDirectory) };
         }
 
         private void NewProject()
         {
-            
+            var control = DIContainer.Resolve<NewProjectViewModel>();
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, control);
         }
 
         private void ProjectFromGIT()

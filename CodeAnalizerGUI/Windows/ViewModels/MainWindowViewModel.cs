@@ -14,7 +14,10 @@ using CodeAnalizerGUI.Classes;
 using CodeAnalizerGUI.Windows.Models;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.Models;
+using CodeAnalizerGUI.ProjectModule;
 using System.Reflection;
+using Autofac;
+
 namespace CodeAnalizerGUI.Windows.ViewModels
 {
     public class MainWindowViewModel : ViewModel,INotifyPropertyChanged
@@ -24,6 +27,7 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         private IButtonsGenerator navigationFactory;
         private IButtonsListFactory toolbarFactory;
         private IVMStack commStack;
+        private IVMMediator mediator;
         private object mainContent;
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<ButtonModel> toolBarButtons;
@@ -39,8 +43,9 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         #endregion
 
 
-        public MainWindowViewModel(IButtonsGenerator navigationFactory,IButtonsListFactory toolbarFactory, IVMStack commStack)
+        public MainWindowViewModel(IButtonsGenerator navigationFactory,IButtonsListFactory toolbarFactory, IVMStack commStack,IVMMediator mediator)
         {
+            this.mediator = mediator;
             this.navigationFactory = navigationFactory;
             this.toolbarFactory = toolbarFactory;
             this.commStack = commStack;
@@ -49,9 +54,10 @@ namespace CodeAnalizerGUI.Windows.ViewModels
             LoadToolbarButtons();
 
             TestCommand = new SimpleCommand(RunTest);
-            VMMediator.Instance.Register(MVVMMessage.OpenNewControl, LoadContent);
-            VMMediator.Instance.Register(MVVMMessage.CloseControl, RevertContent);
-            VMMediator.Instance.Register(MVVMMessage.OpenNewRootControl, LoadRoot);
+            mediator.Register(MVVMMessage.OpenNewControl, LoadContent);
+            mediator.Register(MVVMMessage.CloseControl, RevertContent);
+            mediator.Register(MVVMMessage.OpenNewRootControl, LoadRoot);
+            mediator.Register(MVVMMessage.ProjectCreated, OpenNewProject);
         }
 
         private void LoadToolbarButtons()
@@ -89,6 +95,19 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         private void RevertContent(object viewModel)
         {
             MainContent = commStack.PreviousVM();
+        }
+
+        private void OpenNewProject(object args)
+        {
+            var config = args as ProjectConfig;
+
+            Properties.Settings.Default.ProjectPath = config.Directory;
+
+            var lh = DIContainer.Resolve<ILogicHolder>();
+            lh.LoadContributors(config.Directory + Properties.Settings.Default.contibFile);
+
+            MainContent = DIContainer.Container.Resolve<ContributorsViewModel>(new NamedParameter("path",config.Directory+"Contributors.xml"));
+            commStack.RootVM(mainContent as ViewModel);
         }
     }
 }

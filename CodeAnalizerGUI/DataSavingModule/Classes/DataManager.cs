@@ -4,27 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Models;
+using CodeAnalizerGUI.Interfaces;
 namespace CodeAnalizerGUI.DataSavingModule
 {
-    public class DataManager
+    public class DataManager:IDataManager
     {
         private ISaveBehavior<ContributorModel[]> contributorSaver;
         private ILoadBehavior<ContributorModel[]> contributorLoader;
 
-        public DataManager()
+        public DataManager(ISaveBehavior<ContributorModel[]> contributorSaver, ILoadBehavior<ContributorModel[]> contributorLoader)
         {
-            
+            this.contributorSaver = contributorSaver;
+            this.contributorLoader = contributorLoader;
         }
 
-        public ISaveBehavior<ContributorModel[]> ContributorSaver { get => contributorSaver; set => contributorSaver = value; }
-        public ILoadBehavior<ContributorModel[]> ContributorLoader { get => contributorLoader; set => contributorLoader = value; }
-
-        public void SetPath(string path)
+        public ContributorModel[] LoadContributors(string path)
         {
-            if (!System.IO.Directory.Exists(path))
-                System.IO.Directory.CreateDirectory(path);
-            contributorLoader.SetPath(path);
-            contributorSaver.SetPath(path);
+            return contributorLoader.Load(path);
+        }
+
+        public void SaveContributors(ContributorModel[] contributors, string path)
+        {
+            contributorSaver.Save(contributors, path);
         }
     }
 }

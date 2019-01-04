@@ -24,11 +24,13 @@ namespace CodeAnalizerGUI.ViewModels
         private ILogicHolder logicHolder;
         private Func<NewContributorViewModel> newContributorVMFactory;
         private Func<ContributorModel, ContributorDetailsViewModel> detailsVMFactory;
+        private string pathToContributors;
 
         public ObservableCollection<ContributorButtonModel> Contributors { get => contributors; set => contributors = value; }
         
-        public ContributorsViewModel(IVMMediator mediator,ILogicHolder holder,Func<NewContributorViewModel> newContributorVMFactory, Func<ContributorModel, ContributorDetailsViewModel> detailsVMFactory)
+        public ContributorsViewModel(IVMMediator mediator,ILogicHolder holder,Func<NewContributorViewModel> newContributorVMFactory, Func<ContributorModel, ContributorDetailsViewModel> detailsVMFactory,string path)
         {
+            pathToContributors = path;
             this.detailsVMFactory = detailsVMFactory;
             this.newContributorVMFactory = newContributorVMFactory;
             this.mediator = mediator;
@@ -76,7 +78,7 @@ namespace CodeAnalizerGUI.ViewModels
 
         public void SaveContributors()
         {
-
+            logicHolder.SaveContributors(pathToContributors);
         }
 
         public void LoadContributors()

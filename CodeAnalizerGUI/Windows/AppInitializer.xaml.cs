@@ -45,9 +45,7 @@ namespace CodeAnalizerGUI.Windows
             var vm = DIContainer.Container.Resolve<MainWindowViewModel>(new NamedParameter("toolbarFactory",toolbarFactory));
 
             win.DataContext = vm;
-
-            var contrib = DIContainer.Container.Resolve<ContributorsViewModel>();
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, contrib);
+            
 
             win.Show();
             Close();

@@ -14,5 +14,7 @@ namespace CodeAnalizerGUI.Interfaces
         IFileMiner GetGlobalFileMiner();
         List<ContributorModel> GetContributorList();
         void ResetHolder();
+        void LoadContributors(string path);
+        void SaveContributors(string path);
     }
 }

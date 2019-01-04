@@ -23,10 +23,11 @@ namespace CodeAnalizerGUI.ViewModels
         private object selectedFile;
         private string[] formats;
         private ObservableCollection<TreeViewItem> treeItems;
+        private IVMMediator mediator;
 
         public delegate FileExplorerViewModel Factory(string[] formats);
 
-        public FileExplorerViewModel(string[] formats)
+        public FileExplorerViewModel(string[] formats,IVMMediator mediator)
         {
             this.formats = formats;
             treeItems = new ObservableCollection<TreeViewItem>();
@@ -37,6 +38,8 @@ namespace CodeAnalizerGUI.ViewModels
 
             SelectCommand = new SimpleCommand(Select);
             ExitCommand = new SimpleCommand(Exit);
+
+            this.mediator = mediator;
         }
 
         #region Properties
@@ -79,13 +82,16 @@ namespace CodeAnalizerGUI.ViewModels
 
         private void Select()
         {
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.FileChosed, selectedFile);
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
+            if (formats.Length == 0)
+                selectedFile += "\\";
+
+            mediator.NotifyColleagues(MVVMMessage.FileChosed, selectedFile);
+            mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         private void Exit()
         {
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.CloseControl, this);
+            mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 
         void FolderExpanded(object sender, RoutedEventArgs e)

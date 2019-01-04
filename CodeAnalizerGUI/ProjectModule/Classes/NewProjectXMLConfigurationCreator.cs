@@ -6,10 +6,12 @@ namespace CodeAnalizerGUI.ProjectModule
     public class NewProjectXMLConfigurationCreator : INewProjectConfigurationCreator
     {
         private XmlSerializer serializer;
+        private XmlSerializer contribSerializer;
 
         public NewProjectXMLConfigurationCreator()
         {
             serializer = new XmlSerializer(typeof(ProjectConfig));
+            
         }
 
         public ProjectConfig CreateConfiguration(string name, string description,string path)

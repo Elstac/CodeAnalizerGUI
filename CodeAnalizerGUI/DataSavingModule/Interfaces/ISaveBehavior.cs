@@ -8,7 +8,6 @@ namespace CodeAnalizerGUI.DataSavingModule
 {
     public interface ISaveBehavior<T>
     {
-        void Save(T dataObject);
-        void SetPath(string path);
+        void Save(T dataObject,string path);
     }
 }

@@ -31,9 +31,7 @@ namespace CodeAnalizerGUI.Classes
             
             builder.RegisterGeneric(typeof(XmlDataSaver<>)).As(typeof(ISaveBehavior<>));
             builder.RegisterGeneric(typeof(XmlDataLoader<>)).As(typeof(ILoadBehavior<>));
-
-            builder.Register(c => new DataManager() { ContributorLoader = c.Resolve<ILoadBehavior<ContributorModel[]>>(),
-                                                      ContributorSaver = c.Resolve<ISaveBehavior<ContributorModel[]>>()});
+            
 
             builder.Register(c => new FileCollector(Properties.Settings.Default.ProjectPath)).As<IFileCollector>();
             builder.Register<IButtonsListFactory>((c, p) =>
@@ -43,11 +41,11 @@ namespace CodeAnalizerGUI.Classes
                 switch (type)
                 {
                     case ListType.start:
-                        return new StartingToolbarFactory();
+                        return container.Resolve<StartingToolbarFactory>();
                     case ListType.pCreation:
-                        return new ProjectCreationButtonsFactory();
+                        return container.Resolve<ProjectCreationButtonsFactory>();
                     default:
-                        return new StartingToolbarFactory();
+                        return container.Resolve<StartingToolbarFactory>();
                 }
             });
 

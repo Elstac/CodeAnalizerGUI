@@ -19,8 +19,10 @@ namespace CodeAnalizerGUI.ViewModels
     {
         private List<string> files;
         private string[] allowedFormats;
-        public ManageableFileListModel(string[] allowedFormats)
+        private FileExplorerViewModel.Factory explorer;
+        public ManageableFileListModel(string[] allowedFormats, FileExplorerViewModel.Factory explorer)
         {
+            this.explorer = explorer;
             this.allowedFormats = allowedFormats;
             files = new List<string>();
             AddCommand = new SimpleCommand(OpenExplorer);
@@ -37,11 +39,8 @@ namespace CodeAnalizerGUI.ViewModels
         private void OpenExplorer()
         {
             string[] formats = new string[] { ".cs" };
-
-            var fac = DIContainer.Resolve<FileExplorerViewModel.Factory>();
-            var explorer = fac.Invoke(formats);
-
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, explorer);
+            
+            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, explorer.Invoke(formats));
         }
 
         private void ReciveFile(object path)

@@ -8,7 +8,6 @@ namespace CodeAnalizerGUI.DataSavingModule
 {
     public interface ILoadBehavior<T>
     {
-        T Load();
-        void SetPath(string path);
+        T Load(string path);
     }
 }
