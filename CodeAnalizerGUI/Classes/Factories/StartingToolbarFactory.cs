@@ -10,21 +10,24 @@ using CodeAnalizerGUI.Views;
 using System.Windows.Input;
 using Autofac;
 using CodeAnalizerGUI.ViewModels;
-
+using CodeAnalizerGUI.DataSavingModule;
+using CodeAnalizerGUI.ProjectModule;
 namespace CodeAnalizerGUI.Classes
 {
     class StartingToolbarFactory : ButtonsListFactory
     {
-        private IVMMediator mediator;
         private FileExplorerViewModel.Factory explorer;
-        
-        public StartingToolbarFactory(IVMMediator mediator,FileExplorerViewModel.Factory explorer)
+        private ILoadBehavior<ProjectConfig> loader;
+
+        public StartingToolbarFactory(IVMMediator mediator,FileExplorerViewModel.Factory explorer,ILoadBehavior<ProjectConfig> loader):base(mediator)
         {
+            this.loader = loader;
             this.explorer = explorer;
             this.mediator = mediator;
-            mediator.Register(MVVMMessage.FileChosed)
-            names = new string[] { "New Project", "Open Project" };
-            commands = new ICommand[] { new SimpleCommand(NewProject), new SimpleCommand(OpenProject) };
+            names = new List<string> { "New Project", "Open Project" };
+            commands = new List<ICommand> { new SimpleCommand(NewProject), new SimpleCommand(OpenProject) };
+
+            mediator.Register(MVVMMessage.FileChosed, ReciveProjectPath);
         }
 
         private void NewProject()
@@ -39,6 +42,17 @@ namespace CodeAnalizerGUI.Classes
         private void OpenProject()
         {
             mediator.NotifyColleagues(MVVMMessage.OpenNewControl, explorer.Invoke(new string[] { ".xml" }));
+        }
+
+        private void ReciveProjectPath(object arg)
+        {
+            if (!arg.ToString().EndsWith(".xml"))
+                return;
+
+            var path = arg.ToString();
+
+            var config = loader.Load(path);
+            mediator.NotifyColleagues(MVVMMessage.ProjectCreated, config);
         }
     }
 }

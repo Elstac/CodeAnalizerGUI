@@ -20,15 +20,17 @@ namespace CodeAnalizerGUI.ViewModels
         private List<string> files;
         private string[] allowedFormats;
         private FileExplorerViewModel.Factory explorer;
-        public ManageableFileListModel(string[] allowedFormats, FileExplorerViewModel.Factory explorer)
+        private IVMMediator mediator;
+        public ManageableFileListModel(string[] allowedFormats, FileExplorerViewModel.Factory explorer,IVMMediator mediator)
         {
+            this.mediator = mediator;
             this.explorer = explorer;
             this.allowedFormats = allowedFormats;
             files = new List<string>();
             AddCommand = new SimpleCommand(OpenExplorer);
             DeleteCommand = new SimpleCommand(DeleteFile);
 
-            VMMediator.Instance.Register(MVVMMessage.FileChosed, ReciveFile);
+            mediator.Register(MVVMMessage.FileChosed, ReciveFile);
         }
 
         public object SelectedItem { get; set; }
@@ -40,7 +42,7 @@ namespace CodeAnalizerGUI.ViewModels
         {
             string[] formats = new string[] { ".cs" };
             
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, explorer.Invoke(formats));
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, explorer.Invoke(formats));
         }
 
         private void ReciveFile(object path)

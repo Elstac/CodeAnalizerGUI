@@ -11,18 +11,26 @@ namespace CodeAnalizerGUI.Classes
     public enum ListType
     {
         start,
-        pCreation
+        pCreation,
+        pOpend
     }
 
     public abstract class ButtonsListFactory : IButtonsListFactory
     {
-        protected string[] names;
-        protected ICommand[] commands;
+        protected List<string> names;
+        protected List<ICommand> commands;
+
+        protected IVMMediator mediator;
+
+        public ButtonsListFactory(IVMMediator mediator)
+        {
+            this.mediator = mediator;
+        }
 
         public ObservableCollection<ButtonModel> GenerateButtons()
         {
             var ret = new ObservableCollection<ButtonModel>();
-            for (int i = 0; i < names.Length; i++)
+            for (int i = 0; i < names.Count; i++)
                 ret.Add(new ButtonModel(commands[i], names[i]));
 
             return ret;

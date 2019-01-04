@@ -95,6 +95,7 @@
     <Compile Include="Classes\CommunicationModel\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Classes\Factories\IViewModelFactory.cs" />
+    <Compile Include="Classes\Factories\OpenedProjecToolbarFactory.cs" />
     <Compile Include="Classes\Globals\DIContainer.cs" />
     <Compile Include="Classes\Factories\GeneralStatisticsGenerator.cs" />
     <Compile Include="Classes\FileCollector.cs" />
@@ -137,8 +138,10 @@
     <Compile Include="ProjectModule\Classes\NewProjectXMLConfigurationCreator.cs" />
     <Compile Include="ProjectModule\Classes\ProjectConfig.cs" />
     <Compile Include="ProjectModule\Classes\ProjectInitializer.cs" />
+    <Compile Include="ProjectModule\Classes\XMLProjectOpener.cs" />
     <Compile Include="ProjectModule\Interfacers\INewProjectConfigurationCreator.cs" />
     <Compile Include="ProjectModule\Interfacers\IProjectInitializer.cs" />
+    <Compile Include="ProjectModule\Interfacers\IProjectOpener.cs" />
     <Compile Include="UserControls\ViewModels\NewProjectViewModel.cs" />
     <Compile Include="UserControls\Views\ButtonWithDescription.xaml.cs">
       <DependentUpon>ButtonWithDescription.xaml</DependentUpon>

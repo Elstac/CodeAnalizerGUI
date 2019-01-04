@@ -25,7 +25,7 @@ namespace CodeAnalizerGUI
                 return null;
 
             stack.Pop();
-            return stack.Peek();
+            return stack.Count==0?null:stack.Peek();
         }
 
         public void RootVM(ViewModel viewModel)

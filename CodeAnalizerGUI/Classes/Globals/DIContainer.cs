@@ -37,13 +37,15 @@ namespace CodeAnalizerGUI.Classes
             builder.Register<IButtonsListFactory>((c, p) =>
             {
                 var type = p.Named<ListType>("listType");
-               
+
                 switch (type)
                 {
                     case ListType.start:
-                        return container.Resolve<StartingToolbarFactory>();
+                        return container.Resolve<OpenedProjecToolbarFactory>();
                     case ListType.pCreation:
                         return container.Resolve<ProjectCreationButtonsFactory>();
+                    case ListType.pOpend:
+                        return container.Resolve<OpenedProjecToolbarFactory>();
                     default:
                         return container.Resolve<StartingToolbarFactory>();
                 }
@@ -75,6 +77,6 @@ namespace CodeAnalizerGUI.Classes
         {
             return container.Resolve<T>();
         }
-          
+
     }
 }

@@ -85,8 +85,8 @@ namespace CodeAnalizerGUI.ViewModels
             if (formats.Length == 0)
                 selectedFile += "\\";
 
-            mediator.NotifyColleagues(MVVMMessage.FileChosed, selectedFile);
             mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
+            mediator.NotifyColleagues(MVVMMessage.FileChosed, selectedFile);
         }
 
         private void Exit()

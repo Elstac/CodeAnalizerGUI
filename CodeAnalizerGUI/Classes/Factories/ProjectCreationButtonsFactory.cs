@@ -13,12 +13,11 @@ namespace CodeAnalizerGUI.Classes
 {
     class ProjectCreationButtonsFactory : ButtonsListFactory
     {
-        private IVMMediator mediator;
-        public ProjectCreationButtonsFactory(IVMMediator mediator)
+        public ProjectCreationButtonsFactory(IVMMediator mediator):base(mediator)
         {
             this.mediator = mediator;
-            names = new string[] { "New project", "GIT", "Directory" };
-            commands = new ICommand[] {new SimpleCommand(NewProject),new SimpleCommand(ProjectFromGIT),new SimpleCommand(ProjectFromDirectory) };
+            names = new List<string> { "New project", "GIT", "Directory" };
+            commands = new List<ICommand> {new SimpleCommand(NewProject),new SimpleCommand(ProjectFromGIT),new SimpleCommand(ProjectFromDirectory) };
         }
 
         private void NewProject()

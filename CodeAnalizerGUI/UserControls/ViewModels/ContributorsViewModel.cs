@@ -35,14 +35,16 @@ namespace CodeAnalizerGUI.ViewModels
             this.newContributorVMFactory = newContributorVMFactory;
             this.mediator = mediator;
             logicHolder = holder;
+            contributors = new ObservableCollection<ContributorButtonModel>();
 
             foreach (var contributor in logicHolder.GetContributorList())
                 NewContributor(contributor);
 
-            contributors = new ObservableCollection<ContributorButtonModel>();
             contributors.Add(new ContributorButtonModel(new ContributorModel {PathToImage = Properties.Settings.Default.AppData + "\\plus.png" } , new SimpleCommand(NewContributorClick)));
 
             mediator.Register(MVVMMessage.NewContributorCreated, ReciveNewContributor);
+            mediator.Register(MVVMMessage.LoadContributors, LoadContributors);
+            mediator.Register(MVVMMessage.SaveContributors, SaveContributors);
         }
 
         private void OpenDetailsControl(object parameter)
@@ -73,17 +75,23 @@ namespace CodeAnalizerGUI.ViewModels
         {
             if (toAdd == null)
                 throw new NullReferenceException("Contributor to add cannot be null");
+
             contributors.Add(new ContributorButtonModel(toAdd, new IndexCommand(OpenDetailsControl)));
         }
 
-        public void SaveContributors()
+        public void SaveContributors(object args)
         {
             logicHolder.SaveContributors(pathToContributors);
         }
 
-        public void LoadContributors()
+        public void LoadContributors(object args)
         {
+            logicHolder.LoadContributors(pathToContributors);
 
+            contributors.Clear();
+            var tmp = logicHolder.GetContributorList();
+            foreach (var contrib in tmp)
+                NewContributor(contrib);
         }
     }
 }
