@@ -42,7 +42,8 @@ namespace CodeAnalizerGUI.Windows
         {
             MainWindow win = new MainWindow();
             var toolbarFactory = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType",ListType.start));
-            var vm = DIContainer.Container.Resolve<MainWindowViewModel>(new NamedParameter("toolbarFactory",toolbarFactory));
+            var navigationFactory = DIContainer.Container.Resolve<IButtonsListFactory>(new NamedParameter("listType",ListType.navigation));
+            var vm = DIContainer.Container.Resolve<MainWindowViewModel>(new NamedParameter("toolbarFactory",toolbarFactory), new NamedParameter("navigationFactory", navigationFactory));
 
             win.DataContext = vm;
             

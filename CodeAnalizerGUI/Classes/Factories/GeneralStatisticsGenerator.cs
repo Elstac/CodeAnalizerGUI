@@ -6,14 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using CodeAnalizerGUI.Models;
 using CodeAnalizer.FileAnalizerModule.Interfaces;
+using CodeAnalizerGUI.Interfaces;
+
 namespace CodeAnalizerGUI.Classes
 {
     class GeneralStatisticsGenerator : Interfaces.IStatisticsGenerator
     {
         private IFileMiner fileMiner;
-
-        public GeneralStatisticsGenerator()
+        public GeneralStatisticsGenerator(IFileMiner miner)
         {
+            fileMiner = miner;
         }
         
 
@@ -31,10 +33,6 @@ namespace CodeAnalizerGUI.Classes
                 new StatisticsModel("Smallest file",fileMiner.GetSmallestFile())
             };
         }
-
-        public void SetMiner(IFileMiner fileMiner)
-        {
-            this.fileMiner = fileMiner;
-        }
+        
     }
 }

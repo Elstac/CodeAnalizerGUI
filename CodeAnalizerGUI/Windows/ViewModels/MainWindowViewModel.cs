@@ -23,8 +23,8 @@ namespace CodeAnalizerGUI.Windows.ViewModels
     public class MainWindowViewModel : ViewModel,INotifyPropertyChanged
     {
         #region Fields
-        private List<NavigationButtonModel> navigationButtons;
-        private IButtonsGenerator navigationFactory;
+        private ObservableCollection<ButtonModel> navigationButtons;
+        private IButtonsListFactory navigationFactory;
         private IButtonsListFactory toolbarFactory;
         private IVMStack commStack;
         private IVMMediator mediator;
@@ -36,14 +36,14 @@ namespace CodeAnalizerGUI.Windows.ViewModels
         #endregion
 
         #region Properties
-        public List<NavigationButtonModel> NavigationButtons { get => navigationButtons; set => navigationButtons = value; }
+        public ObservableCollection<ButtonModel> NavigationButtons { get => navigationButtons; set => navigationButtons = value; }
         public ObservableCollection<ButtonModel> ToolbarButtons { get => toolBarButtons; set => toolBarButtons = value; }
         public object MainContent { get => mainContent; set { mainContent = value; RaisePropertyChange("MainContent"); } }
         
         #endregion
 
 
-        public MainWindowViewModel(IButtonsGenerator navigationFactory,IButtonsListFactory toolbarFactory, IVMStack commStack,IVMMediator mediator)
+        public MainWindowViewModel(IButtonsListFactory navigationFactory,IButtonsListFactory toolbarFactory, IVMStack commStack,IVMMediator mediator)
         {
             this.mediator = mediator;
             this.navigationFactory = navigationFactory;

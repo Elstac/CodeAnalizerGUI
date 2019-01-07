@@ -12,7 +12,8 @@ namespace CodeAnalizerGUI.Classes
     {
         start,
         pCreation,
-        pOpend
+        pOpend,
+        navigation
     }
 
     public abstract class ButtonsListFactory : IButtonsListFactory
@@ -24,6 +25,8 @@ namespace CodeAnalizerGUI.Classes
 
         public ButtonsListFactory(IVMMediator mediator)
         {
+            names = new List<string>();
+            commands = new List<ICommand>();
             this.mediator = mediator;
         }
 

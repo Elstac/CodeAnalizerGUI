@@ -14,6 +14,7 @@ namespace CodeAnalizerGUI
 {
     class LogicHolder : ILogicHolder
     {
+        private bool editMode;
         private ProjectMiner projectminer;
         private IVMMediator mediator;
         public static ILogicHolder MainHolder;
@@ -23,6 +24,7 @@ namespace CodeAnalizerGUI
 
         public LogicHolder(IVMMediator mediator,IDataManager dataManager)
         {
+            editMode = false;
             this.dataManager = dataManager;
             this.mediator = mediator;
 
@@ -51,7 +53,9 @@ namespace CodeAnalizerGUI
         {
             if (contributor is ContributorModel)
             {
-                contributors.Add(contributor as ContributorModel);
+                var tmp = contributor as ContributorModel;
+                contributors.Add(tmp);
+                GetFileMiner(tmp.PathsToFiles.ToArray(), true);
             }
             if (contributor is IEnumerable<ContributorModel>)
                 contributors.AddRange(contributor as IEnumerable<ContributorModel>);
@@ -74,7 +78,9 @@ namespace CodeAnalizerGUI
 
             try
             {
-                contributors.AddRange(dataManager.LoadContributors(path));
+                var contribs = dataManager.LoadContributors(path);
+                foreach (var c in contribs)
+                    NewContributor(c);
             }
             catch(FileNotFoundException)
             {
@@ -89,5 +95,6 @@ namespace CodeAnalizerGUI
         {
             dataManager.SaveContributors(contributors.ToArray(), path);
         }
+        
     }
 }

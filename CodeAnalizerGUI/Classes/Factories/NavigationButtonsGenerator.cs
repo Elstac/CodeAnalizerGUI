@@ -12,52 +12,43 @@ using CodeAnalizerGUI.Views;
 using CodeAnalizerGUI.Windows.Models;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
+using Autofac;
+using CodeAnalizerGUI.Interfaces;
+
 namespace CodeAnalizerGUI.Classes
 {
-    class NavigationButtonsGenerator : Interfaces.IButtonsGenerator
+    class NavigationButtonsGenerator : ButtonsListFactory
     {
-        private ContributorsViewModel contribControl;
+        private ILogicHolder holder;
 
-        public NavigationButtonsGenerator(/* ContributorsViewModel contrib*/)
+        public NavigationButtonsGenerator(IVMMediator mediator,ILogicHolder holder) : base(mediator)
         {
-            //contribControl = contrib;
-        }
+            this.holder = holder;
 
-        public List<NavigationButtonModel> GenerateButtons()
-        {
-            ICommand[] commands = new ICommand[]
+            commands = new List<ICommand>()
             {
                 new SimpleCommand(OpenGlobalStatistics),
                 new SimpleCommand(OpenContributorsControl)
             };
 
-            string[] names = new string[]
+            names = new List<string>()
             {
                 "Global Statistics",
                 "Contributors"
             };
-
-            List<NavigationButtonModel> ret = new List<NavigationButtonModel>();
-            NavigationButtonModel toAdd;
-            for (int i = 0; i < commands.Length; i++)
-            {
-                toAdd = new NavigationButtonModel(names[i], commands[i]);
-                ret.Add(toAdd);
-            }
-
-            return ret;
         }
 
         private void OpenContributorsControl()
         {
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, contribControl);
+            mediator.NotifyColleagues(MVVMMessage.OpenNewRootControl,DIContainer.Container.Resolve<ContributorsViewModel>(
+                new NamedParameter("path",Properties.Settings.Default.ProjectPath + "Contributors.xml")));
         }
 
         private void OpenGlobalStatistics()
         {
-            GeneralStatisticsGenerator gen = new GeneralStatisticsGenerator();
-            gen.SetMiner(LogicHolder.MainHolder.GetGlobalFileMiner());
-            object[] dep = new object[] {gen.GenerateStatisticsDisplay() };
+            var gen = DIContainer.Container.Resolve<IStatisticsGenerator>(new NamedParameter("miner",holder.GetGlobalFileMiner()));
+            var vm = DIContainer.Container.Resolve<GlobalStatisticsViewModel>(new NamedParameter("data", gen.GenerateStatisticsDisplay()));
+            mediator.NotifyColleagues(MVVMMessage.OpenNewRootControl, vm);
         }
     }
 }

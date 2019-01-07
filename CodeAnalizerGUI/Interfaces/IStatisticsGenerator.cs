@@ -11,6 +11,5 @@ namespace CodeAnalizerGUI.Interfaces
     public interface IStatisticsGenerator
     {
         ObservableCollection<StatisticsModel> GenerateStatisticsDisplay();
-        void SetMiner(IFileMiner fileMiner);
     }
 }

@@ -30,6 +30,7 @@
         <DataTemplate DataType="{x:Type vm:ButtonPanelViewModel}">
             <v:ButtonPanelView/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type vm:NewProjectViewModel}">
             <v:NewProjectView/>
         </DataTemplate>

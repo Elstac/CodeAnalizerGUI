@@ -50,7 +50,7 @@ namespace CodeAnalizerGUI.ViewModels
         private void OpenDetailsControl(object parameter)
         {
             var selected = parameter as ContributorModel;
-            
+
             mediator.NotifyColleagues(MVVMMessage.OpenNewControl, detailsVMFactory.Invoke(selected));
         }
 

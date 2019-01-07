@@ -46,6 +46,8 @@ namespace CodeAnalizerGUI.Classes
                         return container.Resolve<ProjectCreationButtonsFactory>();
                     case ListType.pOpend:
                         return container.Resolve<OpenedProjecToolbarFactory>();
+                    case ListType.navigation:
+                        return container.Resolve<NavigationButtonsGenerator>();
                     default:
                         return container.Resolve<StartingToolbarFactory>();
                 }
@@ -65,7 +67,9 @@ namespace CodeAnalizerGUI.Classes
                 return (ContributorModel cm) =>
                 {
                      return container.Resolve<ContributorDetailsViewModel>(
-                     new NamedParameter("miner", LogicHolder.MainHolder.GetFileMiner(cm.PathsToFiles.ToArray(), false)),
+                     new NamedParameter("generator", container.Resolve<GeneralStatisticsGenerator>(
+                         new NamedParameter("miner",container.Resolve<ILogicHolder>().GetFileMiner(
+                             cm.PathsToFiles.ToArray(),false)))),
                      new NamedParameter("contributor", cm));
                 };
             });

@@ -31,7 +31,7 @@
             <ToolBar ItemsSource="{Binding NavigationButtons}">
                 <ToolBar.ItemTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Text}" Command="{Binding Command}"/>
+                        <Button Content="{Binding Name}" Command="{Binding Command}"/>
                     </DataTemplate>
                 </ToolBar.ItemTemplate>
             </ToolBar>

@@ -11,6 +11,8 @@ namespace CodeAnalizerGUI
         OpenNewControl,
         OpenNewRootControl,
         CloseControl,
+        EditContributor,
+        RemoveContributor,
         NewContributorCreated,
         AuthorSelected,
         FileChosed,

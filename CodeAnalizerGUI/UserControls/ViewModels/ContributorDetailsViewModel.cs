@@ -16,30 +16,48 @@ namespace CodeAnalizerGUI.ViewModels
 {
     public class ContributorDetailsViewModel:ViewModel
     {
+        private Func<NewContributorViewModel> editWindow;
         private ViewModel statisticsViewModel;
         private ContributorModel contributor;
-        private IControlsMediator subControlsMediator;
-        private IFileMiner dataMiner;
         private IStatisticsGenerator generator;
+        private IVMMediator mediator;
 
         public ICommand EditCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
 
-        public ContributorDetailsViewModel(IStatisticsGenerator generator,IFileMiner miner,ContributorModel contributor)
+        public ContributorDetailsViewModel(IStatisticsGenerator generator,IVMMediator mediator,ContributorModel contributor,Func<NewContributorViewModel> editWindow)
         {
             this.contributor = contributor;
             this.generator = generator;
-            dataMiner = miner;
-            generator.SetMiner(dataMiner);
-            this.generator = generator;
-            var stats = generator.GenerateStatisticsDisplay();
+            this.mediator = mediator;
+            this.editWindow = editWindow;
 
-            statisticsViewModel = DIContainer.Container.Resolve<GlobalStatisticsViewModel>(new NamedParameter("data", stats));
-            VMMediator.Instance.NotifyColleagues(MVVMMessage.OpenNewControl, statisticsViewModel);
+            var stats = generator.GenerateStatisticsDisplay();
+            var tmp = new GlobalStatisticsViewModel(stats);
+            
+            statisticsViewModel = tmp;
+
+            DeleteCommand = new SimpleCommand(DeleteClick);
+            EditCommand = new SimpleCommand(EditClick);
         }
 
         public ViewModel StatisticsViewModel { get => statisticsViewModel; set => statisticsViewModel = value; }
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
-        public IControlsMediator SubControlsMediator { get => subControlsMediator; set => subControlsMediator = value; }
+
+        private void EditClick()
+        {
+            mediator.NotifyColleagues(MVVMMessage.EditContributor, contributor);
+
+            var vm = editWindow.Invoke();
+            vm.Contributor = contributor;
+
+            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, vm);
+        }
+
+        private void DeleteClick()
+        {
+            mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
+            mediator.NotifyColleagues(MVVMMessage.RemoveContributor, contributor);
+        }
     }
 }

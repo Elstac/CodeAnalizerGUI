@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using CodeAnalizerGUI.Models;
 using System.Collections.ObjectModel;
 using CodeAnalizerGUI.Abstractions;
+using CodeAnalizerGUI.Interfaces;
+
 namespace CodeAnalizerGUI.ViewModels
 {
     class StatisticsViewModel:ViewModel
@@ -14,7 +16,7 @@ namespace CodeAnalizerGUI.ViewModels
 
         public StatisticsViewModel()
         {
-            //statistics = new ObservableCollection<StatisticsModel>(); 
+
         }
 
         public ObservableCollection<Models.StatisticsModel> Statistics { get => statistics; set => statistics = value; }

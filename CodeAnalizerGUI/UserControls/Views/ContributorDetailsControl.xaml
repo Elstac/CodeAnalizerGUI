@@ -24,8 +24,8 @@
                             <Image Source="{Binding Path=PathToImage,Converter={StaticResource ImageConverter}}" Width="64" Height="64" Stretch="Fill"/>
                             <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
                             <TextBlock Text="{Binding Email}" TextWrapping="Wrap"/>
-                            <Button Content="Edit" Command="{Binding EditCommand}" Margin="10,20,10,0"/>
-                            <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="10,0"/>
+                            <!--<Button Content="Edit" Command="{Binding EditCommand}" Margin="10,20,10,0"/>
+                            <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="10,0"/>-->
                         </StackPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
