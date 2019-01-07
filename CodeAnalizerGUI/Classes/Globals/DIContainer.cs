@@ -26,8 +26,7 @@ namespace CodeAnalizerGUI.Classes
             ContainerBuilder builder = new ContainerBuilder();
             Assembly assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().AsSelf();
-
-            builder.RegisterType<MainWindowControlsMediator>().As<IControlsMediator>();
+            
             
             builder.RegisterGeneric(typeof(XmlDataSaver<>)).As(typeof(ISaveBehavior<>));
             builder.RegisterGeneric(typeof(XmlDataLoader<>)).As(typeof(ILoadBehavior<>));

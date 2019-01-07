@@ -89,24 +89,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Factories\ButtonsListFactory.cs" />
-    <Compile Include="Classes\CommunicationModel\ChainLink.cs" />
-    <Compile Include="Classes\Factories\ControlFactory.cs" />
-    <Compile Include="Classes\CommunicationModel\ControlsChain.cs" />
-    <Compile Include="Classes\CommunicationModel\ControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
-    <Compile Include="Classes\Factories\IViewModelFactory.cs" />
     <Compile Include="Classes\Factories\OpenedProjecToolbarFactory.cs" />
     <Compile Include="Classes\Globals\DIContainer.cs" />
     <Compile Include="Classes\Factories\GeneralStatisticsGenerator.cs" />
     <Compile Include="Classes\FileCollector.cs" />
     <Compile Include="Classes\Factories\IButtonListFactory.cs" />
     <Compile Include="Classes\Globals\LogicHolder.cs" />
-    <Compile Include="Classes\CommunicationModel\MainWindowControlsMediator.cs" />
     <Compile Include="Classes\Converters\StringToImageConverter.cs" />
     <Compile Include="Classes\Factories\NavigationButtonsGenerator.cs" />
     <Compile Include="Classes\Factories\ProjectCreationButtonsFactory.cs" />
     <Compile Include="Classes\Factories\StartingToolbarFactory.cs" />
-    <Compile Include="Classes\Globals\ViewModelFactory.cs" />
     <Compile Include="Classes\VMStack.cs" />
     <Compile Include="Communication\IVMMediator.cs" />
     <Compile Include="Communication\MultiDictionary.cs" />
@@ -117,23 +110,13 @@
     <Compile Include="DataSavingModule\Interfaces\IDataManager.cs" />
     <Compile Include="DataSavingModule\Interfaces\ILoadBehavior.cs" />
     <Compile Include="DataSavingModule\Interfaces\ISaveBehavior.cs" />
-    <Compile Include="Exceptions\DependencyMadnessException.cs" />
     <Compile Include="Exceptions\NoFileSelectedException.cs" />
-    <Compile Include="Interfaces\IContributorHolder.cs" />
-    <Compile Include="Interfaces\IControlFactory.cs" />
-    <Compile Include="Interfaces\IButtonGenerator.cs" />
-    <Compile Include="Classes\CommunicationModel\SubControlMediator.cs" />
-    <Compile Include="Interfaces\IControlsMediator.cs" />
-    <Compile Include="Interfaces\IDataSaver.cs" />
     <Compile Include="Interfaces\FileCollector.cs" />
     <Compile Include="Interfaces\ILogicHolder.cs" />
     <Compile Include="Interfaces\IManageableFileList.cs" />
     <Compile Include="Interfaces\IStatisticsGenerator.cs" />
     <Compile Include="Interfaces\ISubControlDataReciver.cs" />
-    <Compile Include="Interfaces\ISubControlOwner.cs" />
-    <Compile Include="Interfaces\ISubControlSender.cs" />
     <Compile Include="Abstractions\SubViewModel.cs" />
-    <Compile Include="Interfaces\IViewFactory.cs" />
     <Compile Include="Interfaces\IVMStack.cs" />
     <Compile Include="ProjectModule\Classes\NewProjectXMLConfigurationCreator.cs" />
     <Compile Include="ProjectModule\Classes\ProjectConfig.cs" />
@@ -150,7 +133,6 @@
     <Compile Include="Abstractions\Commands\IndexCommand.cs" />
     <Compile Include="Abstractions\Commands\SimpleCommand.cs" />
     <Compile Include="UserControls\Models\ButtonModel.cs" />
-    <Compile Include="UserControls\Models\FileTreeNodeModel.cs" />
     <Compile Include="UserControls\ViewModels\ButtonPanelViewModel.cs" />
     <Compile Include="UserControls\ViewModels\FileExplorerViewModel.cs" />
     <Compile Include="UserControls\ViewModels\GlobalStatisticsViewModel.cs" />
@@ -170,7 +152,6 @@
     <Compile Include="UserControls\ViewModels\ContributorDetailsViewModel.cs" />
     <Compile Include="UserControls\ViewModels\ContributorsViewModel.cs" />
     <Compile Include="UserControls\ViewModels\NewContributorViewModel.cs" />
-    <Compile Include="UserControls\ViewModels\StatisticsViewModel.cs" />
     <Compile Include="Abstractions\ViewModel.cs" />
     <Compile Include="UserControls\Views\GitBinderControl.xaml.cs">
       <DependentUpon>GitBinderControl.xaml</DependentUpon>
@@ -182,7 +163,6 @@
     <Compile Include="UserControls\Views\NewContributorControl.xaml.cs">
       <DependentUpon>NewContributorControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IFileExplorerUser.cs" />
     <Compile Include="UserControls\Views\ContributorsControl.xaml.cs">
       <DependentUpon>ContributorsControl.xaml</DependentUpon>
     </Compile>
@@ -192,9 +172,6 @@
     <Compile Include="UserControls\ViewModels\GitBinderViewModel.cs" />
     <Compile Include="UserControls\Views\NewProjectView.xaml.cs">
       <DependentUpon>NewProjectView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Views\StatisticsControl.xaml.cs">
-      <DependentUpon>StatisticsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AppInitializer.xaml.cs">
       <DependentUpon>AppInitializer.xaml</DependentUpon>
@@ -245,10 +222,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Views\StatisticsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\AppInitializer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -265,7 +238,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\ViewModels\NDNewProjectViewModel.cs" />
     <Compile Include="Windows\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

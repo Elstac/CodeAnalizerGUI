@@ -32,7 +32,6 @@ namespace CodeAnalizerGUI
             nButton.Click += clickEvent;
 
             InitializeTagBinding();
-
         }
 
         private void InitializeTagBinding()

@@ -14,16 +14,17 @@ namespace CodeAnalizerGUI.ViewModels
 {
     public class GitBinderViewModel:ViewModel
     {
-       
         private GitAuthorModel selectedAuthor;
         private ObservableCollection<GitAuthorModel> authors;
+        private IVMMediator mediator;
         public ICommand SelectCommand { get; set; }
 
         public ObservableCollection<GitAuthorModel> Authors { get => authors; set { authors = value;} }
         public GitAuthorModel SelectedAuthor { get => selectedAuthor; set => selectedAuthor = value; }
 
-        public GitBinderViewModel()
+        public GitBinderViewModel(IVMMediator mediator)
         {
+            this.mediator = mediator;
             authors = new ObservableCollection<GitAuthorModel>();
 
             SelectCommand = new SimpleCommand(Select);

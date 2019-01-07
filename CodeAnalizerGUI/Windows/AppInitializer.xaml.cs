@@ -26,7 +26,6 @@ namespace CodeAnalizerGUI.Windows
 
             InitializeData();
             InitializeComponent();
-            InitializeFactory();
             LogicHolder holder = DIContainer.Container.Resolve<LogicHolder>();
 
             InitializeMainWindow();
@@ -51,18 +50,6 @@ namespace CodeAnalizerGUI.Windows
             win.Show();
             Close();
         }
-
-        private static void InitializeFactory()
-        {
-            ControlFactory fac = new ControlFactory();
-
-            fac.RegisterViewType(typeof(GitBinderControl), typeof(GitBinderViewModel));
-            fac.RegisterViewType(typeof(NewContributorControl), typeof(NewContributorViewModel));
-            fac.RegisterViewType(typeof(ManageableFileView), typeof(ManageableFileListModel));
-            fac.RegisterViewType(typeof(StatisticsControl), typeof(StatisticsViewModel));
-            fac.RegisterViewType(typeof(ContributorDetailsControl), typeof(ContributorDetailsViewModel));
-            fac.RegisterViewType(typeof(FileExplorerControl), typeof(FileExplorerViewModel));
-            fac.RegisterViewType(typeof(ButtonPanelView), typeof(ButtonPanelViewModel));
-        }
+        
     }
 }
