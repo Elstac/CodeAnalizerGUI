@@ -18,6 +18,9 @@ namespace CodeAnalizerGUI.Classes
 
         public string MoveToResources(string path)
         {
+            if (path.Contains(pathToRes))
+                return path;
+
             int index = path.LastIndexOf('\\')+1;
             string fileName = path.Substring(index);
             

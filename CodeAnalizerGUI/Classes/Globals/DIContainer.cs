@@ -31,8 +31,7 @@ namespace CodeAnalizerGUI.Classes
             builder.RegisterGeneric(typeof(XmlDataSaver<>)).As(typeof(ISaveBehavior<>));
             builder.RegisterGeneric(typeof(XmlDataLoader<>)).As(typeof(ILoadBehavior<>));
             
-
-            builder.Register(c => new FileCollector(Properties.Settings.Default.ProjectPath)).As<IFileCollector>();
+            
             builder.Register<IButtonsListFactory>((c, p) =>
             {
                 var type = p.Named<ListType>("listType");

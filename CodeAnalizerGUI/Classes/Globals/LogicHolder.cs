@@ -1,22 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CodeAnalizer.FileAnalizerModule.Interfaces;
 using CodeAnalizer.FileAnalizerModule.Classes;
 using CodeAnalizerGUI.Models;
 using CodeAnalizerGUI.Interfaces;
-using System.Collections.ObjectModel;
 using System.IO;
+using CodeAnalizerGUI.Classes;
+using Autofac;
 
 namespace CodeAnalizerGUI
 {
     class LogicHolder : ILogicHolder
     {
-        private bool editMode;
         private ProjectMiner projectminer;
         private IVMMediator mediator;
+        private IFileCollector fileCollector;
         public static ILogicHolder MainHolder;
 
         private List<ContributorModel> contributors;
@@ -24,7 +22,6 @@ namespace CodeAnalizerGUI
 
         public LogicHolder(IVMMediator mediator,IDataManager dataManager)
         {
-            editMode = false;
             this.dataManager = dataManager;
             this.mediator = mediator;
 
@@ -33,6 +30,7 @@ namespace CodeAnalizerGUI
             contributors = new List<ContributorModel>();
 
             mediator.Register(MVVMMessage.NewContributorCreated, NewContributor);
+          
         }
 
         public IFileMiner GetFileMiner(string[] paths, bool addToProject)
@@ -54,6 +52,7 @@ namespace CodeAnalizerGUI
             if (contributor is ContributorModel)
             {
                 var tmp = contributor as ContributorModel;
+                tmp.PathToImage = fileCollector.MoveToResources(tmp.PathToImage);
                 contributors.Add(tmp);
                 GetFileMiner(tmp.PathsToFiles.ToArray(), true);
             }
@@ -95,6 +94,5 @@ namespace CodeAnalizerGUI
         {
             dataManager.SaveContributors(contributors.ToArray(), path);
         }
-        
     }
 }
