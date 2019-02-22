@@ -111,7 +111,7 @@
     <Compile Include="DataSavingModule\Interfaces\ILoadBehavior.cs" />
     <Compile Include="DataSavingModule\Interfaces\ISaveBehavior.cs" />
     <Compile Include="Exceptions\NoFileSelectedException.cs" />
-    <Compile Include="Interfaces\FileCollector.cs" />
+    <Compile Include="Interfaces\IFileCollector.cs" />
     <Compile Include="Interfaces\ILogicHolder.cs" />
     <Compile Include="Interfaces\IManageableFileList.cs" />
     <Compile Include="Interfaces\IStatisticsGenerator.cs" />

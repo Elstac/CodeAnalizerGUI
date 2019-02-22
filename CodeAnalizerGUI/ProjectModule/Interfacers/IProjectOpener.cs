@@ -9,6 +9,6 @@ namespace CodeAnalizerGUI.ProjectModule
 {
     interface IProjectOpener
     {
-        ProjectConfig OpenProject(string path);
+        void OpenProject(string path);
     }
 }

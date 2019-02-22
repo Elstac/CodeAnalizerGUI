@@ -17,13 +17,14 @@ namespace CodeAnalizerGUI.Classes
     class StartingToolbarFactory : ButtonsListFactory
     {
         private FileExplorerViewModel.Factory explorer;
-        private ILoadBehavior<ProjectConfig> loader;
+        private IProjectOpener projectOpener;
 
-        public StartingToolbarFactory(IVMMediator mediator,FileExplorerViewModel.Factory explorer,ILoadBehavior<ProjectConfig> loader):base(mediator)
+        public StartingToolbarFactory(IVMMediator mediator,FileExplorerViewModel.Factory explorer,IProjectOpener projectOpener):base(mediator)
         {
-            this.loader = loader;
             this.explorer = explorer;
             this.mediator = mediator;
+            this.projectOpener = projectOpener;
+
             names = new List<string> { "New Project", "Open Project" };
             commands = new List<ICommand> { new SimpleCommand(NewProject), new SimpleCommand(OpenProject) };
 
@@ -51,8 +52,7 @@ namespace CodeAnalizerGUI.Classes
 
             var path = arg.ToString();
 
-            var config = loader.Load(path);
-            mediator.NotifyColleagues(MVVMMessage.ProjectCreated, config);
+            projectOpener.OpenProject(path);
         }
     }
 }

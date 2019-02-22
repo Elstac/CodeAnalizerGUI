@@ -61,6 +61,17 @@ namespace CodeAnalizerGUITests.ClassesTests
 
             Assert.AreEqual(path, imCol.MoveToResources(path));
         }
+
+        [Test]
+        public void IfFileInResourcesDontCopyIt()
+        {
+            string path = resPath + "test.txt";
+            File.Create(path).Close();
+            imCol.MoveToResources(path);
+
+            Assert.True(!File.Exists("test(1).txt"));
+        }
+
         [Test]
         public void DontCopyFileFromResources()
         {

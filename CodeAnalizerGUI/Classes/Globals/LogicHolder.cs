@@ -20,6 +20,8 @@ namespace CodeAnalizerGUI
         private List<ContributorModel> contributors;
         private IDataManager dataManager;
 
+        public IFileCollector FileCollector { get => fileCollector; set => fileCollector = value; }
+
         public LogicHolder(IVMMediator mediator,IDataManager dataManager)
         {
             this.dataManager = dataManager;

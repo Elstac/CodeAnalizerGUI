@@ -27,10 +27,8 @@ namespace CodeAnalizerGUI.Classes
             Assembly assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().AsSelf();
             
-            
             builder.RegisterGeneric(typeof(XmlDataSaver<>)).As(typeof(ISaveBehavior<>));
             builder.RegisterGeneric(typeof(XmlDataLoader<>)).As(typeof(ILoadBehavior<>));
-            
             
             builder.Register<IButtonsListFactory>((c, p) =>
             {
@@ -53,6 +51,8 @@ namespace CodeAnalizerGUI.Classes
 
             builder.RegisterType<VMMediator>().As<IVMMediator>().SingleInstance();
             builder.RegisterType<LogicHolder>().As<ILogicHolder>().SingleInstance();
+            builder.Register<IFileCollector>(c => { return new FileCollector(Properties.Settings.Default.ProjectPath); });
+
             builder.Register<Func<NewContributorViewModel>>(c => { return () => {
                 return container.Resolve<NewContributorViewModel>(new NamedParameter("fileList"
                                                                     ,container.Resolve<IManageableFileList>(
