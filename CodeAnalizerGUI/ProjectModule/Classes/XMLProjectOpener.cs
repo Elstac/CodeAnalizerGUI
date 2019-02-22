@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Xml.Serialization;
 using CodeAnalizerGUI.DataSavingModule;
+using CodeAnalizerGUI.Interfaces;
 
 namespace CodeAnalizerGUI.ProjectModule
 {

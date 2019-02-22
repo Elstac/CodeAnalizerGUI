@@ -12,7 +12,7 @@ namespace CodeAnalizerGUI.Classes
 {
     class OpenedProjecToolbarFactory : StartingToolbarFactory
     {
-        public OpenedProjecToolbarFactory(IVMMediator mediator, FileExplorerViewModel.Factory explorer, ILoadBehavior<ProjectConfig> loader) : base(mediator, explorer, loader)
+        public OpenedProjecToolbarFactory(IVMMediator mediator, FileExplorerViewModel.Factory explorer,IProjectOpener projectOpener) : base(mediator, explorer,projectOpener)
         {
             names.Add("Save");
             names.Add("Load");

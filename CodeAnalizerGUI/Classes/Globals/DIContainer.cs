@@ -51,7 +51,7 @@ namespace CodeAnalizerGUI.Classes
 
             builder.RegisterType<VMMediator>().As<IVMMediator>().SingleInstance();
             builder.RegisterType<LogicHolder>().As<ILogicHolder>().SingleInstance();
-            builder.Register<IFileCollector>(c => { return new FileCollector(Properties.Settings.Default.ProjectPath); });
+            builder.Register<IFileCollector>(c => { return new FileCollector(Properties.Settings.Default.ProjectPath+"\\Resources\\"); });
 
             builder.Register<Func<NewContributorViewModel>>(c => { return () => {
                 return container.Resolve<NewContributorViewModel>(new NamedParameter("fileList"
