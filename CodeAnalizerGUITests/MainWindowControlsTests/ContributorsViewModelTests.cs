@@ -33,7 +33,7 @@ namespace CodeAnalizerGUITests
             logic.Setup(h => h.GetContributorList()).Returns(new List<ContributorModel>());
             mediator.Setup(h => h.NotifyColleagues(It.IsAny<MVVMMessage>(), It.IsAny<object>())).Callback((MVVMMessage msg, object args) => { sended = msg;sendedArgs = args; } );
             mediator.Setup(foo => foo.Register(It.IsAny<MVVMMessage>(), It.IsAny<Action<object>>()));
-            toTest = new ContributorsViewModel(mediator.Object, logic.Object,()=> { return t; },(ContributorModel cm)=> {return d;},"");
+            toTest = new ContributorsViewModel(mediator.Object, logic.Object,null,(ContributorModel cm)=> {return d;},"");
         }
 
         [SetUp]
@@ -76,7 +76,7 @@ namespace CodeAnalizerGUITests
         public void SendMeessageWithChosenContributorAfterClickOnDetailsButton()
         {
             var op = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(toTest);
-            var toAdd = new ContributorButtonModel(new ContributorModel(), null);
+            var toAdd = new ContributorButtonModel(new ContributorModel(), null,null);
 
             op.Invoke("OpenDetailsControl",new object[] { toAdd });
 

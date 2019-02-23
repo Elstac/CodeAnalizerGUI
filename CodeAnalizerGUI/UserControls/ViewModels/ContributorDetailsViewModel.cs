@@ -35,29 +35,11 @@ namespace CodeAnalizerGUI.ViewModels
             var stats = generator.GenerateStatisticsDisplay();
             var tmp = new GlobalStatisticsViewModel(stats);
             
-            statisticsViewModel = tmp;
-
-            DeleteCommand = new SimpleCommand(DeleteClick);
-            EditCommand = new SimpleCommand(EditClick);
+            statisticsViewModel = tmp;;
         }
 
         public ViewModel StatisticsViewModel { get => statisticsViewModel; set => statisticsViewModel = value; }
         public ContributorModel Contributor { get => contributor; set => contributor = value; }
-
-        private void EditClick()
-        {
-            mediator.NotifyColleagues(MVVMMessage.EditContributor, contributor);
-
-            var vm = editWindow.Invoke();
-            vm.Contributor = contributor;
-
-            mediator.NotifyColleagues(MVVMMessage.OpenNewControl, vm);
-        }
-
-        private void DeleteClick()
-        {
-            mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
-            mediator.NotifyColleagues(MVVMMessage.RemoveContributor, contributor);
-        }
+        
     }
 }

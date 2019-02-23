@@ -10,5 +10,6 @@ namespace CodeAnalizerGUI.Interfaces
     {
         List<string> getFilePaths();
         void SetAllowedFormats(string[] v);
+        void SetFiles(string[] files);
     }
 }

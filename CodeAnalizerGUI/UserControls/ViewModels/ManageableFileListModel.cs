@@ -68,5 +68,10 @@ namespace CodeAnalizerGUI.ViewModels
         {
             allowedFormats = v;
         }
+
+        public void SetFiles(string[] files)
+        {
+            this.Files = files.ToList();
+        }
     }
 }

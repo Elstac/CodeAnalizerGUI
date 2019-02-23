@@ -12,15 +12,18 @@ namespace CodeAnalizerGUI.Models
     {
         private ContributorModel contributor = new ContributorModel();
         private ICommand buttonCommand;
+        private ICommand editCommand;
 
-        public ContributorButtonModel(ContributorModel contributor, ICommand buttonCommand)
+        public ContributorButtonModel(ContributorModel contributor, ICommand buttonCommand, ICommand editCommand)
         {
             if(contributor!=null)
                 this.contributor = contributor;
             this.buttonCommand = buttonCommand;
+            this.editCommand = editCommand;
         }
 
         public ContributorModel Contributor { get => contributor; set { contributor = value; RaisePropertyChanged("Contributor"); } }
         public ICommand ButtonCommand { get => buttonCommand; set { buttonCommand = value; RaisePropertyChanged("ButtonCommand"); } }
+        public ICommand EditCommand { get => editCommand; set { editCommand = value; RaisePropertyChanged("EditCommand"); } }
     }
 }

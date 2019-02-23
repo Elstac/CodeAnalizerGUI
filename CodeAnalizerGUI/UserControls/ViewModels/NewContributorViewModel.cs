@@ -59,7 +59,16 @@ namespace CodeAnalizerGUI.ViewModels
             mediator.Register(MVVMMessage.FileChosed, ReciveFilePath);
         }
 
-        public ContributorModel Contributor { get => contributor; set => contributor = value; }
+        public ContributorModel Contributor { get => contributor;
+            set
+            {
+                contributor.Name = value.Name;
+                contributor.Email = value.Email;
+                contributor.PathToImage = value.PathToImage;
+
+                fileList.SetFiles(value.PathsToFiles.ToArray());
+            }
+        }
         public IManageableFileList FileList { get=>fileList; set=> fileList = value; }
 
         public void Send()
@@ -68,7 +77,7 @@ namespace CodeAnalizerGUI.ViewModels
             if (contributor.PathsToFiles.Count == 0)
                 throw new NoFileSelectedException("Contributor contains no file");
 
-            mediator.NotifyColleagues(MVVMMessage.NewContributorCreated, contributor);
+            mediator.NotifyColleagues(MVVMMessage.ContributorModificationEnd, contributor);
             mediator.NotifyColleagues(MVVMMessage.CloseControl, this);
         }
 

@@ -88,6 +88,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\ContributorModificator.cs" />
     <Compile Include="Classes\Factories\ButtonsListFactory.cs" />
     <Compile Include="Classes\Converters\StringToImageSourceConverter.cs" />
     <Compile Include="Classes\Factories\OpenedProjecToolbarFactory.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="DataSavingModule\Interfaces\ILoadBehavior.cs" />
     <Compile Include="DataSavingModule\Interfaces\ISaveBehavior.cs" />
     <Compile Include="Exceptions\NoFileSelectedException.cs" />
+    <Compile Include="Interfaces\IContributorModificator.cs" />
     <Compile Include="Interfaces\IFileCollector.cs" />
     <Compile Include="Interfaces\ILogicHolder.cs" />
     <Compile Include="Interfaces\IManageableFileList.cs" />

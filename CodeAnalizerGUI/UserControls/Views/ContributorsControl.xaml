@@ -27,6 +27,7 @@
                     </Button>
                     <TextBlock Text="{Binding Path= Contributor.Name}" HorizontalAlignment="Center"/>
                     <TextBlock Text="{Binding Path= Contributor.Email}" HorizontalAlignment="Center"/>
+                    <Button Content="Edit" Command="{Binding Path= EditCommand}" CommandParameter="{Binding Contributor}"/>
                 </StackPanel>
             </DataTemplate>
         </ItemsControl.ItemTemplate>
